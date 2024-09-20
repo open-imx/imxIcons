@@ -36,11 +36,11 @@ jobs:
       run: |
         hatch run test
 
-    - uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
-        verbose: true
+#    - uses: codecov/codecov-action@v4
+#      with:
+#        token: ${{ secrets.CODECOV_TOKEN }}
+#        fail_ci_if_error: true
+#        verbose: true
 
   release:
     runs-on: ubuntu-latest
