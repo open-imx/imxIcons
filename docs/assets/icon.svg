@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="584" height="784.086" >
+  <defs/>
+  <g transform="translate(-45,75)">
+    <g class="open-imx-icon Sign" transform="matrix(0, -40.285473, 40.285473, 0, 414.005872, 221.385672)" style="transform-origin: 5.25px 0px;">
+    <g name="sign-normal-base" fill="black" stroke="black" stroke-width="0.375">
+      <line x1="0" x2="0" y1="-1" y2="1" style="stroke-width: 0.297874px;"/>
+      <line x1="10" x2="0" y1="0" y2="0" style="stroke-width: 0.297874px;"/>
+    </g>
+    <g name="sign-doghouse" fill="black" stroke="black" stroke-width="0.375">
+      <path d="M2,-2 L0,-2 L0,2 L2,2 L4,0 L2,-2 Z " fill="#FFFFFF" transform="translate(6.5, 0)" style="stroke-width: 0.297874px;"/>
+    </g>
+    <g name="RS-300" fill="black" stroke="black" stroke-width="0.375">
+      <line x1="2.5875" x2="2.4219" y1="0.675" y2="0.3582" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="2.2113" x2="2.124" y1="1.0323" y2="0.864" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="1.8486" x2="1.7073" y1="1.4139" y2="1.1448" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="1.4787" x2="1.1934" y1="1.7838" y2="1.2366" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="0.9243" x2="0.5058" y1="1.8" y2="0.9981" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="0.3618" x2="-0.3375" y1="1.8" y2="0.459" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="2.9574" x2="2.2905" y1="0.3051" y2="-0.972" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="0" x2="-0.3375" y1="0.0288" y2="-0.6183" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="0.198" x2="-0.3375" y1="-0.6714" y2="-1.6965" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="0.5679" x2="0.171" y1="-1.0404" y2="-1.8" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="1.0359" x2="0.7335" y1="-1.2213" y2="-1.8" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+      <line x1="1.6218" x2="1.296" y1="-1.1763" y2="-1.8" stroke="red" transform="translate(6.9, 0)" style="stroke-width: 0.297874px;"/>
+    </g>
+    <g name="sign-doghouse-no-fill" fill="black" stroke="black" stroke-width="0.375">
+      <path d="M2,-2 L0,-2 L0,2 L2,2 L4,0 L2,-2 Z " fill="none" transform="translate(6.5, 0)" style="stroke-width: 0.297874px;"/>
+    </g>
+    <g name="RS-301" class="doghouse-s" fill="black" stroke="black" stroke-width="0.375">
+      <path d="M 1.193 0.331 C 1.193 0.331 0.885 0.151 0.719 0.158 C 0.547 0.166 0.250 0.331 0.182 0.462 C 0.114 0.602 0.152 0.89 0.265 1.000 C 0.401 1.134 0.890 0.974 1.036 1.104 C 1.162 1.216 1.209 1.494 1.173 1.65 C 1.140 1.791 1.004 1.952 0.870 2.009 C 0.689 2.069 0.440 2.041 0.294 1.969 C 0.114 1.897 -0.078 1.588 -0.078 1.588" fill="none" transform="translate(9.35, -.65), rotate(90)" style="stroke-width: 0.297874px;"/>
+    </g>
+    <g name="sign-bottom-plate" fill="black" stroke="black" stroke-width="0.375">
+      <path d="M 0 2 L 1 2 L 1 -2 L 0 -2 Z" fill="#FFFFFF" transform="translate(4.75, 0)" style="stroke-width: 0.297874px;"/>
+    </g>
+    <g name="arrow-sign" fill="black" stroke="black" stroke-width="0.375">
+      <rect x="0" y="0" width="1.412" height="2.384" fill="#bcbcbc" transform="rotate(180), translate(-4, -1.15)" style="stroke-width: 0.297874px;"/>
+      <line x1="0.755" y1="1.228" x2="0.743" y2="1.958" stroke="#000000" transform="rotate(180), translate(-4, -1.15)" style="stroke-width: 0.297874px;"/>
+      <path d="M 0.751 0.527 L 1.047 1.279 L 0.455 1.279 L 0.751 0.527 Z" fill="#000000" stroke="#000000" transform="rotate(180), translate(-4, -1.15)" style="stroke-width: 0.297874px;"/>
+    </g>
+  </g>
+    <g class="open-imx-icon Signal" transform="matrix(0, -43.312698, 43.312698, 0, -8.711548, 136.110218)" style="transform-origin: 6.75px 0.578px;">
+    <g name="post-ground" fill="black" stroke="black" stroke-width="0.375" transform="matrix(1, 0, 0, 1, -0.088564, 3.631124)">
+      <line x1="0" x2="0" y1="-1" y2="1" style="stroke-width: 0.277055px;"/>
+    </g>
+    <g name="post-ground" fill="black" stroke="black" stroke-width="0.375" transform="matrix(1, 0, 0, 1, -0.088564, 3.631124)">
+      <line x1="0" x2="0" y1="-1" y2="1" style="stroke-width: 0.277055px;"/>
+    </g>
+    <g name="signal-post-high" fill="black" stroke="black" stroke-width="0.375" transform="matrix(1, 0, 0, 1, -0.088564, 3.631124)">
+      <line x1="8.5" x2="0" y1="-0" y2="-0" style="stroke-width: 0.277055px;"/>
+    </g>
+    <g name="signal-aspect" class="animated" fill="black" stroke="black" stroke-width="0.375" transform="matrix(1, 0, 0, 1, -0.088564, 3.631124)">
+      <circle class="aspect-3-colors" cx="0" cy="0" r="1.5" fill="gold" transform="translate(10, 0)" style="stroke-width: 0.277055px;"/>
+    </g>
+    <g name="illuminated-sign-integrated" class="animated" fill="black" stroke="black" stroke-width="0.375" transform="matrix(1, 0, 0, 1, -0.088564, 3.631124)">
+      <circle class="aspect-on-off" cx="0" cy="0" r="1.05" fill="gold" transform="translate(7.25, 0)" style="stroke-width: 0.277055px;"/>
+      <line x1="-0.75" x2="0.75" y1="-0.75" y2="0.75" transform="translate(7.25, 0)" style="stroke-width: 0.277055px;"/>
+      <line x1="0.75" x2="-0.75" y1="-0.75" y2="0.75" transform="translate(7.25, 0)" style="stroke-width: 0.277055px;"/>
+    </g>
+  </g>
+    <g class="open-imx-icon Signal" transform="matrix(0, -38.272881, 38.272881, 0, 207.967352, 332.41804)" style="transform-origin: 2.625px 0px;">
+    <g name="post-ground" fill="black" stroke="black" stroke-width="0.375">
+      <line x1="0" x2="0" y1="-1" y2="1" style="stroke-width: 0.313538px;"/>
+    </g>
+    <g name="signal-post-low" fill="black" stroke="black" stroke-width="0.375">
+      <line x1="0" x2="2.5" y1="-0" y2="-0" style="stroke-width: 0.313538px;"/>
+    </g>
+    <g name="signal-aspect" class="animated" fill="black" stroke="black" stroke-width="0.375">
+      <circle class="aspect-3-colors" cx="0" cy="0" r="1.5" fill="gold" transform="translate(3.75, 0)" style="stroke-width: 0.313538px;"/>
+    </g>
+  </g>
+    <g class="open-imx-icon Sign" transform="matrix(0, -39.072361, 39.072361, 0, 284.504342, 221.384574)" style="transform-origin: 5.413px 0.001px;">
+    <g name="sign-normal-base" fill="black" stroke="black" stroke-width="0.375">
+      <line x1="0" x2="0" y1="-1" y2="1" style="stroke-width: 0.307122px;"/>
+      <line x1="10" x2="0" y1="0" y2="0" style="stroke-width: 0.307122px;"/>
+    </g>
+    <g name="sign-rectangle-45-degrees" fill="black" stroke="black" stroke-width="0.375">
+      <polygon points="0 -2.827 2.826 0 0 2.829 -2.83 0" transform="translate(8, 0)" style="stroke-width: 0.307122px;"/>
+    </g>
+    <g name="RS-306a" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.2">
+      <polygon points="0,-2.75 2.828,0.078 0,2.906 -2.828,0.078" fill="#3a61b4" transform="translate(8.1, 0.05), rotate(90), scale(0.8)" style="stroke-width: 0.383903px;"/>
+      <rect x="0.804" y="-1.019" width="0.272" height="0.562" transform="translate(8.1, 0.05), rotate(90), scale(0.8)" style="stroke-width: 0.383903px;"/>
+      <rect x="-0.995" y="-1.019" width="0.272" height="0.562" transform="translate(8.1, 0.05), rotate(90), scale(0.8)" style="stroke-width: 0.383903px;"/>
+      <rect x="-0.995" y="0.564" width="2.071" height="0.294" transform="translate(8.1, 0.05), rotate(90), scale(0.8)" style="stroke-width: 0.383903px;"/>
+    </g>
+  </g>
+  </g>
+
+</svg>

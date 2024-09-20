@@ -1,0 +1,97 @@
+site_name: Imx:Icons
+site_description: Python library and fastApi to get IMX Icons by type and properties
+
+repo_url: https://github.com/open-imx/ImxInsights
+repo_name: ImxIcons
+
+theme:
+    favicon: assets/icon.svg
+    logo: assets/logo.svg
+
+    features:
+      - navigation.tabs
+      - navigation.tabs.sticky
+      - navigation.expand
+      # - toc.integrate
+      - search.suggest
+    name: material
+    icon:
+        logo: material/library
+    palette:
+        # Palette toggle for automatic mode
+        - media: "(prefers-color-scheme)"
+          toggle:
+            icon: material/brightness-auto
+            name: Switch to light mode
+
+        # Palette toggle for light mode
+        - media: "(prefers-color-scheme: light)"
+          scheme: default
+          primary: deep purple
+          accent: deep orange
+          toggle:
+            icon: material/brightness-7
+            name: Switch to dark mode
+
+        # Palette toggle for dark mode
+        - media: "(prefers-color-scheme: dark)"
+          scheme: slate
+          primary: deep purple
+          accent: deep orange
+          toggle:
+            icon: material/brightness-4
+            name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+markdown_extensions:
+    - toc:
+        permalink: true
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+    - pymdownx.details
+    - admonition
+    - pymdownx.tabbed:
+        alternate_style: true
+
+plugins:
+    - search
+    - mkdocstrings:
+        handlers:
+            python:
+                import:
+                    - https://docs.python.org/3.12/objects.inv
+                options:
+                    docstring_style: google
+                    members_order: source
+                    inherited_members: true
+                    show_source: false
+                    show_symbol_type_heading: true
+                    show_symbol_type_toc: true
+                    show_root_toc_entry: false
+
+watch:
+    - docs
+    - imxIcons
+
+nav:
+    - About: index.md
+    - Getting started:
+        - Installation: context/installation.md
+        - Basic use: examples/basic_use.md
+    - Reference:
+        - IconGeneration: reference/imx_icon_generation.md
+        - ImxIcons: reference/imx_icons.md
+        - ImxIconsApi: reference/imx_icons_api.md
+    - Contributing: contribution.md
+    - Code of conduct: code_of_conduct.md
+    - License: license.md
