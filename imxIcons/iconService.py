@@ -93,7 +93,7 @@ class IconService:
         return ".".join(part.lstrip("@") for part in key.split("."))
 
     @classmethod
-    def get_svg_name_and_groups(
+    def _get_svg_name_and_groups(
         cls, entry: dict[str, Any], subtypes: list[IconEntity]
     ) -> tuple[Any, list[IconSvgGroup]]:
         """
@@ -172,7 +172,7 @@ class IconService:
                 "combination of imx path and imx version do not have a icon in the library"
             )
 
-        icon_name, svg_groups = cls.get_svg_name_and_groups(
+        icon_name, svg_groups = cls._get_svg_name_and_groups(
             dict(request_model), imx_path_icons
         )
         return icon_name
@@ -272,7 +272,7 @@ class IconService:
                 "combination of imx path and imx version do not have a icon in the library"
             )
 
-        icon_name, svg_groups = cls.get_svg_name_and_groups(
+        icon_name, svg_groups = cls._get_svg_name_and_groups(
             dict(request_model), imx_path_icons
         )
         svg_content = cls._create_svg(request_model.imx_path, icon_name, svg_groups)

@@ -85,12 +85,12 @@ watch:
 
 nav:
     - About: index.md
-    - Getting started:
-        - Installation: context/installation.md
-        - Basic use: examples/basic_use.md
+#    - Getting started:
+#        - Installation: context/installation.md
+#        - Basic use: examples/basic_use.md
     - Reference:
-        - IconGeneration: reference/imx_icon_generation.md
-        - ImxIcons: reference/imx_icons.md
+        #- IconGeneration: reference/imx_icon_generation.md
+        #- ImxIcons: reference/imx_icons.md
         - ImxIconsApi: reference/imx_icons_api.md
     - Contributing: contribution.md
     - Code of conduct: code_of_conduct.md

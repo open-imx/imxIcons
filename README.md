@@ -21,7 +21,7 @@ These icons help streamline the visualization of railway data across various too
 - [X] Return icon name
 
 ## Roadmap
-- [] Qgis icons.
+- [ ] Qgis icons.
 - [ ] set up mkdocs proper
 - [ ] test all specified icons for v125 and v500
 - [ ] Add way of working docs.
@@ -54,6 +54,8 @@ TODO
 
 ## Contributing
 Contributions welcome! [Join our Discord Community](https://discord.gg/wBses7bPFg) 
+
+## 
 
 ~~For more information on the design of the library, see [contribution guidelines for this project](CONTRIBUTING.md).~~
 
