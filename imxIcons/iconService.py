@@ -110,7 +110,7 @@ class IconService:
         Raises:
             NotImplementedError: If no matching subtypes are found.
         """
-        matching_subtypes = []
+        matching_subtypes: list[tuple[int, str, IconEntity]] = []
         entry_properties = entry.get("properties", {})
 
         entry_properties = {
@@ -131,7 +131,7 @@ class IconService:
                 for key, value in subtype_properties.items()
             ):
                 matching_subtypes.append(
-                    [len(subtype_keys), details.icon_name, details]
+                    (len(subtype_keys), details.icon_name, details)
                 )
 
         sorted_matching_subtypes = sorted(
@@ -193,11 +193,13 @@ class IconService:
         Returns:
             An SVG string for the icon.
         """
-        svg_groups = [
-            cls._add_transform_to_elements(SVG_ICON_DICT[item.group_id], item.transform)
-            for item in svg_groups
+        svg_groups_str = [
+            cls._add_transform_to_elements(
+                SVG_ICON_DICT[item.group_id], item.transform or ""
+            )
+            for item in svg_groups  # Ensure that this gives valid strings for SVG_ICON_DICT
         ]
-        group_data = "\n".join(cls._add_transform_to_groups(svg_groups))
+        group_data = "\n".join(cls._add_transform_to_groups(svg_groups_str))
         svg_content = f"""
         <svg xmlns="http://www.w3.org/2000/svg" name="{icon_name}" class="svg-colored" viewBox="0 0 50 50">
             <g class="open-imx-icon {imx_path}" transform="translate(25, 25)">
