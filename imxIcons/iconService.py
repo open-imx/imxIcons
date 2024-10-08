@@ -12,8 +12,18 @@ from imxIcons.iconServiceModels import IconRequestModel
 
 
 class IconService:
+    """Service for handling and generating SVG icons."""
     @staticmethod
     def _add_transform_to_groups(svg_groups: list[str]) -> list[str]:
+        """
+        Adds a transform attribute to a list of SVG group strings.
+
+        Args:
+            svg_groups: A list of SVG group strings.
+
+        Returns:
+            A list of SVG groups with a transform attribute added.
+        """
         updated_groups = []
 
         for group in svg_groups:
@@ -26,6 +36,16 @@ class IconService:
 
     @staticmethod
     def _add_transform_to_elements(svg_str: str, transform_str: str) -> str:
+        """
+        Adds a transform attribute to geometry elements in an SVG string.
+
+        Args:
+            svg_str: The input SVG string.
+            transform_str: The transformation string to apply.
+
+        Returns:
+            A modified SVG string with the transformation applied to geometry elements.
+        """
         if transform_str is None:
             return svg_str
 
@@ -46,18 +66,49 @@ class IconService:
 
     @staticmethod
     def _format_svg(svg_str: str) -> str:
+        """
+        Formats an SVG string to be pretty-printed.
+
+        Args:
+            svg_str: The input SVG string.
+
+        Returns:
+            A pretty-printed SVG string.
+        """
         parser = XMLParser(remove_blank_text=True)
         root = etree.fromstring(svg_str, parser)
         return etree.tostring(root, encoding="unicode", pretty_print=True)
 
     @staticmethod
     def _clean_key(key: str) -> str:
+        """
+        Cleans a key by removing leading '@' characters from each part of a dotted key string.
+
+        Args:
+            key: The key string to clean.
+
+        Returns:
+            A cleaned version of the key.
+        """
         return ".".join(part.lstrip("@") for part in key.split("."))
 
     @classmethod
     def get_svg_name_and_groups(
         cls, entry: dict[str, Any], subtypes: list[IconEntity]
     ) -> tuple[Any, list[IconSvgGroup]]:
+        """
+        Retrieves the SVG name and groups that match the properties in an entry.
+
+        Args:
+            entry: The entry dictionary containing properties.
+            subtypes: A list of IconEntity objects representing subtypes.
+
+        Returns:
+            A tuple containing the icon name and the matching SVG groups.
+
+        Raises:
+            NotImplementedError: If no matching subtypes are found.
+        """
         matching_subtypes = []
         entry_properties = entry.get("properties", {})
 
@@ -101,6 +152,19 @@ class IconService:
         request_model: IconRequestModel,
         imx_version: ImxVersionEnum,
     ) -> str:
+        """
+        Retrieves the icon name for a given request model and IMX version.
+
+        Args:
+            request_model: The request model containing icon path and properties.
+            imx_version: The IMX version to match.
+
+        Returns:
+            The name of the matching icon.
+
+        Raises:
+            ValueError: If no icon is found for the combination of IMX path and version.
+        """
         try:
             imx_path_icons = ICON_DICT[request_model.imx_path][imx_version.name]
         except Exception:  # pragma: no cover
@@ -115,6 +179,17 @@ class IconService:
 
     @classmethod
     def _create_svg(cls, imx_path: str, icon_name: str, svg_groups: list[IconSvgGroup]):
+        """
+        Creates an SVG string from icon details and SVG groups.
+
+        Args:
+            imx_path: The IMX path for the icon.
+            icon_name: The name of the icon.
+            svg_groups: A list of SVG groups associated with the icon.
+
+        Returns:
+            An SVG string for the icon.
+        """
         svg_groups = [
             cls._add_transform_to_elements(SVG_ICON_DICT[item.group_id], item.transform)
             for item in svg_groups
@@ -134,6 +209,18 @@ class IconService:
         cls,
         imx_version: ImxVersionEnum,
     ) -> dict[str, dict[str, str | dict[str, str]]]:
+        """
+        Retrieves all icons for a given IMX version.
+
+        Args:
+            imx_version: The IMX version to match.
+
+        Returns:
+            A dictionary of icon names and their corresponding SVG content and metadata.
+
+        Raises:
+            ValueError: If no icons are found for the IMX version.
+        """
         try:
             imx_path_icons = {
                 key: value[imx_version.name] for key, value in ICON_DICT.items()
@@ -164,6 +251,20 @@ class IconService:
         imx_version: ImxVersionEnum,
         pretty_svg=True,
     ) -> Any:
+        """
+        Retrieves the SVG content for a given request model and IMX version.
+
+        Args:
+            request_model: The model containing icon request details such as the IMX path and properties.
+            imx_version: The IMX version to match for retrieving the icon.
+            pretty_svg: If True, formats the SVG content for pretty printing. Default is True.
+
+        Returns:
+            The SVG content as a string. If `pretty_svg` is True, the SVG is formatted for better readability.
+
+        Raises:
+            ValueError: If no icon is found for the combination of IMX path and version.
+        """
         try:
             imx_path_icons = ICON_DICT[request_model.imx_path][imx_version.name]
         except Exception:  # pragma: no cover
