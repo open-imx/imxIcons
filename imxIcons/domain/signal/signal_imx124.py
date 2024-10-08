@@ -206,7 +206,6 @@ signals.extend(
                 IconSvgGroup("post-ground"),
                 IconSvgGroup("signal-post-high"),
                 IconSvgGroup("signal-aspect", "translate(10, 0)"),
-
             ],
         ),
         IconEntity(

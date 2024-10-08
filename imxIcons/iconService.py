@@ -7,13 +7,13 @@ from lxml.etree import XMLParser
 from imxIcons.domain import ICON_DICT  # DEFAULT_ICONS
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.domain.svg_data import SVG_ICON_DICT
-from imxIcons.iconEntity import IconSvgGroup
+from imxIcons.iconEntity import IconEntity, IconSvgGroup
 from imxIcons.iconServiceModels import IconRequestModel
 
 
 class IconService:
     @staticmethod
-    def _add_transform_to_groups(svg_groups):
+    def _add_transform_to_groups(svg_groups: list[str]) -> list[str]:
         updated_groups = []
 
         for group in svg_groups:
@@ -25,7 +25,7 @@ class IconService:
         return updated_groups
 
     @staticmethod
-    def _add_transform_to_elements(svg_str, transform_str):
+    def _add_transform_to_elements(svg_str: str, transform_str: str) -> str:
         if transform_str is None:
             return svg_str
 
@@ -45,17 +45,19 @@ class IconService:
         return etree.tostring(root, encoding="unicode")
 
     @staticmethod
-    def _format_svg(svg_str):
+    def _format_svg(svg_str: str) -> str:
         parser = XMLParser(remove_blank_text=True)
         root = etree.fromstring(svg_str, parser)
         return etree.tostring(root, encoding="unicode", pretty_print=True)
 
     @staticmethod
-    def _clean_key(key):
+    def _clean_key(key: str) -> str:
         return ".".join(part.lstrip("@") for part in key.split("."))
 
     @classmethod
-    def get_svg_name_and_groups(cls, entry, subtypes) -> tuple[str, list[list[IconSvgGroup]]]:
+    def get_svg_name_and_groups(
+        cls, entry: dict[str, Any], subtypes: list[IconEntity]
+    ) -> tuple[Any, list[IconSvgGroup]]:
         matching_subtypes = []
         entry_properties = entry.get("properties", {})
 
@@ -85,8 +87,8 @@ class IconService:
         )
 
         if len(sorted_matching_subtypes) == 0:
-            # todo: if len is 0, else return default icon for path
-            raise NotImplementedError("No default icons are implemented")
+            # TODO: if len is 0, else return default icon for path
+            raise NotImplementedError("No default icons are implemented")  # pragma: no cover
 
         return (
             sorted_matching_subtypes[0][1],
@@ -101,8 +103,8 @@ class IconService:
     ) -> str:
         try:
             imx_path_icons = ICON_DICT[request_model.imx_path][imx_version.name]
-        except Exception:
-            raise ValueError(  # noqa: TRY003
+        except Exception:  # pragma: no cover
+            raise ValueError(  # noqa: TRY003 pragma: no cover
                 "combination of imx path and imx version do not have a icon in the library"
             )
 
@@ -110,6 +112,49 @@ class IconService:
             dict(request_model), imx_path_icons
         )
         return icon_name
+
+    @classmethod
+    def _create_svg(cls, imx_path: str, icon_name: str, svg_groups: list[IconSvgGroup]):
+        svg_groups = [
+            cls._add_transform_to_elements(SVG_ICON_DICT[item.group_id], item.transform)
+            for item in svg_groups
+        ]
+        group_data = "\n".join(cls._add_transform_to_groups(svg_groups))
+        svg_content = f"""
+        <svg xmlns="http://www.w3.org/2000/svg" name="{icon_name}" class="svg-colored" viewBox="0 0 50 50">
+            <g class="open-imx-icon {imx_path}" transform="translate(25, 25)">
+               {group_data}
+            </g>
+        </svg>
+        """
+        return svg_content
+
+    @classmethod
+    def get_all_icons(
+        cls,
+        imx_version: ImxVersionEnum,
+    ) -> dict[str, dict[str, str | dict[str, str]]]:
+        try:
+            imx_path_icons = {
+                key: value[imx_version.name] for key, value in ICON_DICT.items()
+            }
+        except Exception: # pragma: no cover
+            raise ValueError(  # noqa: TRY003 pragma: no cover
+                "combination of imx path and imx version do not have a icon in the library"
+            )
+        out = {}
+        for imx_type, icons in imx_path_icons.items():
+            for icon_entity in icons:
+                svg_content = cls._create_svg(
+                    icon_entity.imx_path, icon_entity.icon_name, icon_entity.icon_groups
+                )
+                out[icon_entity.icon_name] = {
+                    "imx_version": icon_entity.imx_version.name,
+                    "imx_path": icon_entity.imx_path,
+                    "imx_properties": icon_entity.properties,
+                    "icon": svg_content.strip(),
+                }
+        return out
 
 
     @classmethod
@@ -121,29 +166,15 @@ class IconService:
     ) -> Any:
         try:
             imx_path_icons = ICON_DICT[request_model.imx_path][imx_version.name]
-        except Exception:
-            raise ValueError(  # noqa: TRY003
+        except Exception:  # pragma: no cover
+            raise ValueError(  # noqa: TRY003 pragma: no cover
                 "combination of imx path and imx version do not have a icon in the library"
             )
 
         icon_name, svg_groups = cls.get_svg_name_and_groups(
             dict(request_model), imx_path_icons
         )
-
-        svg_groups = [
-            cls._add_transform_to_elements(SVG_ICON_DICT[item.group_id], item.transform)
-            for item in svg_groups
-        ]
-
-        group_data = "\n".join(cls._add_transform_to_groups(svg_groups))
-
-        svg_content = f"""
-        <svg xmlns="http://www.w3.org/2000/svg" name="{icon_name}" class="svg-colored" viewBox="0 0 50 50">
-            <g class="open-imx-icon {request_model.imx_path}" transform="translate(25, 25)">
-               {group_data}
-            </g>
-        </svg>
-        """
+        svg_content = cls._create_svg(request_model.imx_path, icon_name, svg_groups)
 
         if pretty_svg:
             return cls._format_svg(svg_content.strip())

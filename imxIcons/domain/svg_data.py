@@ -53,6 +53,7 @@ def create_secondary_icon_style(qgis=True):
     return f"{create_fill_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_color_by_fill_param(IconStyleEnum.secondary_color, qgis)} {create_stroke_width(IconStyleEnum.secondary_stroke_width, qgis)}"
 
 
+# TODO: FIX THE QGIS SUPPORT
 qgis_render = False
 
 svg_groups = f"""

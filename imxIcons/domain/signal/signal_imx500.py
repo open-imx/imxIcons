@@ -354,31 +354,6 @@ signals.extend(
 
 add_arrow_marker(signals)
 
-signals.append(
-    IconEntity(
-        imx_version=imx_version,
-        imx_path=entities_path,
-        icon_name="0_KerstBoom",
-        properties={"*": "*"},
-        icon_groups=[
-            IconSvgGroup("post-ground"),
-            IconSvgGroup("post-ground"),
-            IconSvgGroup("signal-post-high"),
-            IconSvgGroup("signal-aspect", "translate(10, 0)"),
-            IconSvgGroup("signal-p", "translate(1, 3.5), rotate(90)"),
-            IconSvgGroup("illuminated-sign-integrated", "translate(7.25, 0)"),
-            IconSvgGroup("signal-danger-sign", "translate(4.25, 0)"),
-            IconSvgGroup("signal-direction-3-sign", "translate(1.5, 0)"),
-            IconSvgGroup("signal-white-bar", "translate(8, -2.75)"),
-            IconSvgGroup("signal-spreader-lens", "translate(8, 0)"),
-            IconSvgGroup("shunting-area-lamp", "translate(11.5, 0)"),
-            IconSvgGroup("arrow-sign", "rotate(180), translate(-2.5, -1.15)"),
-            IconSvgGroup("signal-out-of-service", "translate(10, 0)"),
-        ],
-    )
-)
-
-
 # Final sorting and assignment
 signals.sort(key=lambda obj: obj.icon_name)
 signals_icon_entities_v500 = signals
