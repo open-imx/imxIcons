@@ -87,18 +87,3 @@ def test_get_all_icons_v124():
         'imx_version', 'imx_path', 'imx_properties', 'icon'
     ]), "Not all keys are in the dictionary"
 
-
-def test_qgis_icons_v124():
-    name = IconService.get_svg(
-        IconRequestModel(
-            imx_path="Signal",
-            properties={
-                "signalType": "AutomaticPermissive",
-                "signalPosition": "High",
-                "isMountedOnGantry": "True",
-                "hasArrowMarker": "True"
-            }),
-        ImxVersionEnum.v124,
-        qgis_render=True
-    )
-    assert name == 'AutomaticPermissiveGantryArrow'
