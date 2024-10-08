@@ -33,7 +33,22 @@ def test_v500():
 
 
 
-def test_name():
+def test_get_icon_name_v124():
+    name = IconService.get_icon_name(
+        IconRequestModel(
+            imx_path="Signal",
+            properties={
+                "signalType": "AutomaticPermissive",
+                "signalPosition": "High",
+                "gantryRef": "*",
+                "hasArrowMarker": "True"
+            }),
+        ImxVersionEnum.v124
+    )
+    assert name == 'AutomaticPermissiveGantryArrow'
+
+
+def test_get_icon_name_v500():
     name = IconService.get_icon_name(
         IconRequestModel(
             imx_path="Signal",
