@@ -13,6 +13,7 @@ class IconSvgGroup:
         group_id: A unique identifier for the SVG group.
         transform: A transformation string to apply to the SVG group (e.g., translation, scaling).
     """
+
     group_id: str
     transform: str | None = None
 
@@ -29,6 +30,7 @@ class IconEntity:
         properties: A dictionary of additional properties for the icon.
         icon_groups: A list of groups representing the SVG structure of the icon.
     """
+
     imx_version: ImxVersionEnum
     imx_path: str
     icon_name: str

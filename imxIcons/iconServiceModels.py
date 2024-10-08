@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class IconRequestModel(BaseModel):
     """
     Model representing an icon request with a path and required properties.
@@ -9,6 +10,7 @@ class IconRequestModel(BaseModel):
         properties: A dictionary of required properties for the icon request.
         optional_properties: A dictionary of optional properties for the icon request, if any.
     """
+
     imx_path: str
     properties: dict[str, str]
     optional_properties: dict[str, str] | None = None
@@ -24,6 +26,7 @@ class IconModel(BaseModel):
         properties: A dictionary of required properties for the icon.
         optional_properties: A dictionary of optional properties for the icon, if any.
     """
+
     imx_path: str
     icon_name: str
     properties: dict[str, str]

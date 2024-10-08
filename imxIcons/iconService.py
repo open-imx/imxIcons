@@ -13,6 +13,7 @@ from imxIcons.iconServiceModels import IconRequestModel
 
 class IconService:
     """Service for handling and generating SVG icons."""
+
     @staticmethod
     def _add_transform_to_groups(svg_groups: list[str]) -> list[str]:
         """
@@ -139,7 +140,9 @@ class IconService:
 
         if len(sorted_matching_subtypes) == 0:
             # TODO: if len is 0, else return default icon for path
-            raise NotImplementedError("No default icons are implemented")  # pragma: no cover
+            raise NotImplementedError(
+                "No default icons are implemented"
+            )  # pragma: no cover
 
         return (
             sorted_matching_subtypes[0][1],
@@ -225,7 +228,7 @@ class IconService:
             imx_path_icons = {
                 key: value[imx_version.name] for key, value in ICON_DICT.items()
             }
-        except Exception: # pragma: no cover
+        except Exception:  # pragma: no cover
             raise ValueError(  # noqa: TRY003 pragma: no cover
                 "combination of imx path and imx version do not have a icon in the library"
             )
@@ -242,7 +245,6 @@ class IconService:
                     "icon": svg_content.strip(),
                 }
         return out
-
 
     @classmethod
     def get_svg(
