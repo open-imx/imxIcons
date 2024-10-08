@@ -13,7 +13,7 @@ from imxIcons.iconServiceModels import IconRequestModel
 
 class IconService:
     @staticmethod
-    def add_transform_to_groups(svg_groups):
+    def _add_transform_to_groups(svg_groups):
         updated_groups = []
 
         for group in svg_groups:
@@ -25,7 +25,7 @@ class IconService:
         return updated_groups
 
     @staticmethod
-    def add_transform_to_elements(svg_str, transform_str):
+    def _add_transform_to_elements(svg_str, transform_str):
         if transform_str is None:
             return svg_str
 
@@ -45,7 +45,7 @@ class IconService:
         return etree.tostring(root, encoding="unicode")
 
     @staticmethod
-    def format_svg(svg_str):
+    def _format_svg(svg_str):
         parser = XMLParser(remove_blank_text=True)
         root = etree.fromstring(svg_str, parser)
         return etree.tostring(root, encoding="unicode", pretty_print=True)
@@ -55,7 +55,7 @@ class IconService:
         return ".".join(part.lstrip("@") for part in key.split("."))
 
     @classmethod
-    def get_svg_name_and_groups(cls, entry, subtypes) -> list[list[IconSvgGroup]]:
+    def get_svg_name_and_groups(cls, entry, subtypes) -> tuple[str, list[list[IconSvgGroup]]]:
         matching_subtypes = []
         entry_properties = entry.get("properties", {})
 
@@ -88,10 +88,29 @@ class IconService:
             # todo: if len is 0, else return default icon for path
             raise NotImplementedError("No default icons are implemented")
 
-        return [
+        return (
             sorted_matching_subtypes[0][1],
             sorted_matching_subtypes[0][2].icon_groups,
-        ]
+        )
+
+    @classmethod
+    def get_icon_name(
+        cls,
+        request_model: IconRequestModel,
+        imx_version: ImxVersionEnum,
+    ) -> str:
+        try:
+            imx_path_icons = ICON_DICT[request_model.imx_path][imx_version.name]
+        except Exception:
+            raise ValueError(  # noqa: TRY003
+                "combination of imx path and imx version do not have a icon in the library"
+            )
+
+        icon_name, svg_groups = cls.get_svg_name_and_groups(
+            dict(request_model), imx_path_icons
+        )
+        return icon_name
+
 
     @classmethod
     def get_svg(
@@ -112,15 +131,11 @@ class IconService:
         )
 
         svg_groups = [
-            cls.add_transform_to_elements(SVG_ICON_DICT[item.group_id], item.transform)
+            cls._add_transform_to_elements(SVG_ICON_DICT[item.group_id], item.transform)
             for item in svg_groups
         ]
 
-        # we all so should return
-        #   - the svg groups so we can have badges
-        #   - add center point to image.
-
-        group_data = "\n".join(cls.add_transform_to_groups(svg_groups))
+        group_data = "\n".join(cls._add_transform_to_groups(svg_groups))
 
         svg_content = f"""
         <svg xmlns="http://www.w3.org/2000/svg" name="{icon_name}" class="svg-colored" viewBox="0 0 50 50">
@@ -128,9 +143,8 @@ class IconService:
                {group_data}
             </g>
         </svg>
-
         """
 
         if pretty_svg:
-            return cls.format_svg(svg_content.strip())
+            return cls._format_svg(svg_content.strip())
         return svg_content

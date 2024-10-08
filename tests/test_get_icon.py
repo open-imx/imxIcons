@@ -30,3 +30,19 @@ def test_v500():
         ImxVersionEnum.v500
     )
     assert "AutomaticPermissiveGantryArrow" in svg, "returned type not correct"
+
+
+
+def test_name():
+    name = IconService.get_icon_name(
+        IconRequestModel(
+            imx_path="Signal",
+            properties={
+                "signalType": "AutomaticPermissive",
+                "signalPosition": "High",
+                "gantryRef": "*",
+                "hasArrowMarker": "True"
+            }),
+        ImxVersionEnum.v500
+    )
+    assert name == 'AutomaticPermissiveGantryArrow'
