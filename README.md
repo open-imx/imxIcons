@@ -20,19 +20,10 @@ These icons help streamline the visualization of railway data across various too
 - [X] Get IMX icons by giving a object path and a set of properties.
 - [X] Return icon name
 
-## Roadmap
-- [ ] Qgis icons.
-- [ ] set up mkdocs proper
-- [ ] test all specified icons for v125 and v500
-- [ ] Add way of working docs.
-- [ ] Setup github actions including trigger to redeploy api on change of service. 
-  
-### Backlog
-- [ ] Icon mapping docs.
-- [ ] Get all icons in zip.
+### Backlog and Roadmap
+<a href="https://github.com/orgs/open-imx/projects/4/" target="_blank">https://github.com/orgs/open-imx/projects/4/</a>
 
 ## Supported Python Versions
-This library is compatible with ***Python 3.10*** and above. 
 
 !!! warning  
     ***Python Typehints are awesome therefor 3.9 and below will NOT be supported***.
@@ -55,7 +46,4 @@ TODO
 ## Contributing
 Contributions welcome! [Join our Discord Community](https://discord.gg/wBses7bPFg) 
 
-## 
-
 ~~For more information on the design of the library, see [contribution guidelines for this project](CONTRIBUTING.md).~~
-
