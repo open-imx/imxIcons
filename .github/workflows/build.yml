@@ -1,6 +1,14 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '*'  # Trigger on all branches
+    tags:
+      - '*'  # Trigger on all tags
+  pull_request:
+    branches:
+      - '*'  # Trigger on all branches for pull requests
 
 jobs:
   test:
