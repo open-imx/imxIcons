@@ -201,7 +201,7 @@ class IconService:
         ]
         group_data = "\n".join(cls._add_transform_to_groups(svg_groups_str))
         svg_content = f"""
-        <svg xmlns="http://www.w3.org/2000/svg" name="{icon_name}" class="svg-colored" viewBox="0 0 50 50">
+        <svg xmlns="http://www.w3.org/2000/svg" name="{icon_name}" class="svg-colored" width="250" height="250" viewBox="0 0 50 50">
             <g class="open-imx-icon {imx_path}" transform="translate(25, 25)">
                {group_data}
             </g>
