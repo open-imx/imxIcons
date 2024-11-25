@@ -1,5 +1,9 @@
-from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v124 import axle_counter_points_icon_entities_v124
-from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v500 import axle_counter_points_icon_entities_v500
+from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v124 import (
+    axle_counter_points_icon_entities_v124,
+)
+from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v500 import (
+    axle_counter_points_icon_entities_v500,
+)
 from imxIcons.domain.sign.sign_imx124 import sign_icon_entities_v124
 from imxIcons.domain.sign.sign_imx500 import sign_icon_entities_v500
 from imxIcons.domain.signal.illuminated_signal_v124 import (
@@ -47,8 +51,7 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
     "AxleCounterDetectionPoint": {
         ImxVersionEnum.v124.name: axle_counter_points_icon_entities_v124,
         ImxVersionEnum.v500.name: axle_counter_points_icon_entities_v500,
-
-    }
+    },
 }
 
 

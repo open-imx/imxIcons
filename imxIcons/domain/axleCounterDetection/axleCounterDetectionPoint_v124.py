@@ -1,7 +1,6 @@
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity, IconSvgGroup
 
-
 entities_path = "AxleCounterDetectionPoint"
 imx_version = ImxVersionEnum.v124
 
