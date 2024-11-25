@@ -83,6 +83,35 @@ hatch run docs-serve
 
 It'll automatically watch for changes in your code.
 
+## GitHub Actions Workflow
+
+This repository uses GitHub Actions to automate tasks like testing, building documentation, and releasing packages. 
+Below is an explanation of what happens when you push to a branch or create a pull request.
+
+## Workflow Triggers and Actions
+
+### Push to Feature Branches
+When code is pushed to a branch other than `main` the build workflow (`build.yml`) runs:
+- **Testing**: Executes tests across multiple Python versions.
+- **Linting and Type Checking**: Validates code compliance with linting rules and type annotations.
+
+*No deployment or documentation build is triggered for feature branch pushes.*
+
+### Push to `main` Branch
+When code is pushed to the `main` branch (e.g., after merging a pull request) 2 workflows will be triggered.
+
+The documentation workflow (`documentation.yml`):
+- **Build**: Generates project documentation using Hatch.
+- **Deploy**: Deploys the generated documentation to GitHub Pages.
+
+The release workflow (`release.yml`) is triggered when a tag is pushed to the `main` branch:
+- **Testing and Linting**: Similar to the Build workflow, tests and lint checks are run across multiple Python versions.
+- **Publishing**,:
+  - Publishes the package to PyPI.
+  - Creates a GitHub release with distribution artifacts.
+  - Triggers a release event in the related repository (`open-imx/imxIconsApi`).
+
+This setup ensures rigorous testing and smooth deployment processes, while keeping workflows efficient for feature branch development.
 
 ## Styleguides
 
