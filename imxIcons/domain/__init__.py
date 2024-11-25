@@ -1,3 +1,5 @@
+from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v124 import axle_counter_points_icon_entities_v124
+from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v500 import axle_counter_points_icon_entities_v500
 from imxIcons.domain.sign.sign_imx124 import sign_icon_entities_v124
 from imxIcons.domain.sign.sign_imx500 import sign_icon_entities_v500
 from imxIcons.domain.signal.illuminated_signal_v124 import (
@@ -18,6 +20,8 @@ from imxIcons.domain.speedsign.speedsign_imx124 import speed_sign_icon_entities_
 from imxIcons.domain.speedsign.speedsign_imx500 import speed_sign_icon_entities_v500
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity
+
+# TODO: this should not be in the __init__ circular imports :-/
 
 ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
     "Signal": {
@@ -40,6 +44,11 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
         ImxVersionEnum.v124.name: sign_icon_entities_v124,
         ImxVersionEnum.v500.name: sign_icon_entities_v500,
     },
+    "AxleCounterDetectionPoint": {
+        ImxVersionEnum.v124.name: axle_counter_points_icon_entities_v124,
+        ImxVersionEnum.v500.name: axle_counter_points_icon_entities_v500,
+
+    }
 }
 
 

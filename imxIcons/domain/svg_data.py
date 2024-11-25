@@ -446,6 +446,13 @@ svg_groups = f"""
     <line x1="-1.176" y1="0.369" x2="-1.176" y2="-1.648"/>
 </g>
 
+<!-- AxleCounterDetection -->
+
+<g name="axleCounter-base" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.white}" stroke-width="0.3">  
+    <rect y="-2" width="4" height="4" fill="None" style="stroke: rgb(0, 0, 0);" x="0"/>
+    <polyline points="0 -2 2 2 4 -2" style="fill: none; stroke: rgb(0, 0, 0);"/>
+</g>
+
 """
 
 
