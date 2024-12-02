@@ -309,6 +309,26 @@ signals.extend(
         IconEntity(
             imx_version=imx_version,
             imx_path=entities_path,
+            icon_name="DepartureSingle",
+            properties={"signalType": "DepartureSingle"},
+            icon_groups=[
+                IconSvgGroup("departure-single"),
+                IconSvgGroup("departure"),
+            ],
+        ),
+            IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="DepartureDouble",
+            properties={"signalType": "DepartureDouble"},
+            icon_groups=[
+                IconSvgGroup("departure-double"),
+                IconSvgGroup("departure"),
+            ],
+        ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
             icon_name="CargoSignal",
             properties={"signalType": "CargoSignal"},
             icon_groups=[
