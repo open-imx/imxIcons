@@ -73,9 +73,13 @@ jobs:
       run: |
         hatch build
     
-    - name: Package source code
+    - name: Package source code zip
       run: |
         zip -r source-code.zip .
+      shell: bash
+
+    - name: Package source code (tar.gz)
+      run: |
         tar -czf source-code.tar.gz .
       shell: bash
       
