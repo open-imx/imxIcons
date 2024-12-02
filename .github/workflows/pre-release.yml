@@ -60,11 +60,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install hatch
-    
-    - name: Lint and typecheck
-      run: |
-        hatch build
-        
+
     - name: Extract version
       id: extract_version
       shell: bash
@@ -73,11 +69,25 @@ jobs:
         VERSION=$(python -c "exec(open('imxIcons/__init__.py').read()); print(__version__)")
         echo "version=$VERSION" >> $GITHUB_ENV
 
+    - name: Build package
+      run: |
+        hatch build
+    
+    - name: Package source code
+      run: |
+        zip -r source-code.zip .
+        tar -czf source-code.tar.gz .
+      shell: bash
+      
     - name: Create draft release
       uses: ncipollo/release-action@v1
       with:
         draft: true
         tag: ${{ env.version }}
         body: ${{ github.event.head_commit.message }}
-        artifacts: dist/*.whl,dist/*.tar.gz
+        artifacts: |
+          dist/*.whl
+          dist/*.tar.gz
+          source-code.zip
+          source-code.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}
