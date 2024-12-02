@@ -1,7 +1,7 @@
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity, IconSvgGroup
 
-entities_path = "ATBVVBeacon"
+entities_path = "ATBVVInstallation"
 imx_version = ImxVersionEnum.v500
 
 atbvv_beacon_entities_v500 = [
