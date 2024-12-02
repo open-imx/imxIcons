@@ -480,8 +480,8 @@ svg_groups = f"""
 
 <!-- InsulatedJoint -->
 
-<g name="insulatedJoint">      
-    <line y1="1.5" y2="-1.5"/>
+<g name="insulatedJoint" {create_primary_icon_style(qgis_render)}>
+    <line y1="1.5" y2="-1.5" />
 </g>
 
 """
