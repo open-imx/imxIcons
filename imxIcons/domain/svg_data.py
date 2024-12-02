@@ -470,6 +470,14 @@ svg_groups = f"""
     <polyline points="0 -2 2 2 4 -2" style="fill: none; stroke: rgb(0, 0, 0);"/>
 </g>
 
+<!-- ATBVVBeacon -->
+
+<g name="atbvvBeacon">
+    <path d="M 0 -0 L -2.5 -0 L -2.5 2.5 L 0 2.5 L 0 -0"/>
+    <line x1="-2.5" x2="0" y1="2.5" y2="0"/>
+    <line x1="-2.5" x2="0" y1="-0" y2="2.5"/>
+</g>
+
 """
 
 
