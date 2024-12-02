@@ -61,10 +61,19 @@ jobs:
         python -m pip install --upgrade pip
         pip install hatch
 
+    - name: Extract version
+      id: extract_version
+      shell: bash
+      run: |
+        # Extract __version__ from the specified file
+        VERSION=$(python -c "exec(open('imxIcons/__init__.py').read()); print(__version__)")
+        echo "version=$VERSION" >> $GITHUB_ENV
+
     - name: Create draft release
       uses: ncipollo/release-action@v1
       with:
         draft: true
+        tag: ${{ env.version }}
         body: ${{ github.event.head_commit.message }}
         artifacts: dist/*.whl,dist/*.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}
