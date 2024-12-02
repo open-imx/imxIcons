@@ -4,6 +4,9 @@ from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v124 import 
 from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v500 import (
     axle_counter_points_icon_entities_v500,
 )
+from imxIcons.domain.departureSignal.departureSignal_imx500 import (
+    departure_signal_imx500,
+)
 from imxIcons.domain.sign.sign_imx124 import sign_icon_entities_v124
 from imxIcons.domain.sign.sign_imx500 import sign_icon_entities_v500
 from imxIcons.domain.signal.illuminated_signal_v124 import (
@@ -28,6 +31,10 @@ from imxIcons.iconEntity import IconEntity
 # TODO: this should not be in the __init__ circular imports :-/
 
 ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
+    "DepartureSignal": {
+        ImxVersionEnum.v124.name: [],  # DepartureSignal is a SignalType in v124
+        ImxVersionEnum.v500.name: departure_signal_imx500,
+    },
     "Signal": {
         ImxVersionEnum.v124.name: signals_icon_entities_v124,
         ImxVersionEnum.v500.name: signals_icon_entities_v500,
