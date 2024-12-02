@@ -78,10 +78,10 @@ jobs:
         zip -r source-code.zip .
       shell: bash
 
-    - name: Package source code (tar.gz)
-      run: |
-        tar --exclude='./dist' --exclude='./source-code.tar.gz' --exclude='./source-code.zip' -czf source-code.tar.gz .
-      shell: bash
+    # - name: Package source code (tar.gz)
+    #   run: |
+    #     tar --exclude='./dist' --exclude='./source-code.tar.gz' --exclude='./source-code.zip' -czf source-code.tar.gz .
+    #   shell: bash
       
     - name: Create draft release
       uses: ncipollo/release-action@v1
@@ -93,5 +93,4 @@ jobs:
           dist/*.whl
           dist/*.tar.gz
           source-code.zip
-          source-code.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}
