@@ -81,7 +81,7 @@ def test_get_icon_name_v500():
 
 def test_get_all_icons_v124():
     icon_dict = IconService.get_all_icons(ImxVersionEnum.v124)
-    assert len(icon_dict.keys()) == 442
+    assert len(icon_dict.keys()) == 443
     signal_high = icon_dict.get('SignalHigh')
     assert all(key in signal_high for key in [
         'imx_version', 'imx_path', 'imx_properties', 'icon'
