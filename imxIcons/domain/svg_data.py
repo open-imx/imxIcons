@@ -84,6 +84,23 @@ svg_groups = f"""
     <line x1="9.5" x2="7.5" y1="1" y2="-1" />
 </g>
 
+<g name="departure">
+    <circle cx="0" cy="-0" r="2"/>
+    <line x1="-1.375" x2="1.375" y1="1.375" y2="-1.375"/>
+    <line x1="1.375" x2="-1.375" y1="1.375" y2="-1.375"/>
+</g>
+
+<g name="departure-single">
+    <line x1="-4" x2="2.85" y1="-4" y2="-4"/>
+    <path d="M 1.875 -4.5 L 1.875 -3.5 L 3.875 -4 L 1.875 -4.5"/>
+</g>
+
+<g name="departure-double">  
+    <line x1="-2.851" x2="2.688" y1="-4" y2="-4"/>
+    <path d="M -2 -3.5 L -2 -4.5 L -4 -4 L -2 -3.5"/>
+    <path d="M 2 -4.5 L 4 -4 L 2 -3.5 L 2 -4.5"/>
+</g>
+
 <g name="signal-cargo" class="animated" {create_primary_icon_style(qgis_render)} >
     <path class="aspect-on-off" d="M 6 2 L 10 2 L 10 -2 L 6 -2 L 6 2" fill="{IconStyleEnum.white}" />
     <line x1="9.25" x2="6.75" y1="-0.563" y2="-0.563" />
