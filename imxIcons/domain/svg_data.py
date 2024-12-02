@@ -465,17 +465,17 @@ svg_groups = f"""
 
 <!-- AxleCounterDetection -->
 
-<g name="axleCounter-base" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.white}" stroke-width="0.3">  
-    <rect y="-2" width="4" height="4" fill="None" style="stroke: rgb(0, 0, 0);" x="0"/>
-    <polyline points="0 -2 2 2 4 -2" style="fill: none; stroke: rgb(0, 0, 0);"/>
+<g name="axleCounter-base" {create_primary_icon_style(qgis_render)}>  
+    <rect x="0" y="-2" width="4" height="4" />
+    <polyline points="0 -2 2 2 4 -2" />
 </g>
 
 <!-- ATBVVBeacon -->
 
-<g name="atbvvBeacon">
-    <path d="M 0 -0 L -2.5 -0 L -2.5 2.5 L 0 2.5 L 0 -0"/>
-    <line x1="-2.5" x2="0" y1="2.5" y2="0"/>
-    <line x1="-2.5" x2="0" y1="-0" y2="2.5"/>
+<g name="atbVv-Beacon" {create_primary_icon_style(qgis_render)}>
+    <rect x="-2.5" y="0" width="2.5" height="2.5" />
+    <line x1="-2.5" x2="0" y1="2.5" y2="0" />
+    <line x1="-2.5" x2="0" y1="-0" y2="2.5" />
 </g>
 
 """
