@@ -65,7 +65,7 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
         ImxVersionEnum.v124.name: axle_counter_points_icon_entities_v124,
         ImxVersionEnum.v500.name: axle_counter_points_icon_entities_v500,
     },
-    "ATBVVBeacon": {
+    "ATBVVInstallation.ATBVVBeacon": {
         ImxVersionEnum.v124.name: atbvv_beacon_entities_v124,
         ImxVersionEnum.v500.name: atbvv_beacon_entities_v500,
     },
