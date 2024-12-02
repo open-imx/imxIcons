@@ -73,16 +73,6 @@ jobs:
       run: |
         hatch build
     
-    - name: Package source code (zip)
-      run: |
-        zip -r source-code.zip .
-      shell: bash
-
-    # - name: Package source code (tar.gz)
-    #   run: |
-    #     tar --exclude='./dist' --exclude='./source-code.tar.gz' --exclude='./source-code.zip' -czf source-code.tar.gz .
-    #   shell: bash
-      
     - name: Create draft release
       uses: ncipollo/release-action@v1
       with:
