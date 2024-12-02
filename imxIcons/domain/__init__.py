@@ -1,3 +1,9 @@
+from imxIcons.domain.atbvvInstallation.atbvvBeacon_v124 import (
+    atbvv_beacon_entities_v124,
+)
+from imxIcons.domain.atbvvInstallation.atbvvBeacon_v500 import (
+    atbvv_beacon_entities_v500,
+)
 from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v124 import (
     axle_counter_points_icon_entities_v124,
 )
@@ -5,7 +11,7 @@ from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v500 import 
     axle_counter_points_icon_entities_v500,
 )
 from imxIcons.domain.departureSignal.departureSignal_imx500 import (
-    departure_signal_imx500,
+    departure_signal_entities_imx500,
 )
 from imxIcons.domain.sign.sign_imx124 import sign_icon_entities_v124
 from imxIcons.domain.sign.sign_imx500 import sign_icon_entities_v500
@@ -33,7 +39,7 @@ from imxIcons.iconEntity import IconEntity
 ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
     "DepartureSignal": {
         ImxVersionEnum.v124.name: [],  # DepartureSignal is a SignalType in v124
-        ImxVersionEnum.v500.name: departure_signal_imx500,
+        ImxVersionEnum.v500.name: departure_signal_entities_imx500,
     },
     "Signal": {
         ImxVersionEnum.v124.name: signals_icon_entities_v124,
@@ -58,6 +64,10 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
     "AxleCounterDetectionPoint": {
         ImxVersionEnum.v124.name: axle_counter_points_icon_entities_v124,
         ImxVersionEnum.v500.name: axle_counter_points_icon_entities_v500,
+    },
+    "ATBVVBeacon": {
+        ImxVersionEnum.v124.name: atbvv_beacon_entities_v124,
+        ImxVersionEnum.v500.name: atbvv_beacon_entities_v500,
     },
 }
 

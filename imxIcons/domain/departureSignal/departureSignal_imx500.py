@@ -5,7 +5,7 @@ entities_path = "DepartureSignal"
 imx_version = ImxVersionEnum.v500
 
 
-departure_signal_imx500 = [
+departure_signal_entities_imx500 = [
     IconEntity(
         imx_version=imx_version,
         imx_path=entities_path,
