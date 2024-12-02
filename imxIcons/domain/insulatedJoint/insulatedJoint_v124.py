@@ -1,17 +1,17 @@
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity, IconSvgGroup
 
-entities_path = "ATBVVInstallation.AtbVvBeacon"
-imx_version = ImxVersionEnum.v500
+entities_path = "InsulatedJoint"
+imx_version = ImxVersionEnum.v124
 
-atbvv_beacon_entities_v500 = [
+insulated_joint_entities_v124 = [
     IconEntity(
         imx_version=imx_version,
         imx_path=entities_path,
-        icon_name="AtbVvBeacon",
+        icon_name="InsulatedJoint",
         properties={},
         icon_groups=[
-            IconSvgGroup("atbVv-Beacon"),
+            IconSvgGroup("insulatedJoint"),
         ],
     )
 ]

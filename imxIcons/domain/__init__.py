@@ -13,6 +13,12 @@ from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v500 import 
 from imxIcons.domain.departureSignal.departureSignal_imx500 import (
     departure_signal_entities_imx500,
 )
+from imxIcons.domain.insulatedJoint.insulatedJoint_v124 import (
+    insulated_joint_entities_v124,
+)
+from imxIcons.domain.insulatedJoint.insulatedJoint_v500 import (
+    insulated_joint_entities_v500,
+)
 from imxIcons.domain.sign.sign_imx124 import sign_icon_entities_v124
 from imxIcons.domain.sign.sign_imx500 import sign_icon_entities_v500
 from imxIcons.domain.signal.illuminated_signal_v124 import (
@@ -65,9 +71,17 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
         ImxVersionEnum.v124.name: axle_counter_points_icon_entities_v124,
         ImxVersionEnum.v500.name: axle_counter_points_icon_entities_v500,
     },
-    "ATBVVBeacon": {
+    "ATBVVInstallation.ATBVVBeacon": {
         ImxVersionEnum.v124.name: atbvv_beacon_entities_v124,
+        ImxVersionEnum.v500.name: [],
+    },
+    "ATBVVInstallation.AtbVvBeacon": {
+        ImxVersionEnum.v124.name: [],
         ImxVersionEnum.v500.name: atbvv_beacon_entities_v500,
+    },
+    "InsulatedJoint": {
+        ImxVersionEnum.v124.name: insulated_joint_entities_v124,
+        ImxVersionEnum.v500.name: insulated_joint_entities_v500,
     },
 }
 
