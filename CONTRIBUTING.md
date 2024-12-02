@@ -71,7 +71,6 @@ hatch version major
 
 Your default Git text editor will open so you can add information about the release.
 
-When you push the tag on GitHub, the workflow will automatically publish it on PyPi and a GitHub release will be created as draft.
 
 ## Serve the documentation
 
@@ -90,7 +89,7 @@ Below is an explanation of what happens when you push to a branch or create a pu
 
 ## Workflow Triggers and Actions
 
-### Push to Feature Branches
+### Push to `feature` Branches
 When code is pushed to a branch other than `main` the build workflow (`build.yml`) runs:
 - **Testing**: Executes tests across multiple Python versions.
 - **Linting and Type Checking**: Validates code compliance with linting rules and type annotations.
@@ -104,11 +103,18 @@ The documentation workflow (`documentation.yml`):
 - **Build**: Generates project documentation using Hatch.
 - **Deploy**: Deploys the generated documentation to GitHub Pages.
 
-The release workflow (`release.yml`) is triggered when a tag is pushed to the `main` branch:
+The release workflow (`pre-release.yml`):
 - **Testing and Linting**: Similar to the Build workflow, tests and lint checks are run across multiple Python versions.
-- **Publishing**,:
+- **Publishing**: Creates a GitHub pre-release with distribution artifacts.
+
+### Release 
+To release a new version of the application:
+- Ensure the version has been appropriately updated prior to the pre-release. Use versioning tools mentioned above.
+- Manually publish the release to make it available to users.
+
+The release workflow (`release.yml`) is triggered when a release is published on GitHub:
   - Publishes the package to PyPI.
-  - Creates a GitHub release with distribution artifacts.
+  - Code Coverage will be published on codecov.com. 
   - Triggers a release event in the related repository (`open-imx/imxIconsApi`).
 
 This setup ensures rigorous testing and smooth deployment processes, while keeping workflows efficient for feature branch development.
