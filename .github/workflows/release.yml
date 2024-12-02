@@ -98,3 +98,10 @@ jobs:
         run: |
           hatch build
           hatch publish
+  
+      - name: Trigger new Open-Imx:Icon.API release
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          repository: open-imx/imxIconsApi
+          event-type: release_published
+          token: ${{ secrets.DISPATCHED_TOKEN }}
