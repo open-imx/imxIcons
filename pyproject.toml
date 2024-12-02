@@ -62,11 +62,6 @@ lint-check = [
 docs-serve = "mkdocs serve"
 docs-build = "mkdocs build"
 
-bump-major = "bumpversion major"
-bump-minor = "bumpversion minor"
-bump-patch = "bumpversion patch"
-bump-build = "bumpversion build"
-
 [build-system]
 requires = ["hatchling", "hatch-regex-commit", "isort"]
 build-backend = "hatchling.build"
@@ -86,6 +81,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
 ]
 requires-python = ">=3.10"
