@@ -316,7 +316,7 @@ signals.extend(
                 IconSvgGroup("departure"),
             ],
         ),
-            IconEntity(
+        IconEntity(
             imx_version=imx_version,
             imx_path=entities_path,
             icon_name="DepartureDouble",

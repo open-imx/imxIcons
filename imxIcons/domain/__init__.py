@@ -32,7 +32,7 @@ from imxIcons.iconEntity import IconEntity
 
 ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
     "DepartureSignal": {
-        ImxVersionEnum.v124.name: [], # DepartureSignal is a SignalType in v124
+        ImxVersionEnum.v124.name: [],  # DepartureSignal is a SignalType in v124
         ImxVersionEnum.v500.name: departure_signal_imx500,
     },
     "Signal": {

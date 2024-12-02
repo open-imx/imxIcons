@@ -7,21 +7,21 @@ imx_version = ImxVersionEnum.v500
 
 departure_signal_imx500 = [
     IconEntity(
-    imx_version=imx_version,
-    imx_path=entities_path,
-    icon_name="DepartureSingle",
-    properties={"departureSignalType": "DepartureSingle"},
-    icon_groups=[
+        imx_version=imx_version,
+        imx_path=entities_path,
+        icon_name="DepartureSingle",
+        properties={"departureSignalType": "DepartureSingle"},
+        icon_groups=[
             IconSvgGroup("departure-single"),
             IconSvgGroup("departure"),
         ],
     ),
     IconEntity(
-    imx_version=imx_version,
-    imx_path=entities_path,
-    icon_name="DepartureDouble",
-    properties={"departureSignalType": "DepartureDouble"},
-    icon_groups=[
+        imx_version=imx_version,
+        imx_path=entities_path,
+        icon_name="DepartureDouble",
+        properties={"departureSignalType": "DepartureDouble"},
+        icon_groups=[
             IconSvgGroup("departure-double"),
             IconSvgGroup("departure"),
         ],
