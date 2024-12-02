@@ -8,11 +8,7 @@ imx_version = ImxVersionEnum.v124
 def add_arrow_marker(sign):
     temp_list = []
     for item in sign:
-        translate = (
-            "translate(-2.5, -1.15)"
-            if "Low" in item.icon_name
-            else "translate(-4, -1.15)"
-        )
+        translate = "translate(-4, -1.15)"
         temp_list.append(
             item.extend_icon(
                 name=item.icon_name + "ArrowRight",
@@ -30,7 +26,6 @@ signs = [
         icon_name="RS314",
         properties={
             "speedSignType": "MaximumSpeed",
-            "signalPosition": "High",
         },
         icon_groups=[
             IconSvgGroup("sign-normal-base"),
@@ -43,7 +38,6 @@ signs = [
         icon_name="RS314Bis",
         properties={
             "speedSignType": "MaximumSpeed",
-            "signalPosition": "High",
             "cargoSpeed": "*",
         },
         icon_groups=[
@@ -55,23 +49,9 @@ signs = [
     IconEntity(
         imx_version=imx_version,
         imx_path=entities_path,
-        icon_name="RS314Low",
-        properties={
-            "speedSignType": "MaximumSpeed",
-            "signalPosition": "Low",
-        },
-        icon_groups=[
-            IconSvgGroup("sign-lowered-base"),
-            IconSvgGroup("RS-314", "translate(3, 0)"),
-        ],
-    ),
-    IconEntity(
-        imx_version=imx_version,
-        imx_path=entities_path,
         icon_name="RS313",
         properties={
             "speedSignType": "DecelerateToSpeed",
-            "signalPosition": "High",
         },
         icon_groups=[
             IconSvgGroup("sign-normal-base"),
@@ -84,7 +64,6 @@ signs = [
         icon_name="RS313Bis",
         properties={
             "speedSignType": "DecelerateToSpeed",
-            "signalPosition": "High",
             "cargoSpeed": "*",
         },
         icon_groups=[
@@ -96,23 +75,9 @@ signs = [
     IconEntity(
         imx_version=imx_version,
         imx_path=entities_path,
-        icon_name="RS313Low",
-        properties={
-            "speedSignType": "DecelerateToSpeed",
-            "signalPosition": "Low",
-        },
-        icon_groups=[
-            IconSvgGroup("sign-lowered-base"),
-            IconSvgGroup("RS-313", "translate(3, 0)"),
-        ],
-    ),
-    IconEntity(
-        imx_version=imx_version,
-        imx_path=entities_path,
         icon_name="RS316",
         properties={
             "speedSignType": "AccelerateToSpeed",
-            "signalPosition": "High",
         },
         icon_groups=[
             IconSvgGroup("sign-normal-base"),
