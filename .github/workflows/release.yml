@@ -99,10 +99,10 @@ jobs:
           hatch build
           hatch publish
 
-      - name: Wait for 5 minute
+      - name: Wait for 3 minute before dispatching
         uses: actions/github-script@v6
         with:
-          script: await new Promise(resolve => setTimeout(resolve, 300000))
+          script: await new Promise(resolve => setTimeout(resolve, 180000))
 
       - name: Trigger new Open-Imx:Icon.API release
         uses: peter-evans/repository-dispatch@v3
