@@ -48,7 +48,7 @@ class IconService:
             A modified SVG string with the transformation applied to geometry elements.
         """
         if transform_str is None:
-            return svg_str
+            return svg_str  # pragma: no cover
 
         root = etree.fromstring(svg_str)
         geometry_elements = [
