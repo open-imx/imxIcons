@@ -40,7 +40,6 @@ from imxIcons.domain.speedsign.speedsign_imx500 import speed_sign_icon_entities_
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity
 
-
 ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
     "DepartureSignal": {
         ImxVersionEnum.v124.name: [],  # DepartureSignal is a SignalType in v124
