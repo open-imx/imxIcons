@@ -4,7 +4,7 @@ from typing import Any
 from lxml import etree
 from lxml.etree import XMLParser
 
-from imxIcons.domain import ICON_DICT  # DEFAULT_ICONS
+from imxIcons.domain.icon_library import ICON_DICT  # DEFAULT_ICONS
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.domain.svg_data import SVG_ICON_DICT
 from imxIcons.iconEntity import IconEntity, IconSvgGroup
@@ -48,7 +48,7 @@ class IconService:
             A modified SVG string with the transformation applied to geometry elements.
         """
         if transform_str is None:
-            return svg_str
+            return svg_str  # pragma: no cover
 
         root = etree.fromstring(svg_str)
         geometry_elements = [

@@ -2,31 +2,24 @@ import xml.etree.ElementTree as ET
 
 
 def create_fill_color(hex_color, qgis_parameter=True):
-    if qgis_parameter:
-        return f'fill="param(fill) {hex_color}"'
-    else:
-        return f'fill="{hex_color}"'
-
-
-def create_stroke_color_by_fill_param(hex_color, qgis_parameter=True):
-    if qgis_parameter:
-        return f'stroke="param(fill) {hex_color}"'
-    else:
-        return f'stroke="{hex_color}"'
+    # if qgis_parameter:
+    #     return f'fill="param(fill) {hex_color}"'
+    # else:
+    return f'fill="{hex_color}"'
 
 
 def create_stroke_color(hex_color, qgis_parameter=True):
-    if qgis_parameter:
-        return f'stroke="param(outline) {hex_color}"'
-    else:
-        return f'stroke="{hex_color}"'
+    # if qgis_parameter:
+    #     return f'stroke="param(fill) {hex_color}"'
+    # else:
+    return f'stroke="{hex_color}"'
 
 
 def create_stroke_width(units, qgis_parameter=True):
-    if qgis_parameter:
-        return f'stroke-width="param(outline-width) {units}"'
-    else:
-        return f'stroke-width="{round(units * 0.75, 3)}"'
+    # if qgis_parameter:
+    #     return f'stroke-width="param(outline-width) {units}"'
+    # else:
+    return f'stroke-width="{round(units * 0.75, 3)}"'
 
 
 class IconStyleEnum:
@@ -46,17 +39,18 @@ class IconStyleEnum:
 
 
 def create_primary_icon_style(qgis=True):
-    return f"{create_fill_color(IconStyleEnum.primary_color, qgis)} {create_stroke_color_by_fill_param(IconStyleEnum.primary_color, qgis)} {create_stroke_width(IconStyleEnum.primary_stroke_width, qgis)}"
+    return f"{create_fill_color(IconStyleEnum.primary_color, qgis)} {create_stroke_color(IconStyleEnum.primary_color, qgis)} {create_stroke_width(IconStyleEnum.primary_stroke_width, qgis)}"
 
 
 def create_secondary_icon_style(qgis=True):
-    return f"{create_fill_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_color_by_fill_param(IconStyleEnum.secondary_color, qgis)} {create_stroke_width(IconStyleEnum.secondary_stroke_width, qgis)}"
+    return f"{create_fill_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_width(IconStyleEnum.secondary_stroke_width, qgis)}"
 
 
 # TODO: FIX THE QGIS SUPPORT
 qgis_render = False
 
 svg_groups = f"""
+
 <!-- Signal -->
 <g name="post-ground" {create_primary_icon_style(qgis_render)} >
     <line x1="0" x2="0" y1="-1" y2="1" />
@@ -484,6 +478,7 @@ svg_groups = f"""
     <line y1="1.5" y2="-1.5" />
 </g>
 
+
 """
 
 
@@ -493,9 +488,6 @@ def get_svg_groups(data: str) -> dict[str, str] | dict:
     svg_dict = {}
 
     for g in root.findall("g"):
-        if len(g) == 0:
-            continue
-
         g_id = g.get("name")
         svg_dict[g_id] = ET.tostring(g, encoding="unicode", method="xml").strip()
 
