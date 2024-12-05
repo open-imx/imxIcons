@@ -78,18 +78,18 @@ svg_groups = f"""
     <line x1="9.5" x2="7.5" y1="1" y2="-1" />
 </g>
 
-<g name="departure">
-    <circle cx="0" cy="-0" r="2"/>
+<g name="departure" {create_primary_icon_style(qgis_render)}>
+    <circle cx="0" cy="-0" r="2" fill="none"/>
     <line x1="-1.375" x2="1.375" y1="1.375" y2="-1.375"/>
     <line x1="1.375" x2="-1.375" y1="1.375" y2="-1.375"/>
 </g>
 
-<g name="departure-single">
+<g name="departure-single" {create_primary_icon_style(qgis_render)}>
     <line x1="-4" x2="2.85" y1="-4" y2="-4"/>
     <path d="M 1.875 -4.5 L 1.875 -3.5 L 3.875 -4 L 1.875 -4.5"/>
 </g>
 
-<g name="departure-double">  
+<g name="departure-double" {create_primary_icon_style(qgis_render)}>  
     <line x1="-2.851" x2="2.688" y1="-4" y2="-4"/>
     <path d="M -2 -3.5 L -2 -4.5 L -4 -4 L -2 -3.5"/>
     <path d="M 2 -4.5 L 4 -4 L 2 -3.5 L 2 -4.5"/>
@@ -460,8 +460,8 @@ svg_groups = f"""
 <!-- AxleCounterDetection -->
 
 <g name="axleCounter-base" {create_primary_icon_style(qgis_render)}>  
-    <rect x="0" y="-2" width="4" height="4" />
-    <polyline points="0 -2 2 2 4 -2" />
+    <rect x="0" y="-2" width="4" height="4" fill="none" />
+    <polyline points="0 -2 2 2 4 -2" fill="none" stroke-linejoin="bevel" />
 </g>
 
 <!-- ATBVVBeacon -->
