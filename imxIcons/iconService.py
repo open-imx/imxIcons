@@ -4,7 +4,7 @@ from typing import Any
 from lxml import etree
 from lxml.etree import XMLParser
 
-from imxIcons.domain import ICON_DICT  # DEFAULT_ICONS
+from imxIcons.domain.icon_library import ICON_DICT  # DEFAULT_ICONS
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.domain.svg_data import SVG_ICON_DICT
 from imxIcons.iconEntity import IconEntity, IconSvgGroup

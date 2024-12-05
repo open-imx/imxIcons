@@ -1,6 +1,6 @@
 from imxIcons.domain.svg_data import qgis_render
 
-from imxIcons.domain import ImxVersionEnum
+from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconService import IconService
 from imxIcons.iconServiceModels import IconRequestModel
 
