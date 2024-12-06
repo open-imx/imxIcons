@@ -61,24 +61,24 @@ jobs:
         python -m pip install --upgrade pip
         pip install hatch
 
-    - name: Extract version from __init__.py
-      id: extract_version
-      shell: bash
-      run: |
-        VERSION=$(python -c "exec(open('imxIcons/__init__.py').read()); print(__version__)")
-        echo "version=$VERSION" >> $GITHUB_ENV
-
-    - name: Get latest tag from git
-      id: get_latest_tag
-      run: |
-        LATEST_TAG=$(git describe --tags --abbrev=0)
-        echo "latest_tag=$LATEST_TAG" >> $GITHUB_ENV
-
-    - name: Compare versions
-      id: compare_versions
-      run: |
-        VERSION_COMPARISON=$(python -c "import pkg_resources; current_version = '${{ env.version }}'; latest_version = '${{ env.latest_tag }}'; print(pkg_resources.parse_version(current_version) > pkg_resources.parse_version(latest_version))")
-        echo "version_comparison=$VERSION_COMPARISON" >> $GITHUB_ENV
+#    - name: Extract version from __init__.py
+#      id: extract_version
+#      shell: bash
+#      run: |
+#        VERSION=$(python -c "exec(open('imxIcons/__init__.py').read()); print(__version__)")
+#        echo "version=$VERSION" >> $GITHUB_ENV
+#
+#    - name: Get latest tag from git
+#      id: get_latest_tag
+#      run: |
+#        LATEST_TAG=$(git describe --tags --abbrev=0)
+#        echo "latest_tag=$LATEST_TAG" >> $GITHUB_ENV
+#
+#    - name: Compare versions
+#      id: compare_versions
+#      run: |
+#        VERSION_COMPARISON=$(python -c "import pkg_resources; current_version = '${{ env.version }}'; latest_version = '${{ env.latest_tag }}'; print(pkg_resources.parse_version(current_version) > pkg_resources.parse_version(latest_version))")
+#        echo "version_comparison=$VERSION_COMPARISON" >> $GITHUB_ENV
 
     - name: Conditional release creation
       if: env.version_comparison == 'True'
