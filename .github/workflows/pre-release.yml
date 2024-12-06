@@ -73,7 +73,7 @@ jobs:
       run: |
         LATEST_VERSION=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name | sed 's/^v//') 
         echo "latest_version=$LATEST_VERSION" >> $GITHUB_ENV
-        echo "LATEST_VERSION=$$GITHUB_ENV.latest_version"
+        echo "LATEST_VERSION=$GITHUB_ENV.latest_version"
 
     - name: Check version match
       id: check_version
@@ -81,7 +81,7 @@ jobs:
         echo "VERSION=$GITHUB_ENV.version"
         echo "LATEST_VERSION=$GITHUB_ENV.latest_version" 
         
-        if [ "$LATEST_VERSION" = "$VERSION" ]; then
+        if [ "$GITHUB_ENV.latest_version" = "$GITHUB_ENV.version" ]; then
           echo "match=true" >> $GITHUB_ENV
         else
           echo "match=false" >> $GITHUB_ENV
