@@ -460,22 +460,32 @@ svg_groups = f"""
 <!-- AxleCounterDetection -->
 
 <g name="axleCounter-base" {create_primary_icon_style(qgis_render)}>  
-    <rect x="0" y="-2" width="4" height="4" fill="none" />
-    <polyline points="0 -2 2 2 4 -2" fill="none" stroke-linejoin="bevel" />
+  <rect x="0" y="-2" width="4" height="4" transform="translate(-2, -2)"></rect>
+  <rect x="-2.126" y="-4" width="4.25" height="4.25" fill="{IconStyleEnum.white}"></rect>
+  <polyline points="-2 -4 0 0.18 2 -4" style="stroke-linejoin: bevel;"></polyline>
 </g>
+
 
 <!-- ATBVVBeacon -->
 
 <g name="atbVv-Beacon" {create_primary_icon_style(qgis_render)}>
-    <rect x="-2.5" y="0" width="2.5" height="2.5" />
-    <line x1="-2.5" x2="0" y1="2.5" y2="0" />
-    <line x1="-2.5" x2="0" y1="-0" y2="2.5" />
+  <rect x="-2.88" y="5.073" width="2.5" height="2.5" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.black}"/>
+  <line x1="-2.88" x2="-0.38" y1="7.573" y2="5.073" stroke="{IconStyleEnum.black}" style="stroke-width: 0.25px" />
+  <line x1="-2.88" x2="-0.38" y1="5.073" y2="7.573" stroke="{IconStyleEnum.black}" style="stroke-width: 0.25px" />
 </g>
 
 <!-- InsulatedJoint -->
 
 <g name="insulatedJoint" {create_primary_icon_style(qgis_render)}>
     <line y1="1.5" y2="-1.5" />
+</g>
+
+<g name="insulatedJoint-left" {create_primary_icon_style(qgis_render)}>
+  <line x1="-.75" y1="-1.5" x2=".75" y2="-1.5" style="stroke: rgb(0, 0, 0); stroke-width: 0.25px;" />
+</g>
+
+<g name="insulatedJoint-right" {create_primary_icon_style(qgis_render)}>
+  <line x1="-.75" y1="1.5" x2=".75" y2="1.5" style="stroke: rgb(0, 0, 0); stroke-width: 0.25px;" />
 </g>
 
 <!-- LevelCrossing -->
