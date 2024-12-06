@@ -4,12 +4,6 @@ from imxIcons.domain.atbvvInstallation.atbvvBeacon_v124 import (
 from imxIcons.domain.atbvvInstallation.atbvvBeacon_v500 import (
     atbvv_beacon_entities_v500,
 )
-from imxIcons.domain.levelCrossing.levelCrossing_v124 import (
-    level_crossing_entities_v124,
-)
-from imxIcons.domain.levelCrossing.levelCrossing_v500 import (
-    level_crossing_entities_v500,
-)
 from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v124 import (
     axle_counter_points_icon_entities_v124,
 )
@@ -24,6 +18,12 @@ from imxIcons.domain.insulatedJoint.insulatedJoint_v124 import (
 )
 from imxIcons.domain.insulatedJoint.insulatedJoint_v500 import (
     insulated_joint_entities_v500,
+)
+from imxIcons.domain.levelCrossing.levelCrossing_v124 import (
+    level_crossing_entities_v124,
+)
+from imxIcons.domain.levelCrossing.levelCrossing_v500 import (
+    level_crossing_entities_v500,
 )
 from imxIcons.domain.sign.sign_imx124 import sign_icon_entities_v124
 from imxIcons.domain.sign.sign_imx500 import sign_icon_entities_v500
