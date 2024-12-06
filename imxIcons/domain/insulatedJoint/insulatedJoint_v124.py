@@ -44,6 +44,5 @@ insulated_joint_entities_v124 = [
             IconSvgGroup("insulatedJoint-left"),
             IconSvgGroup("insulatedJoint-right"),
         ],
-    )
-
+    ),
 ]
