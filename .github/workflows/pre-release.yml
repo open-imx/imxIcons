@@ -86,7 +86,7 @@ jobs:
         else
           echo "match=false" >> $GITHUB_ENV
         fi
-        echo "Match status: ${{ env.match }}"
+        echo "Match status: $GITHUB_ENV.match"
 
     - name: Create draft release
       if: env.match == 'false'
