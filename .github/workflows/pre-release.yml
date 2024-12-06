@@ -80,6 +80,7 @@ jobs:
           echo "match=true" >> $GITHUB_ENV
         else
           echo "match=false" >> $GITHUB_ENV
+        fi
 
     - name: Create draft release
       if: env.match == 'false'
