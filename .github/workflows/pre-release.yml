@@ -36,6 +36,7 @@ jobs:
     - name: Test
       run: |
         hatch run test
+
   release:
     runs-on: ubuntu-latest
     environment: release
@@ -57,6 +58,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install hatch
+
     - name: Extract version
       id: extract_version
       shell: bash
@@ -64,11 +66,23 @@ jobs:
         # Extract __version__ from the specified file
         VERSION=$(python -c "exec(open('imxIcons/__init__.py').read()); print(__version__)")
         echo "version=$VERSION" >> $GITHUB_ENV
-    - name: Build package
+
+    - name: Fetch latest release version
+      id: fetch_latest_release
       run: |
-        hatch build
+        LATEST_VERSION=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name | sed 's/^v//')
+        echo "latest_version=$LATEST_VERSION" >> $GITHUB_ENV
+
+    - name: Check version match
+      id: check_version
+      run: |
+        if [ "$LATEST_VERSION" = "$VERSION" ]; then
+          echo "match=true" >> $GITHUB_ENV
+        else
+          echo "match=false" >> $GITHUB_ENV
 
     - name: Create draft release
+      if: env.match == 'false'
       uses: ncipollo/release-action@v1
       with:
         draft: true
