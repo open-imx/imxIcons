@@ -65,21 +65,22 @@ jobs:
       run: |
         # Extract __version__ from the specified file
         VERSION=$(python -c "exec(open('imxIcons/__init__.py').read()); print(__version__)")
-        echo "VERSION=$VERSION" 
         echo "version=$VERSION" >> $GITHUB_ENV
+        echo "VERSION=$$GITHUB_ENV.version" 
 
     - name: Fetch latest release version
       id: fetch_latest_release
       run: |
-        LATEST_VERSION=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name | sed 's/^v//')
-        echo "LATEST_VERSION=$LATEST_VERSION" 
+        LATEST_VERSION=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name | sed 's/^v//') 
         echo "latest_version=$LATEST_VERSION" >> $GITHUB_ENV
+        echo "LATEST_VERSION=$$GITHUB_ENV.latest_version"
 
     - name: Check version match
       id: check_version
       run: |
-        echo "LATEST_VERSION=$LATEST_VERSION" 
-        echo "VERSION=$VERSION"
+        echo "VERSION=$GITHUB_ENV.version"
+        echo "LATEST_VERSION=$GITHUB_ENV.latest_version" 
+        
         if [ "$LATEST_VERSION" = "$VERSION" ]; then
           echo "match=true" >> $GITHUB_ENV
         else
