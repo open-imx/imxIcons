@@ -460,18 +460,16 @@ svg_groups = f"""
 <!-- AxleCounterDetection -->
 
 <g name="axleCounter-base" {create_primary_icon_style(qgis_render)}>  
-  <rect x="0" y="-2" width="4" height="4" transform="translate(-2, -2)"></rect>
-  <rect x="-2.126" y="-4" width="4.25" height="4.25" fill="{IconStyleEnum.white}"></rect>
-  <polyline points="-2 -4 0 0.18 2 -4" style="stroke-linejoin: bevel;"></polyline>
+  <rect x="-2" y="-4" width="4" height="4" style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-width: 0.25px;"/>
+  <polygon style="stroke-linejoin: round; stroke-width: 0;" points="-2 -4 0 0 2 -4"/>
 </g>
-
 
 <!-- ATBVVBeacon -->
 
 <g name="atbVv-Beacon" {create_primary_icon_style(qgis_render)}>
   <rect x="-2.88" y="5.073" width="2.5" height="2.5" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.black}"/>
-  <line x1="-2.88" x2="-0.38" y1="7.573" y2="5.073" stroke="{IconStyleEnum.black}" style="stroke-width: 0.25px" />
-  <line x1="-2.88" x2="-0.38" y1="5.073" y2="7.573" stroke="{IconStyleEnum.black}" style="stroke-width: 0.25px" />
+  <line x1="-2.88" x2="-0.38" y1="7.573" y2="5.073" stroke="{IconStyleEnum.black}" style="stroke-width: 0.35px" />
+  <line x1="-2.88" x2="-0.38" y1="5.073" y2="7.573" stroke="{IconStyleEnum.black}" style="stroke-width: 0.35px" />
 </g>
 
 <!-- InsulatedJoint -->
@@ -491,11 +489,11 @@ svg_groups = f"""
 <!-- LevelCrossing -->
 
 <g name="levelCrossing" {create_primary_icon_style(qgis_render)}>
-  <path d="M0-15.138v30l30-15-30-15Zm1.9 3.074L25.751-.138 1.9 11.788v-23.852Z" fill="red" />
-  <path d="M10.679 6.862H9.24v-14h1.439v14Zm-4.316 0H4.924v-14h1.439v14Z" />
-  <path d="m12.117-3.073 2.878-1.581-2.878-1.58H3v3.16l9.117.001Zm.006 4.515L15-.138l-2.877-1.58H3.006v3.16h9.117Zm0 4.517L15 4.379l-2.877-1.581H3.006v3.16l9.117.001Z" />
+  <path d="M 3.87 -4.122 L 3.87 4 L 11.992 -0.062 L 3.87 -4.122 Z M 4.385 -3.289 L 10.841 -0.062 L 4.385 3.167 L 4.385 -3.289 Z" fill="red" style="stroke: rgb(186, 218, 85); stroke-width: 0px;" />
+  <path d="M 6.529 1.6 L 6.202 1.6 L 6.202 -1.589 L 6.529 -1.589 L 6.529 1.6 Z M 5.547 1.6 L 5.219 1.6 L 5.219 -1.589 L 5.547 -1.589 L 5.547 1.6 Z" />
+  <path d="M 6.857 -0.663 L 7.514 -1.023 L 6.857 -1.383 L 4.78 -1.383 L 4.78 -0.663 L 6.857 -0.663 Z M 6.859 0.365 L 7.514 0.005 L 6.859 -0.354 L 4.781 -0.354 L 4.781 0.365 L 6.859 0.365 Z M 6.859 1.395 L 7.514 1.034 L 6.859 0.674 L 4.781 0.674 L 4.781 1.395 L 6.859 1.395 Z" style="stroke: rgb(186, 218, 85); stroke-width: 0px;" />
+  <rect y="-4" width="5" height="8" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="-2.5" />
 </g>
-
 """
 
 

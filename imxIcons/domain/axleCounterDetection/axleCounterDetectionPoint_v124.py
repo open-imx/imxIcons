@@ -11,7 +11,7 @@ axle_counter_points_icon_entities_v124 = [
         icon_name="AxleCounterDetectionPoint",
         properties={},
         icon_groups=[
-            IconSvgGroup("axleCounter-base", "translate(-2, -2)"),
+            IconSvgGroup("axleCounter-base"),
         ],
     )
 ]
