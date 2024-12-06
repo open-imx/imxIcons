@@ -81,7 +81,7 @@ jobs:
 #        echo "version_comparison=$VERSION_COMPARISON" >> $GITHUB_ENV
 
     - name: Conditional release creation
-      if: env.version_comparison == 'True'
+#      if: env.version_comparison == 'True'
       run: |
         echo "Creating new release since version is higher than the latest tag."
 
