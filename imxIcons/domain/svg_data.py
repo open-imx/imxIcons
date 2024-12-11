@@ -469,11 +469,10 @@ svg_groups = f"""
 </g>
 
 <!-- ATBVVBeacon -->
-
 <g name="atbVv-Beacon" {create_primary_icon_style(qgis_render)}>
-  <rect x="-2.88" y="5.073" width="2.5" height="2.5" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.black}"/>
-  <line x1="-2.88" x2="-0.38" y1="7.573" y2="5.073" stroke="{IconStyleEnum.black}" style="stroke-width: 0.35px" />
-  <line x1="-2.88" x2="-0.38" y1="5.073" y2="7.573" stroke="{IconStyleEnum.black}" style="stroke-width: 0.35px" />
+    <rect x="-2" y="-4" width="4" height="4" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.black}" style="stroke-width: 0.25px;"/>
+    <polyline points="-2 -4 2 0" stroke="{IconStyleEnum.black}" style="stroke-width: 0.25px;" />
+    <polyline points="-2 0 2 -4" stroke="{IconStyleEnum.black}" style="stroke-width: 0.25px;" />
 </g>
 
 <!-- InsulatedJoint -->
