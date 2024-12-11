@@ -1,12 +1,13 @@
 import re
-from typing import Any
+from typing import Any, cast
 
 from lxml import etree
 from lxml.etree import XMLParser
 
 from imxIcons.domain.icon_library import ICON_DICT  # DEFAULT_ICONS
+from imxIcons.domain.supportedIconTypes import IconTypesEnum, icon_types_literal
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
-from imxIcons.domain.svg_data import SVG_ICON_DICT
+from imxIcons.domain.svg_data import QGIS_ICON_DICT, SVG_ICON_DICT
 from imxIcons.iconEntity import IconEntity, IconSvgGroup
 from imxIcons.iconServiceModels import IconRequestModel
 
@@ -181,7 +182,13 @@ class IconService:
         return icon_name
 
     @classmethod
-    def _create_svg(cls, imx_path: str, icon_name: str, svg_groups: list[IconSvgGroup]):
+    def _create_svg(
+        cls,
+        imx_path: str,
+        icon_name: str,
+        svg_groups: list[IconSvgGroup],
+        icon_type: IconTypesEnum | icon_types_literal,
+    ):
         """
         Creates an SVG string from icon details and SVG groups.
 
@@ -189,15 +196,26 @@ class IconService:
             imx_path: The IMX path for the icon.
             icon_name: The name of the icon.
             svg_groups: A list of SVG groups associated with the icon.
+            icon_type: If True, a qgis svg will be returned
 
         Returns:
             An SVG string for the icon.
         """
+        if isinstance(icon_type, str):
+            icon_type = IconTypesEnum.from_string(icon_type)
+        icon_type = cast(IconTypesEnum, icon_type)
+
+        icon_dict = (
+            QGIS_ICON_DICT
+            if icon_type.name == IconTypesEnum.qgis.name
+            else SVG_ICON_DICT
+        )
+
         svg_groups_str = [
             cls._add_transform_to_elements(
-                SVG_ICON_DICT[item.group_id], item.transform or ""
+                icon_dict[item.group_id], item.transform or ""
             )
-            for item in svg_groups  # Ensure that this gives valid strings for SVG_ICON_DICT
+            for item in svg_groups
         ]
         group_data = "\n".join(cls._add_transform_to_groups(svg_groups_str))
         svg_content = f"""
@@ -213,12 +231,14 @@ class IconService:
     def get_all_icons(
         cls,
         imx_version: ImxVersionEnum,
+        icon_type: IconTypesEnum | icon_types_literal = IconTypesEnum.svg,
     ) -> dict[str, dict[str, str | dict[str, str]]]:
         """
         Retrieves all icons for a given IMX version.
 
         Args:
             imx_version: The IMX version to match.
+            icon_type: If True, a qgis svg will be returned
 
         Returns:
             A dictionary of icon names and their corresponding SVG content and metadata.
@@ -238,7 +258,10 @@ class IconService:
         for imx_type, icons in imx_path_icons.items():
             for icon_entity in icons:
                 svg_content = cls._create_svg(
-                    icon_entity.imx_path, icon_entity.icon_name, icon_entity.icon_groups
+                    icon_entity.imx_path,
+                    icon_entity.icon_name,
+                    icon_entity.icon_groups,
+                    icon_type,
                 )
                 out[icon_entity.icon_name] = {
                     "imx_version": icon_entity.imx_version.name,
@@ -254,6 +277,7 @@ class IconService:
         request_model: IconRequestModel,
         imx_version: ImxVersionEnum,
         pretty_svg=True,
+        icon_type: IconTypesEnum | icon_types_literal = IconTypesEnum.svg,
     ) -> Any:
         """
         Retrieves the SVG content for a given request model and IMX version.
@@ -261,7 +285,8 @@ class IconService:
         Args:
             request_model: The model containing icon request details such as the IMX path and properties.
             imx_version: The IMX version to match for retrieving the icon.
-            pretty_svg: If True, formats the SVG content for pretty printing. Default is True.
+            pretty_svg: If True, formats the SVG content for pretty printing.
+            icon_type: If True, a qgis svg will be returned
 
         Returns:
             The SVG content as a string. If `pretty_svg` is True, the SVG is formatted for better readability.
@@ -279,7 +304,9 @@ class IconService:
         icon_name, svg_groups = cls._get_svg_name_and_groups(
             dict(request_model), imx_path_icons
         )
-        svg_content = cls._create_svg(request_model.imx_path, icon_name, svg_groups)
+        svg_content = cls._create_svg(
+            request_model.imx_path, icon_name, svg_groups, icon_type
+        )
 
         if pretty_svg:
             return cls._format_svg(svg_content.strip())
