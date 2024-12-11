@@ -187,7 +187,7 @@ class IconService:
         imx_path: str,
         icon_name: str,
         svg_groups: list[IconSvgGroup],
-        icon_type: IconTypesEnum | icon_types_literal
+        icon_type: IconTypesEnum | icon_types_literal,
     ):
         """
         Creates an SVG string from icon details and SVG groups.
