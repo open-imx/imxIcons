@@ -18,7 +18,7 @@ reflector_posts = [
     IconEntity(
         imx_version=imx_version,
         imx_path=entities_path,
-        icon_name="IlluminatedSignNotIntegrated",
+        icon_name="ReflectorPostDiagonal",
         properties={"reflectorType": "Diagonal"},
         icon_groups=[
             IconSvgGroup("signal-reflector-diagonal"),
