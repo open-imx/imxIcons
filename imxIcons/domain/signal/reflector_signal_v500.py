@@ -10,7 +10,7 @@ reflector_posts = [
         imx_version=imx_version,
         imx_path=entities_path,
         icon_name="ReflectorPostStraight",
-        properties={"reflectorType": "straight"},
+        properties={"reflectorType": "Straight"},
         icon_groups=[
             IconSvgGroup("signal-reflector-straight"),
         ],
@@ -19,7 +19,7 @@ reflector_posts = [
         imx_version=imx_version,
         imx_path=entities_path,
         icon_name="IlluminatedSignNotIntegrated",
-        properties={"reflectorType": "diagonal"},
+        properties={"reflectorType": "Diagonal"},
         icon_groups=[
             IconSvgGroup("signal-reflector-diagonal"),
         ],
