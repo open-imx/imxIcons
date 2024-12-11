@@ -51,6 +51,12 @@ qgis_render = False
 
 svg_groups = f"""
 
+<g name="insertion-point" {create_primary_icon_style(qgis_render)} >
+    <circle r="0.15" cx="0" cy="0" fill="rgb(168, 168, 168)" />
+  <polyline points="-1 0 1 0" style="stroke-width: 0.15px; stroke: rgb(168, 168, 168);" />
+  <polyline points="0 -1 0 1" style="stroke-width: 0.15px; stroke: rgb(168, 168, 168);" />
+</g>
+
 <!-- Signal -->
 <g name="post-ground" {create_primary_icon_style(qgis_render)} >
     <line x1="0" x2="0" y1="-1" y2="1" />
@@ -279,8 +285,6 @@ svg_groups = f"""
 </g>
 
 
-
-
 <g name="RS-243" {create_primary_icon_style(qgis_render)} >
     <rect x="1.25" y="-1.8" width="1.5" height="3.8" fill="{IconStyleEnum.red}" />
 </g>
@@ -494,6 +498,8 @@ svg_groups = f"""
   <path d="M 6.857 -0.663 L 7.514 -1.023 L 6.857 -1.383 L 4.78 -1.383 L 4.78 -0.663 L 6.857 -0.663 Z M 6.859 0.365 L 7.514 0.005 L 6.859 -0.354 L 4.781 -0.354 L 4.781 0.365 L 6.859 0.365 Z M 6.859 1.395 L 7.514 1.034 L 6.859 0.674 L 4.781 0.674 L 4.781 1.395 L 6.859 1.395 Z" style="stroke: rgb(186, 218, 85); stroke-width: 0px;" />
   <rect y="-4" width="5" height="8" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="-2.5" />
 </g>
+
+
 """
 
 
