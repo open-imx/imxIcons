@@ -37,6 +37,9 @@ class IconEntity:
     properties: dict[str, str]
     icon_groups: list[IconSvgGroup]
 
+    def __post_init__(self):
+        self.icon_groups.append(IconSvgGroup("insertion-point"))
+
     def extend_icon(
         self, name: str, extra_props: dict[str, str], extra_groups: list[IconSvgGroup]
     ):
