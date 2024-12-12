@@ -30,7 +30,7 @@ def generate_icon_list(icons, version: str) -> list:
             IconRequestModel(imx_path=icon.imx_path, properties=icon.properties),
             ImxVersionEnum[version],
         )
-        scaled_svg = add_transformations(svg_content, scale=3, translate_x=-100)
+        scaled_svg = add_transformations(svg_content, scale=3, translate_x=-50)
         icon_list.append({
             "name": icon.icon_name,
             "svg": scaled_svg,
@@ -58,8 +58,6 @@ def generate_markdowns(docs_generated_dir: str):
                 md_path = os.path.join(version_dir, f"{imx_path}.md")
                 with open(md_path, 'w') as f:
                     f.write(template.render(icons=icon_list))
-
-
 
 
 def check_mkdocs_exists(mkdocs_yml: Path):
@@ -121,14 +119,19 @@ def insert_icon_library_section(lines, reference_index, icon_library_section):
     ]
     lines[insert_index:insert_index] = icon_library_section_indented
 
-
-def update_mkdocs_yml():
-    """Main function to update the mkdocs.yml file with a new 'Icon Library' section."""
-    mkdocs_yml = Path("mkdocs.yml")
+def get_mkdocs_yml_as_lines(mkdocs_yml: Path) -> list[str]:
     check_mkdocs_exists(mkdocs_yml)
 
     with mkdocs_yml.open("r") as file:
         lines = file.readlines()
+    return lines
+
+def update_mkdocs_yml():
+    """Main function to update the mkdocs.yml file with a new 'Icon Library' section."""
+
+    mkdocs_yml = Path("mkdocs.yml")
+
+    lines = get_mkdocs_yml_as_lines(mkdocs_yml)
 
     nav_index = get_nav_index(lines)
     if nav_index is None:
