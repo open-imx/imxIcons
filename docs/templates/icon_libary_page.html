@@ -1,14 +1,23 @@
+<!-- Add Font Awesome CDN (if not already included) -->
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
 {% for icon in icons %}
-  <h2>{{ icon.name }}</h2>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <!-- Icon Name and Download Button -->
+    <h2 style="margin: 0;">{{ icon.name }}</h2>
+    <button
+      onclick="downloadSvg('{{ icon.name }}', this)"
+      style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center;">
+      <!-- Download Icon (Font Awesome) -->
+      <i class="fas fa-download"></i>
+    </button>
+  </div>
+
   <div style="display: flex; align-items: flex-start; gap: 2rem;">
     <!-- Left Side: Icon Preview -->
     <div style="flex: 1; text-align: center; position: relative; overflow: hidden; width: 250px; height: 250px;">
-      <!-- Download Button -->
-      <button
-        style="position: absolute; top: 0; left: 0; background: white; border: 1px solid #ccc; padding: 5px; cursor: pointer; z-index: 10;"
-        onclick="downloadSvg('{{ icon.name }}', this)">
-        Download
-      </button>
       <figure>
         {{ icon.svg|safe }}
       </figure>
@@ -26,7 +35,7 @@
 <!-- JavaScript for Download Functionality -->
 <script>
   function downloadSvg(iconName, button) {
-    const svgContainer = button.nextElementSibling; // The <figure> containing the SVG
+    const svgContainer = button.closest('div').nextElementSibling.querySelector('figure'); // The <figure> containing the SVG
     const svgElement = svgContainer.querySelector('svg');
     if (!svgElement) {
       alert('SVG not found!');

@@ -8,7 +8,7 @@ from jinja2 import Environment, FileSystemLoader
 import xml.etree.ElementTree as ET
 
 
-def add_transformations(svg_string: str, scale: int, translate_x: float = 0, translate_y: float = 0) -> str:
+def add_transformations(svg_string: str, scale: float, translate_x: float = 0, translate_y: float = 0) -> str:
     """
     Adds scale and translation transformations to the SVG content.
     """
@@ -30,7 +30,7 @@ def generate_icon_list(icons, version: str) -> list:
             IconRequestModel(imx_path=icon.imx_path, properties=icon.properties),
             ImxVersionEnum[version],
         )
-        scaled_svg = add_transformations(svg_content, scale=3, translate_x=-50)
+        scaled_svg = add_transformations(svg_content, scale=2.75, translate_x=-90)
         icon_list.append({
             "name": icon.icon_name,
             "svg": scaled_svg,
@@ -50,7 +50,7 @@ def generate_markdowns(docs_generated_dir: str):
 
     for imx_path, versions in ICON_DICT.items():
         for version, icons in versions.items():
-            version_dir = os.path.join(docs_generated_dir, version)
+            version_dir = os.path.join(docs_generated_dir, f"IMX {version}")
             os.makedirs(version_dir, exist_ok=True)
 
             icon_list = generate_icon_list(icons, version)
