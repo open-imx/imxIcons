@@ -59,7 +59,7 @@ lint-check = [
   "ruff format --check imxIcons/",
   "ruff check imxIcons/",
   "mypy imxIcons/ --check-untyped-defs",
-  "zizmor .\\.github\\workflows\\",
+  "zizmor ./github/workflows/",
 ]
 docs-serve = "mkdocs serve"
 docs-build = "mkdocs build"
