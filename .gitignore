@@ -163,3 +163,5 @@ cython_debug/
 
 # Libary
 icon_renders/
+docs/generated/
+!docs/generated/.auto_generated_content

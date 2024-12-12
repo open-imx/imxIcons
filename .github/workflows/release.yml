@@ -20,6 +20,7 @@ jobs:
     - name: Check out the release tag
       uses: actions/checkout@v4
       with:
+        persist-credentials: false
         ref: ${{ github.ref }}
 
     - name: Set up Python
@@ -60,6 +61,7 @@ jobs:
       - name: Check out the release tag
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           ref: ${{ github.ref }} # Ensures the workflow checks out the release tag
 
       - name: Set up Python

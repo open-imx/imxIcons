@@ -1,7 +1,7 @@
 site_name: Imx:Icons
 site_description: Python library and fastApi to get IMX Icons by type and properties
 
-repo_url: https://github.com/open-imx/ImxInsights
+repo_url: https://github.com/open-imx/imxIcons
 repo_name: ImxIcons
 
 theme:
