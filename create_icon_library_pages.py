@@ -31,10 +31,12 @@ def generate_icon_list(icons, version: str) -> list:
             ImxVersionEnum[version],
         )
         scaled_svg = add_transformations(svg_content, scale=2.75, translate_x=-90)
+
+        properties = {'imx_path': icon.imx_path} | {'properties': icon.properties}
         icon_list.append({
             "name": icon.icon_name,
             "svg": scaled_svg,
-            "properties": icon.properties,
+            "properties": properties,
             "raw_code": svg_content
         })
     return icon_list
