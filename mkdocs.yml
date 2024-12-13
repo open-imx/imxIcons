@@ -89,32 +89,34 @@ nav:
 #  - Getting started:
 #      - Installation: context/installation.md
 #      - Basic use: examples/basic_use.md
+
   - Reference:
-    #- IconGeneration: reference/imx_icon_generation.md
-    #- ImxIcons: reference/imx_icons.md
     - ImxIconsApi: reference/imx_icons_api.md
   - Icon Library:
-    - imx v124:
-      - ATBVVInstallation.ATBVVBeacon: generated/imx v124/ATBVVInstallation.ATBVVBeacon.md
-      - AxleCounterDetectionPoint: generated/imx v124/AxleCounterDetectionPoint.md
-      - InsulatedJoint: generated/imx v124/InsulatedJoint.md
-      - LevelCrossing: generated/imx v124/LevelCrossing.md
-      - Sign: generated/imx v124/Sign.md
-      - Signal.IlluminatedSign: generated/imx v124/Signal.IlluminatedSign.md
-      - Signal: generated/imx v124/Signal.md
-      - Signal.ReflectorPost: generated/imx v124/Signal.ReflectorPost.md
-      - SpeedSign: generated/imx v124/SpeedSign.md
-    - imx v500:
-      - AtbVvInstallation.AtbVvBeacon: generated/imx v500/AtbVvInstallation.AtbVvBeacon.md
-      - AxleCounterDetectionPoint: generated/imx v500/AxleCounterDetectionPoint.md
-      - DepartureSignal: generated/imx v500/DepartureSignal.md
-      - InsulatedJoint: generated/imx v500/InsulatedJoint.md
-      - LevelCrossing: generated/imx v500/LevelCrossing.md
-      - Sign: generated/imx v500/Sign.md
-      - Signal.IlluminatedSign: generated/imx v500/Signal.IlluminatedSign.md
-      - Signal: generated/imx v500/Signal.md
-      - Signal.ReflectorPost: generated/imx v500/Signal.ReflectorPost.md
-      - SpeedSign: generated/imx v500/SpeedSign.md
-  - Contributing: contribution.md
+    - IMX v124:
+      - ATBVVInstallation.ATBVVBeacon: generated/IMX v124/ATBVVInstallation.ATBVVBeacon.md
+      - AxleCounterDetectionPoint: generated/IMX v124/AxleCounterDetectionPoint.md
+      - InsulatedJoint: generated/IMX v124/InsulatedJoint.md
+      - LevelCrossing: generated/IMX v124/LevelCrossing.md
+      - Sign: generated/IMX v124/Sign.md
+      - Signal.IlluminatedSign: generated/IMX v124/Signal.IlluminatedSign.md
+      - Signal: generated/IMX v124/Signal.md
+      - Signal.ReflectorPost: generated/IMX v124/Signal.ReflectorPost.md
+      - SpeedSign: generated/IMX v124/SpeedSign.md
+    - IMX v500:
+      - AtbVvInstallation.AtbVvBeacon: generated/IMX v500/AtbVvInstallation.AtbVvBeacon.md
+      - AxleCounterDetectionPoint: generated/IMX v500/AxleCounterDetectionPoint.md
+      - DepartureSignal: generated/IMX v500/DepartureSignal.md
+      - InsulatedJoint: generated/IMX v500/InsulatedJoint.md
+      - LevelCrossing: generated/IMX v500/LevelCrossing.md
+      - Sign: generated/IMX v500/Sign.md
+      - Signal.IlluminatedSign: generated/IMX v500/Signal.IlluminatedSign.md
+      - Signal: generated/IMX v500/Signal.md
+      - Signal.ReflectorPost: generated/IMX v500/Signal.ReflectorPost.md
+      - SpeedSign: generated/IMX v500/SpeedSign.md
+  - Contributing:
+      - Contributing:  contribution.md
+      - Icon Design: design_icon.md
+      - Add Icon: add_icon.md
   - Code of conduct: code_of_conduct.md
   - License: license.md
