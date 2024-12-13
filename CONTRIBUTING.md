@@ -5,7 +5,14 @@ First off ❤️ ️ ️thanks for taking the time to contribute!
 All types of contributions are encouraged and valued!!! Please make sure to read the relevant section before making your contribution.
 It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions.
 
+## Icon Creation
+If you just create new icons, we’d love to include them in the library so you don’t have the hassle of implementing them yourself.
+Feel free to share your icons by sending them through Discord or by creating a GitHub issue, and we’ll take care of the integration.
 
+If you need any help or have questions along the way, don't hesitate to reach out to our dedicated Discord channel. We’re here to assist you!
+
+Icons are built using individual SVG snippets, which we refer to as "parts." The library provides an easy way to assemble these parts into complete icons.
+To give some insights on the process we have a page about adding icons to the library.
 
 ## Development
 

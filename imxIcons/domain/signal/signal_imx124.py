@@ -7,6 +7,8 @@ imx_version = ImxVersionEnum.v124
 
 signals = []
 
+# TODO: add typehints to all methods (and the methods in other files)
+
 
 # Extension functions
 def add_shunting(signals):

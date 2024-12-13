@@ -18,7 +18,9 @@ These icons help streamline the visualization of railway data across various too
 
 ## Features
 - [X] Get IMX icons by giving a object path and a set of properties.
-- [X] Return icon name
+- [X] Return svg icon by name or url
+- [X] Get svg icon by url
+- [X] QGIS SVG icons
 
 ### Backlog and Roadmap
 <a href="https://github.com/orgs/open-imx/projects/4/" target="_blank">https://github.com/orgs/open-imx/projects/4/</a>

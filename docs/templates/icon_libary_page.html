@@ -1,23 +1,83 @@
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+  .icon-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .icon-box {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    width: 250px;
+    height: 250px;
+    transition: all 0.3s ease; /* Smooth resizing */
+  }
+
+  .icon-box figure {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .properties-box {
+    flex: 1;
+  }
+
+  /* Responsive layout and larger SVG for zoom or smaller screens */
+  @media (max-width: 800px) {
+    .icon-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .icon-box {
+      width: 550px;
+      height: 550px;
+    }
+
+    .properties-box {
+      width: 100%;
+      text-align: left;
+    }
+  }
+</style>
+
 {% for icon in icons %}
-  <h2>{{ icon.name }}</h2>
-  <div style="display: flex; align-items: flex-start; gap: 2rem;">
-    <!-- Left Side: Icon Preview -->
-    <div style="flex: 1; text-align: center; position: relative; overflow: hidden; width: 250px; height: 250px;">
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <h2 style="margin: 0;">{{ icon.name }}</h2>
+    <div style="display: flex;">
       <!-- Download Button -->
       <button
-        style="position: absolute; top: 0; left: 0; background: white; border: 1px solid #ccc; padding: 5px; cursor: pointer; z-index: 10;"
-        onclick="downloadSvg('{{ icon.name }}', this)">
-        Download
+        onclick="downloadSvg('{{ icon.name }}', this)"
+        style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
+        <i class="fas fa-download"></i>
       </button>
-      <figure>
+      <!-- Copy Button -->
+      <button
+        onclick="copySvgToClipboard('{{ icon.name }}')"
+        style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
+        <i class="fas fa-copy"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="icon-container">
+    <!-- Icon Section -->
+    <div class="icon-box">
+      <figure id="figure-{{ icon.name }}">
         {{ icon.svg|safe }}
       </figure>
     </div>
 
-    <!-- Right Side: Properties -->
-    <div style="flex: 1;">
+    <!-- Properties Section -->
+    <div class="properties-box">
       <h3>Property Mapping</h3>
-      <pre style="padding: 25px;">{{ icon.properties|tojson(indent=2) }}</pre>
+      <pre style="font-size: small; line-height: 1.2; padding: 25px;">{{ icon.properties|tojson(indent=2) }}</pre>
     </div>
   </div>
   <hr>
@@ -25,8 +85,15 @@
 
 <!-- JavaScript for Download Functionality -->
 <script>
-  function downloadSvg(iconName, button) {
-    const svgContainer = button.nextElementSibling; // The <figure> containing the SVG
+
+function downloadSvg(iconName, button) {
+  try {
+    const svgContainer = document.getElementById(`figure-${iconName}`);
+    if (!svgContainer) {
+      alert('SVG container not found!');
+      return;
+    }
+
     const svgElement = svgContainer.querySelector('svg');
     if (!svgElement) {
       alert('SVG not found!');
@@ -36,6 +103,8 @@
     // Serialize the SVG
     const serializer = new XMLSerializer();
     const svgData = serializer.serializeToString(svgElement);
+    console.log('Serialized SVG:', svgData); // Debugging
+
     const blob = new Blob([svgData], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(blob);
 
@@ -49,5 +118,38 @@
 
     // Revoke the object URL
     URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error in downloadSvg function:', error);
+    alert('Failed to download SVG.');
   }
+}
+
+function copySvgToClipboard(iconName) {
+  try {
+    // Find the <figure> by its unique ID
+    const svgContainer = document.getElementById(`figure-${iconName}`);
+    const svgElement = svgContainer?.querySelector('svg');
+
+    if (!svgElement) {
+      alert('SVG not found!');
+      return;
+    }
+
+    // Serialize the SVG into a string
+    const serializer = new XMLSerializer();
+    const svgData = serializer.serializeToString(svgElement);
+
+    // Attempt to copy the SVG string to the clipboard
+    navigator.clipboard.writeText(svgData)
+      .then(() => alert(`SVG "${iconName}" copied to clipboard!`))
+      .catch(err => {
+        console.error('Clipboard write failed:', err);
+        alert('Failed to copy SVG to clipboard.');
+      });
+  } catch (error) {
+    console.error('Unexpected error during copy operation:', error);
+    alert('An error occurred while copying SVG.');
+  }
+}
+
 </script>
