@@ -14,13 +14,13 @@
 By transforming complex IMX data into clear visual representations, **imxIcons** enhances user experiences across applications in the railway sector. 
 These icons help streamline the visualization of railway data across various tools and applications, improving the accessibility and user-friendliness of IMX data. 
 
-*This is a personal project and therefore no responsibility for the functionality, accuracy, or usage of this library / api.*
+*This is a personal project and therefore no responsibility for the functionality, accuracy, or usage of this library.*
 
 ## Features
 - [X] Get IMX icons by giving a object path and a set of properties.
-- [X] Return svg icon by name or url
-- [X] Get svg icon by url
-- [X] QGIS SVG icons
+- [X] Return SVG icon by name or url
+- [X] SVG QGIS support
+
 
 ### Backlog and Roadmap
 <a href="https://github.com/orgs/open-imx/projects/4/" target="_blank">https://github.com/orgs/open-imx/projects/4/</a>
@@ -30,22 +30,12 @@ These icons help streamline the visualization of railway data across various too
 !!! warning  
     ***Python Typehints are awesome therefor 3.9 and below will NOT be supported***.
 
-## Quick Start
-TODO
-
 ## Distribution and installation
 Just install the library
 
 ```pip install imxIcons```
 
-https://github.com/open-imx/imxIconsApi
 for a demo see: https://imx-icons-api.azurewebsites.net/
-
-
-## Code samples and snippets
-TODO
 
 ## Contributing
 Contributions welcome! [Join our Discord Community](https://discord.gg/wBses7bPFg) 
-
-~~For more information on the design of the library, see [contribution guidelines for this project](CONTRIBUTING.md).~~

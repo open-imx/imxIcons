@@ -480,11 +480,11 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
     </g>
 
     <g name="insulatedJoint-left" {create_primary_icon_style(qgis_render)}>
-      <line x1="-.75" y1="-1.5" x2=".75" y2="-1.5" style="stroke: rgb(0, 0, 0); stroke-width: 0.25px;" />
+      <line x1="-.75" y1="-1.5" x2=".75" y2="-1.5" style="stroke-width: 0.25px;" />
     </g>
 
     <g name="insulatedJoint-right" {create_primary_icon_style(qgis_render)}>
-      <line x1="-.75" y1="1.5" x2=".75" y2="1.5" style="stroke: rgb(0, 0, 0); stroke-width: 0.25px;" />
+      <line x1="-.75" y1="1.5" x2=".75" y2="1.5" style="stroke-width: 0.25px;" />
     </g>
 
     <!-- LevelCrossing -->
@@ -510,6 +510,6 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
     return svg_dict
 
 
-SVG_ICON_DICT = get_svg_groups()
+SVG_SVG_GROUP_DICT = get_svg_groups()
 
-QGIS_ICON_DICT = get_svg_groups(qgis_render=True)
+QGIS_SVG_GROUP_DICT = get_svg_groups(qgis_render=True)
