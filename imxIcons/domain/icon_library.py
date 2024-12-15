@@ -46,50 +46,105 @@ from imxIcons.domain.speedsign.speedsign_imx500 import speed_sign_icon_entities_
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity
 
+
+def validate_icon_set(icons: list[IconEntity]) -> list[IconEntity]:
+    """
+    Validates a list of IconEntity objects for duplicates and consistency.
+
+    Checks for:
+    - Duplicate properties among the icons.
+    - Duplicate icon names.
+    - Consistent `imx_path` across all icons.
+
+    Args:
+        icons: A list of IconEntity objects to validate.
+
+    Returns:
+        The validated list of IconEntity objects.
+
+    Raises:
+        ValueError: If any duplicate properties, duplicate icon names,
+                    or inconsistent `imx_path` are found.
+    """
+
+    property_map: dict[tuple, IconEntity] = {}
+    icon_name_map: dict[str, IconEntity] = {}
+    imx_path = icons[0].imx_path
+
+    for icon in icons:
+        if icon.imx_path != imx_path:
+            raise ValueError(  # noqa: TRY003
+                f"Inconsistent imx_path found: {icon.icon_name} has path {icon.imx_path}, expected {imx_path}"
+            )
+
+        property_tuple = tuple(sorted(icon.properties.items()))
+        if property_tuple in property_map:
+            raise ValueError(  # noqa: TRY003
+                f"Duplicate properties found for icon: {icon.icon_name} and {property_map[property_tuple].icon_name}"
+            )
+        else:
+            property_map[property_tuple] = icon
+
+        if icon.icon_name in icon_name_map:
+            raise ValueError(f"Duplicate icon name found: {icon.icon_name}")  # noqa: TRY003
+        else:
+            icon_name_map[icon.icon_name] = icon
+
+    return icons
+
+
 ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
     "DepartureSignal": {
         ImxVersionEnum.v124.name: [],  # DepartureSignal is a SignalType in v124
-        ImxVersionEnum.v500.name: departure_signal_entities_imx500,
+        ImxVersionEnum.v500.name: validate_icon_set(departure_signal_entities_imx500),
     },
     "Signal": {
-        ImxVersionEnum.v124.name: signals_icon_entities_v124,
-        ImxVersionEnum.v500.name: signals_icon_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(signals_icon_entities_v124),
+        ImxVersionEnum.v500.name: validate_icon_set(signals_icon_entities_v500),
     },
     "Signal.IlluminatedSign": {
-        ImxVersionEnum.v124.name: illuminated_sign_icon_entities_v124,
-        ImxVersionEnum.v500.name: illuminated_sign_icon_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(
+            illuminated_sign_icon_entities_v124
+        ),
+        ImxVersionEnum.v500.name: validate_icon_set(
+            illuminated_sign_icon_entities_v500
+        ),
     },
     "Signal.ReflectorPost": {
-        ImxVersionEnum.v124.name: reflector_post_icon_entities_v124,
-        ImxVersionEnum.v500.name: reflector_post_icon_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(reflector_post_icon_entities_v124),
+        ImxVersionEnum.v500.name: validate_icon_set(reflector_post_icon_entities_v500),
     },
     "SpeedSign": {
-        ImxVersionEnum.v124.name: speed_sign_icon_entities_v124,
-        ImxVersionEnum.v500.name: speed_sign_icon_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(speed_sign_icon_entities_v124),
+        ImxVersionEnum.v500.name: validate_icon_set(speed_sign_icon_entities_v500),
     },
     "Sign": {
-        ImxVersionEnum.v124.name: sign_icon_entities_v124,
-        ImxVersionEnum.v500.name: sign_icon_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(sign_icon_entities_v124),
+        ImxVersionEnum.v500.name: validate_icon_set(sign_icon_entities_v500),
     },
     "AxleCounterDetectionPoint": {
-        ImxVersionEnum.v124.name: axle_counter_points_icon_entities_v124,
-        ImxVersionEnum.v500.name: axle_counter_points_icon_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(
+            axle_counter_points_icon_entities_v124
+        ),
+        ImxVersionEnum.v500.name: validate_icon_set(
+            axle_counter_points_icon_entities_v500
+        ),
     },
     "LevelCrossing": {
-        ImxVersionEnum.v124.name: level_crossing_entities_v124,
-        ImxVersionEnum.v500.name: level_crossing_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(level_crossing_entities_v124),
+        ImxVersionEnum.v500.name: validate_icon_set(level_crossing_entities_v500),
     },
     "ATBVVInstallation.ATBVVBeacon": {
-        ImxVersionEnum.v124.name: atbvv_beacon_entities_v124,
+        ImxVersionEnum.v124.name: validate_icon_set(atbvv_beacon_entities_v124),
         ImxVersionEnum.v500.name: [],
     },
     "AtbVvInstallation.AtbVvBeacon": {
         ImxVersionEnum.v124.name: [],
-        ImxVersionEnum.v500.name: atbvv_beacon_entities_v500,
+        ImxVersionEnum.v500.name: validate_icon_set(atbvv_beacon_entities_v500),
     },
     "InsulatedJoint": {
-        ImxVersionEnum.v124.name: insulated_joint_entities_v124,
-        ImxVersionEnum.v500.name: insulated_joint_entities_v500,
+        ImxVersionEnum.v124.name: validate_icon_set(insulated_joint_entities_v124),
+        ImxVersionEnum.v500.name: validate_icon_set(insulated_joint_entities_v500),
     },
 }
 

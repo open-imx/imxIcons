@@ -223,7 +223,7 @@ signs = [
         imx_path=entities_path,
         icon_name="308a",
         properties={
-            "signType": "EnableTractionCurrent",
+            "signType": "LowerPantograph",
         },
         icon_groups=[
             IconSvgGroup("sign-normal-base"),

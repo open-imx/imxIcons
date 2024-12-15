@@ -5,6 +5,11 @@ from pathlib import Path
 
 import pytest
 
+from imxIcons.domain.icon_library import validate_icon_set
+from imxIcons.domain.supportedImxVersions import ImxVersionEnum
+
+from imxIcons.iconEntity import IconEntity
+
 from create_icon_library_pages import (
     remove_existing_icon_library_section,
     get_icon_library_index,
@@ -85,3 +90,77 @@ def test_generate_icon_library():
     update_mkdocs_yml()
     lines = get_mkdocs_yml_as_lines(mkdocs_yml)
     assert '  - Icon Library:\n' in lines, "Icon Library should be present in nav"
+
+
+def test_duplicated_property_mapping():
+    icons = [
+        IconEntity(
+            imx_version=ImxVersionEnum.v124,
+            imx_path="test",
+            icon_name="test_1",
+            properties={
+                "test": "test",
+            },
+            icon_groups=[],
+        ),
+        IconEntity(
+            imx_version=ImxVersionEnum.v124,
+            imx_path="test",
+            icon_name="test_2",
+            properties={
+                "test": "test",
+            },
+            icon_groups=[],
+        ),
+    ]
+    with pytest.raises(ValueError, match="Duplicate properties found for icon:"):
+        validate_icon_set(icons)
+
+def test_duplicated_icon_name():
+    icons = [
+        IconEntity(
+            imx_version=ImxVersionEnum.v124,
+            imx_path="test",
+            icon_name="test",
+            properties={
+                "test_1": "test",
+            },
+            icon_groups=[],
+        ),
+        IconEntity(
+            imx_version=ImxVersionEnum.v124,
+            imx_path="test",
+            icon_name="test",
+            properties={
+                "test_2": "test",
+            },
+            icon_groups=[],
+        ),
+    ]
+    with pytest.raises(ValueError, match="Duplicate icon name found:"):
+        validate_icon_set(icons)
+
+
+def test_inconsistent_imx_path():
+    icons = [
+        IconEntity(
+            imx_version=ImxVersionEnum.v124,
+            imx_path="test_1",
+            icon_name="test_1",
+            properties={
+                "test_1": "test",
+            },
+            icon_groups=[],
+        ),
+        IconEntity(
+            imx_version=ImxVersionEnum.v124,
+            imx_path="test_2",
+            icon_name="test_2",
+            properties={
+                "test_1": "test",
+            },
+            icon_groups=[],
+        ),
+    ]
+    with pytest.raises(ValueError, match="Inconsistent imx_path found:"):
+        validate_icon_set(icons)
