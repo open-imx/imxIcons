@@ -40,4 +40,3 @@ List of apps that can help you out.
 
 - **Edit SVG**: You can use [Boxy](https://boxy-svg.com/) for editing SVG files.
 - **Clean SVG**: [SVGOMG](https://svgomg.net/) is a great tool for optimizing and cleaning SVG files.
-
