@@ -49,28 +49,39 @@ from imxIcons.iconEntity import IconEntity
 
 def validate_icon_set(icons: list[IconEntity]) -> list[IconEntity]:
     """
-    Check if there are duplicate properties, icon names, or inconsistent imx_path in the list of IconEntity objects.
-    Raises a ValueError if any duplicates or inconsistencies are found.
+    Validates a list of IconEntity objects for duplicates and consistency.
+
+    Checks for:
+    - Duplicate properties among the icons.
+    - Duplicate icon names.
+    - Consistent `imx_path` across all icons.
 
     Args:
-        icons: IconEntity objects to check.
+        icons: A list of IconEntity objects to validate.
+
+    Returns:
+        The validated list of IconEntity objects.
 
     Raises:
-        ValueError: If duplicate properties, icon names, or inconsistent imx_path are found in the list.
+        ValueError: If any duplicate properties, duplicate icon names,
+                    or inconsistent `imx_path` are found.
     """
 
-    property_map, icon_name_map = {}, {}
+    property_map: dict[tuple, IconEntity] = {}
+    icon_name_map: dict[str, IconEntity] = {}
     imx_path = icons[0].imx_path
 
     for icon in icons:
         if icon.imx_path != imx_path:
             raise ValueError(
-                f"Inconsistent imx_path found: {icon.icon_name} has path {icon.imx_path}, expected {imx_path}")
+                f"Inconsistent imx_path found: {icon.icon_name} has path {icon.imx_path}, expected {imx_path}"
+            )
 
         property_tuple = tuple(sorted(icon.properties.items()))
         if property_tuple in property_map:
             raise ValueError(
-                f"Duplicate properties found for icon: {icon.icon_name} and {property_map[property_tuple].icon_name}")
+                f"Duplicate properties found for icon: {icon.icon_name} and {property_map[property_tuple].icon_name}"
+            )
         else:
             property_map[property_tuple] = icon
 
@@ -92,8 +103,12 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
         ImxVersionEnum.v500.name: validate_icon_set(signals_icon_entities_v500),
     },
     "Signal.IlluminatedSign": {
-        ImxVersionEnum.v124.name: validate_icon_set(illuminated_sign_icon_entities_v124),
-        ImxVersionEnum.v500.name: validate_icon_set(illuminated_sign_icon_entities_v500),
+        ImxVersionEnum.v124.name: validate_icon_set(
+            illuminated_sign_icon_entities_v124
+        ),
+        ImxVersionEnum.v500.name: validate_icon_set(
+            illuminated_sign_icon_entities_v500
+        ),
     },
     "Signal.ReflectorPost": {
         ImxVersionEnum.v124.name: validate_icon_set(reflector_post_icon_entities_v124),
@@ -108,8 +123,12 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
         ImxVersionEnum.v500.name: validate_icon_set(sign_icon_entities_v500),
     },
     "AxleCounterDetectionPoint": {
-        ImxVersionEnum.v124.name: validate_icon_set(axle_counter_points_icon_entities_v124),
-        ImxVersionEnum.v500.name: validate_icon_set(axle_counter_points_icon_entities_v500),
+        ImxVersionEnum.v124.name: validate_icon_set(
+            axle_counter_points_icon_entities_v124
+        ),
+        ImxVersionEnum.v500.name: validate_icon_set(
+            axle_counter_points_icon_entities_v500
+        ),
     },
     "LevelCrossing": {
         ImxVersionEnum.v124.name: validate_icon_set(level_crossing_entities_v124),
