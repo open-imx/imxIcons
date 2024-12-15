@@ -73,20 +73,20 @@ def validate_icon_set(icons: list[IconEntity]) -> list[IconEntity]:
 
     for icon in icons:
         if icon.imx_path != imx_path:
-            raise ValueError(
+            raise ValueError(  # noqa: TRY003
                 f"Inconsistent imx_path found: {icon.icon_name} has path {icon.imx_path}, expected {imx_path}"
             )
 
         property_tuple = tuple(sorted(icon.properties.items()))
         if property_tuple in property_map:
-            raise ValueError(
+            raise ValueError(  # noqa: TRY003
                 f"Duplicate properties found for icon: {icon.icon_name} and {property_map[property_tuple].icon_name}"
             )
         else:
             property_map[property_tuple] = icon
 
         if icon.icon_name in icon_name_map:
-            raise ValueError(f"Duplicate icon name found: {icon.icon_name}")
+            raise ValueError(f"Duplicate icon name found: {icon.icon_name}")  # noqa: TRY003
         else:
             icon_name_map[icon.icon_name] = icon
 
