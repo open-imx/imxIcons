@@ -48,149 +48,93 @@
 </style>
 
 {% for icon in icons %}
-  <div style="display: flex; align-items: center; justify-content: space-between;">
-    <h2 style="margin: 0;"> {{ icon.name }} </h2>
-    <div style="display: flex;">
-      <!-- Feedback Button -->
-      <button onclick="openFeedbackDialog('{{ icon_name }}')"
-        style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
-        <i class="fas fa-comment"></i>
-      </button>
-      <!-- Download Button -->
-      <button
-        onclick="downloadSvg('{{ icon.name }}', this)"
-        style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
-        <i class="fas fa-download"></i>
-      </button>
-      <!-- Copy Button -->
-      <button
-        onclick="copySvgToClipboard('{{ icon.name }}')"
-        style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
-        <i class="fas fa-copy"></i>
-      </button>
-    </div>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <h2 style="margin: 0;"> {{ icon.name }} </h2>
+  <div style="display: flex;">
+    <!-- Feedback Button -->
+    <button onclick="openFeedbackDialog('feedbackDialog-{{ icon.name }}')"
+      style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
+      <i class="fas fa-comment"></i>
+    </button>
+    <!-- Download Button -->
+    <button
+      onclick="downloadSvg('{{ icon.name }}', this)"
+      style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
+      <i class="fas fa-download"></i>
+    </button>
+    <!-- Copy Button -->
+    <button
+      onclick="copySvgToClipboard('{{ icon.name }}')"
+      style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
+      <i class="fas fa-copy"></i>
+    </button>
   </div>
+</div>
 
-<dialog id="feedbackDialog">
-  <form method="dialog" id="feedbackForm">
-    <h2>Feedback for "{{ icon_name }}"</h2>
-    <textarea id="feedbackReason" placeholder="Why does this icon need improvement?" rows="4" required></textarea>
+<dialog id="feedbackDialog-{{ icon.name }}">
+  <form method="dialog" id="feedbackForm-{{ icon.name }}">
+    <h2>Feedback for "{{ icon.name }}"</h2>
+
+    <div class="icon-container">
+      <!-- Icon Section -->
+      <div class="icon-box">
+        <figure id="figure-{{ icon.name }}-feedback">
+          {{ icon.svg|safe }}
+        </figure>
+      </div>
+
+      <!-- Properties Section -->
+      <div class="properties-box">
+        <h3>Property Mapping</h3>
+        <pre style="font-size: small; line-height: 1.2; padding: 25px;">{{ icon.properties|tojson(indent=2) }}</pre>
+      </div>
+    </div>
+
+    <textarea id="feedbackReason-{{ icon.name }}" placeholder="Why does this icon need improvement?" rows="4" required></textarea>
     <menu>
-      <button type="submit" onclick="sendFeedback('{{ icon_name }}')">Submit</button>
-      <button type="button" onclick="closeFeedbackDialog()">Cancel</button>
+      <button type="submit" onclick="sendFeedback('{{ icon.name }}', 'feedbackReason-{{ icon.name }}')">Submit</button>
+      <button type="button" onclick="closeFeedbackDialog('feedbackDialog-{{ icon.name }}')">Cancel</button>
     </menu>
   </form>
 </dialog>
 
-  <div class="icon-container">
-    <!-- Icon Section -->
-    <div class="icon-box">
-      <figure id="figure-{{ icon.name }}">
-        {{ icon.svg|safe }}
-      </figure>
-    </div>
-
-    <!-- Properties Section -->
-    <div class="properties-box">
-      <h3>Property Mapping</h3>
-      <pre style="font-size: small; line-height: 1.2; padding: 25px;">{{ icon.properties|tojson(indent=2) }}</pre>
-    </div>
+<div class="icon-container">
+  <!-- Icon Section -->
+  <div class="icon-box">
+    <figure id="figure-{{ icon.name }}">
+      {{ icon.svg|safe }}
+    </figure>
   </div>
-  <hr>
+
+  <!-- Properties Section -->
+  <div class="properties-box">
+    <h3>Property Mapping</h3>
+    <pre style="font-size: small; line-height: 1.2; padding: 25px;">{{ icon.properties|tojson(indent=2) }}</pre>
+  </div>
+</div>
+<hr>
 {% endfor %}
 
 <!-- JavaScript for Download Functionality -->
 <script>
-
-function downloadSvg(iconName, button) {
-  try {
-    const svgContainer = document.getElementById(`figure-${iconName}`);
-    if (!svgContainer) {
-      alert('SVG container not found!');
-      return;
-    }
-
-    const svgElement = svgContainer.querySelector('svg');
-    if (!svgElement) {
-      alert('SVG not found!');
-      return;
-    }
-
-    // Serialize the SVG
-    const serializer = new XMLSerializer();
-    const svgData = serializer.serializeToString(svgElement);
-    console.log('Serialized SVG:', svgData); // Debugging
-
-    const blob = new Blob([svgData], { type: 'image/svg+xml' });
-    const url = URL.createObjectURL(blob);
-
-    // Create a temporary download link
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${iconName}.svg`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    // Revoke the object URL
-    URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error('Error in downloadSvg function:', error);
-    alert('Failed to download SVG.');
-  }
+function openFeedbackDialog(dialogId) {
+  const feedbackDialog = document.getElementById(dialogId);
+  if (feedbackDialog) feedbackDialog.showModal();
 }
 
-function copySvgToClipboard(iconName) {
-  try {
-    // Find the <figure> by its unique ID
-    const svgContainer = document.getElementById(`figure-${iconName}`);
-    const svgElement = svgContainer?.querySelector('svg');
-
-    if (!svgElement) {
-      alert('SVG not found!');
-      return;
-    }
-
-    // Serialize the SVG into a string
-    const serializer = new XMLSerializer();
-    const svgData = serializer.serializeToString(svgElement);
-
-    // Attempt to copy the SVG string to the clipboard
-    navigator.clipboard.writeText(svgData)
-      .then(() => alert(`SVG "${iconName}" copied to clipboard!`))
-      .catch(err => {
-        console.error('Clipboard write failed:', err);
-        alert('Failed to copy SVG to clipboard.');
-      });
-  } catch (error) {
-    console.error('Unexpected error during copy operation:', error);
-    alert('An error occurred while copying SVG.');
-  }
+function closeFeedbackDialog(dialogId) {
+  const feedbackDialog = document.getElementById(dialogId);
+  if (feedbackDialog) feedbackDialog.close();
 }
 
-// Open the feedback dialog
-function openFeedbackDialog(iconName) {
-  const feedbackDialog = document.getElementById('feedbackDialog');
-  feedbackDialog.showModal();
-}
-
-// Close the feedback dialog
-function closeFeedbackDialog() {
-  const feedbackDialog = document.getElementById('feedbackDialog');
-  feedbackDialog.close();
-}
-
-// Send feedback
-async function sendFeedback(iconName) {
-  const feedbackReason = document.getElementById('feedbackReason').value;
+async function sendFeedback(iconName, reasonId) {
+  const feedbackReason = document.getElementById(reasonId).value;
   if (!feedbackReason.trim()) {
     alert('Please provide a reason for your feedback.');
     return;
   }
 
-  // Replace '<DISCORD_WEBHOOK_URL>' with your actual Discord webhook URL
   const webhookUrl = '<DISCORD_WEBHOOK_URL>';
-
   try {
     await fetch(webhookUrl, {
       method: 'POST',
@@ -200,7 +144,7 @@ async function sendFeedback(iconName) {
       })
     });
     alert('Feedback sent! Thank you.');
-    closeFeedbackDialog();
+    closeFeedbackDialog(`feedbackDialog-${iconName}`);
   } catch (error) {
     console.error('Error sending feedback:', error);
     alert('An error occurred while sending feedback. Please try again later.');
