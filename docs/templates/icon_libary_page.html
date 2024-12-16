@@ -49,8 +49,13 @@
 
 {% for icon in icons %}
   <div style="display: flex; align-items: center; justify-content: space-between;">
-    <h2 style="margin: 0;">{{ icon.name }}</h2>
+    <h2 style="margin: 0;"> {{ icon.name }} </h2>
     <div style="display: flex;">
+      <!-- Feedback Button -->
+      <button onclick="openFeedbackDialog('{{ icon_name }}')"
+        style="padding: 0.5rem; border: none; cursor: pointer; border-radius: 5px; display: flex; align-items: center; color:gray">
+        <i class="fas fa-comment"></i>
+      </button>
       <!-- Download Button -->
       <button
         onclick="downloadSvg('{{ icon.name }}', this)"
@@ -65,6 +70,17 @@
       </button>
     </div>
   </div>
+
+<dialog id="feedbackDialog">
+  <form method="dialog" id="feedbackForm">
+    <h2>Feedback for "{{ icon_name }}"</h2>
+    <textarea id="feedbackReason" placeholder="Why does this icon need improvement?" rows="4" required></textarea>
+    <menu>
+      <button type="submit" onclick="sendFeedback('{{ icon_name }}')">Submit</button>
+      <button type="button" onclick="closeFeedbackDialog()">Cancel</button>
+    </menu>
+  </form>
+</dialog>
 
   <div class="icon-container">
     <!-- Icon Section -->
@@ -152,4 +168,42 @@ function copySvgToClipboard(iconName) {
   }
 }
 
+// Open the feedback dialog
+function openFeedbackDialog(iconName) {
+  const feedbackDialog = document.getElementById('feedbackDialog');
+  feedbackDialog.showModal();
+}
+
+// Close the feedback dialog
+function closeFeedbackDialog() {
+  const feedbackDialog = document.getElementById('feedbackDialog');
+  feedbackDialog.close();
+}
+
+// Send feedback
+async function sendFeedback(iconName) {
+  const feedbackReason = document.getElementById('feedbackReason').value;
+  if (!feedbackReason.trim()) {
+    alert('Please provide a reason for your feedback.');
+    return;
+  }
+
+  // Replace '<DISCORD_WEBHOOK_URL>' with your actual Discord webhook URL
+  const webhookUrl = '<DISCORD_WEBHOOK_URL>';
+
+  try {
+    await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        content: `**Icon Name:** ${iconName}\n**Feedback:** ${feedbackReason}`
+      })
+    });
+    alert('Feedback sent! Thank you.');
+    closeFeedbackDialog();
+  } catch (error) {
+    console.error('Error sending feedback:', error);
+    alert('An error occurred while sending feedback. Please try again later.');
+  }
+}
 </script>
