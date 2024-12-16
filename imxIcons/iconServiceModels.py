@@ -8,12 +8,12 @@ class IconRequestModel(BaseModel):
     Attributes:
         imx_path: The file path to the IMX data for the icon.
         properties: A dictionary of required properties for the icon request.
-        optional_properties: A dictionary of optional properties for the icon request, if any.
+        additional_properties: A dictionary of optional properties for the icon request, if any.
     """
 
     imx_path: str
     properties: dict[str, str]
-    optional_properties: dict[str, str] | None = None
+    additional_properties: dict[str, str] | None = None
 
 
 class IconModel(BaseModel):
@@ -24,10 +24,10 @@ class IconModel(BaseModel):
         imx_path: The file path to the IMX data for the icon.
         icon_name: The name of the icon.
         properties: A dictionary of required properties for the icon.
-        optional_properties: A dictionary of optional properties for the icon, if any.
+        additional_properties: A dictionary of optional properties for the icon, if any.
     """
 
     imx_path: str
     icon_name: str
     properties: dict[str, str]
-    optional_properties: dict[str, str] | None = None
+    additional_properties: dict[str, str] | None = None

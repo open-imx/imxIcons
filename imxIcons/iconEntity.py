@@ -1,5 +1,5 @@
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 
@@ -36,12 +36,17 @@ class IconEntity:
     icon_name: str
     properties: dict[str, str]
     icon_groups: list[IconSvgGroup]
+    additional_properties: dict[str, str] = field(default_factory=dict)
 
     def __post_init__(self):
         self.icon_groups.append(IconSvgGroup("insertion-point"))
 
     def extend_icon(
-        self, name: str, extra_props: dict[str, str], extra_groups: list[IconSvgGroup]
+        self,
+        name: str,
+        extra_props: dict[str, str],
+        extra_groups: list[IconSvgGroup],
+        extra_additional_props: dict[str, str] | None = None,
     ):
         """
         Creates a new icon entity based on the current one with additional properties
@@ -49,8 +54,9 @@ class IconEntity:
 
         Args:
             name: The new name for the icon.
-            extra_props: Additional properties to be added to the icon.
-            extra_groups: Additional SVG groups to be added to the icon.
+            extra_props: Extra properties to be added to the icon.
+            extra_groups: Extra SVG groups to be added to the icon.
+            extra_additional_props: Extra additional properties to be added to the icon.
 
         Returns:
             A new `IconEntity` with updated properties and groups.
@@ -59,5 +65,6 @@ class IconEntity:
         _.icon_name = name
         _.properties = _.properties | extra_props
         _.icon_groups.extend(extra_groups)
+        if extra_additional_props:
+            _.additional_properties = _.additional_properties | extra_additional_props
         return _
-        pass
