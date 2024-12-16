@@ -183,11 +183,11 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
     </g>
     
     <g name="arrow-sign-double" {create_primary_icon_style(qgis_render)} >
-      <rect x="0" y="0" width="1.412" height="2.384" fill="{IconStyleEnum.gray}"/>
-      <line x1="0.757" y1="0.842" x2="1.235" y2="1.394" stroke-width="0.1" />
-      <path d="M 0.288 0.321 L 1.009 0.685 L 0.567 1.079 L 0.288 0.321 Z" fill="{IconStyleEnum.black}" stroke-width="0.1" />
-      <line x1="0.757" y1="1.592" x2="1.235" y2="1.04" stroke-width="0.1" />
-      <path d="M 0.288 2.113 L 1.009 1.749 L 0.567 1.355 L 0.288 2.113 Z" fill="{IconStyleEnum.black}" stroke-width="0.1" />
+      <rect x="0" y="0" width="1.412" height="2.384" fill="{IconStyleEnum.gray}" />
+      <line x1="0.706" y1="1.592" x2="0.228" y2="1.04" stroke-width="0.1" />
+      <path d="M 1.175 2.113 L 0.454 1.749 L 0.896 1.355 L 1.175 2.113 Z" fill="{IconStyleEnum.black}" stroke-width="0.1" />
+      <line x1="0.705" y1="0.842" x2="0.228" y2="1.394" stroke-width="0.1" />
+      <path d="M 1.175 0.321 L 0.454 0.685 L 0.896 1.079 L 1.175 0.321 Z" fill="{IconStyleEnum.black}" stroke-width="0.1" />
     </g>
 
     <g name="signal-direction-sign" {create_secondary_icon_style(qgis_render)} >
