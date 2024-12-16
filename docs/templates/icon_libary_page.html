@@ -73,7 +73,7 @@
 
 <dialog id="feedbackDialog-{{ icon.name }}">
   <form method="dialog" id="feedbackForm-{{ icon.name }}">
-    <h2>Feedback for "{{ icon.name }}"</h2>
+    <h2 class="p-0 m-0">Feedback for "{{ icon.name }}"</h2>
 
     <div class="icon-container">
       <!-- Icon Section -->
@@ -90,13 +90,21 @@
       </div>
     </div>
 
-    <textarea id="feedbackReason-{{ icon.name }}" placeholder="Why does this icon need improvement?" rows="4" required></textarea>
+    <textarea
+      id="feedbackReason-{{ icon.name }}"
+      placeholder="Why does this icon need improvement?"
+      rows="4"
+      required
+      style="width: 70vw; height: 40vh; resize: none;">
+    </textarea>
+
     <menu>
       <button type="submit" onclick="sendFeedback('{{ icon.name }}', 'feedbackReason-{{ icon.name }}')">Submit</button>
       <button type="button" onclick="closeFeedbackDialog('feedbackDialog-{{ icon.name }}')">Cancel</button>
     </menu>
   </form>
 </dialog>
+
 
 <div class="icon-container">
   <!-- Icon Section -->
