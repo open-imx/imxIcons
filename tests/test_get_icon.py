@@ -77,6 +77,21 @@ def test_get_icon_name_v500():
     assert name == 'AutomaticPermissiveGantryArrow'
 
 
+def test_get_icon_additional_properties():
+    name = IconService.get_icon_name(
+        IconRequestModel(
+            imx_path="Sign",
+            properties={
+                "signType": "LevelCrossingAnnouncement",
+                "hasArrowMarker": "True"
+            },
+            additional_properties={"ArrowType": "Double"}
+        ),
+        ImxVersionEnum.v124
+    )
+    assert name == 'RS318aArrowDouble'
+
+
 def test_get_all_icons_v124():
     icon_dict = IconService.get_all_icons(ImxVersionEnum.v124)
     assert len(icon_dict.keys()) == 476
