@@ -79,7 +79,7 @@ def test_get_icon_name_v500():
 
 def test_get_all_icons_v124():
     icon_dict = IconService.get_all_icons(ImxVersionEnum.v124)
-    assert len(icon_dict.keys()) == 449
+    assert len(icon_dict.keys()) == 476
     signal_high = icon_dict.get('SignalHigh')
     assert '"param(' not in signal_high['icon'], 'Should not have "param(" in icon string'
     assert all(key in signal_high for key in [
@@ -89,7 +89,7 @@ def test_get_all_icons_v124():
 
 def test_get_all_icons_v124_qgis():
     icon_dict = IconService.get_all_icons(ImxVersionEnum.v124, icon_type="qgis")
-    assert len(icon_dict.keys()) == 449
+    assert len(icon_dict.keys()) == 476
     signal_high = icon_dict.get('SignalHigh')
     assert '"param(' in signal_high['icon'], 'Should have "param(" in icon string'
     assert all(key in signal_high for key in [
