@@ -30,8 +30,10 @@ def add_arrow_marker(sign):
             item.extend_icon(
                 name=item.icon_name + "ArrowDouble",
                 extra_props={"hasArrowMarker": "True"},
-                extra_groups=[IconSvgGroup("arrow-sign-double", f"rotate(180), {translate}")],
-                extra_additional_props={"ArrowType": "Double"}
+                extra_groups=[
+                    IconSvgGroup("arrow-sign-double", f"rotate(180), {translate}")
+                ],
+                extra_additional_props={"ArrowType": "Double"},
             )
         )
 

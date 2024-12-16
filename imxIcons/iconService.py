@@ -112,8 +112,10 @@ class IconService:
             NotImplementedError: If no matching subtypes are found.
         """
         matching_subtypes: list[tuple[int, str, IconEntity]] = []
-        if entry.get('additional_properties', {}):
-            entry_properties = entry.get("properties", {}) | entry.get('additional_properties', {})
+        if entry.get("additional_properties", {}):
+            entry_properties = entry.get("properties", {}) | entry.get(
+                "additional_properties", {}
+            )
         else:
             entry_properties = entry.get("properties", {})
 
