@@ -267,6 +267,7 @@ class IconService:
                     "imx_version": icon_entity.imx_version.name,
                     "imx_path": icon_entity.imx_path,
                     "imx_properties": icon_entity.properties,
+                    "imx_additional_properties": icon_entity.additional_properties,
                     "icon": svg_content.strip(),
                 }
         return out
