@@ -112,7 +112,12 @@ class IconService:
             NotImplementedError: If no matching subtypes are found.
         """
         matching_subtypes: list[tuple[int, str, IconEntity]] = []
-        entry_properties = entry.get("properties", {})
+        if entry.get("additional_properties", {}):
+            entry_properties = entry.get("properties", {}) | entry.get(
+                "additional_properties", {}
+            )
+        else:
+            entry_properties = entry.get("properties", {})
 
         entry_properties = {
             cls._clean_key(key): value for key, value in entry_properties.items()
@@ -121,7 +126,7 @@ class IconService:
         entry_keys = set(entry_properties)
 
         for details in subtypes:
-            subtype_properties = details.properties
+            subtype_properties = details.properties | details.additional_properties
             subtype_keys = set(subtype_properties)
 
             if not subtype_keys.issubset(entry_keys):
@@ -267,6 +272,7 @@ class IconService:
                     "imx_version": icon_entity.imx_version.name,
                     "imx_path": icon_entity.imx_path,
                     "imx_properties": icon_entity.properties,
+                    "imx_additional_properties": icon_entity.additional_properties,
                     "icon": svg_content.strip(),
                 }
         return out

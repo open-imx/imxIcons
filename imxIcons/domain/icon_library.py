@@ -52,7 +52,7 @@ def validate_icon_set(icons: list[IconEntity]) -> list[IconEntity]:
     Validates a list of IconEntity objects for duplicates and consistency.
 
     Checks for:
-    - Duplicate properties among the icons.
+    - Duplicate properties (and additional properties) among the icons.
     - Duplicate icon names.
     - Consistent `imx_path` across all icons.
 
@@ -77,7 +77,11 @@ def validate_icon_set(icons: list[IconEntity]) -> list[IconEntity]:
                 f"Inconsistent imx_path found: {icon.icon_name} has path {icon.imx_path}, expected {imx_path}"
             )
 
-        property_tuple = tuple(sorted(icon.properties.items()))
+        combined_properties = list(icon.properties.items())
+        if icon.additional_properties:
+            combined_properties.extend(list(icon.additional_properties.items()))
+        property_tuple = tuple(sorted(combined_properties))
+
         if property_tuple in property_map:
             raise ValueError(  # noqa: TRY003
                 f"Duplicate properties found for icon: {icon.icon_name} and {property_map[property_tuple].icon_name}"

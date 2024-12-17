@@ -27,12 +27,15 @@ def generate_icon_list(icons, version: str) -> list:
     icon_list = []
     for icon in icons:
         svg_content = IconService.get_svg(
-            IconRequestModel(imx_path=icon.imx_path, properties=icon.properties),
+            IconRequestModel(imx_path=icon.imx_path, properties=icon.properties, additional_properties=icon.additional_properties),
             ImxVersionEnum[version],
         )
         scaled_svg = add_transformations(svg_content, scale=2.75, translate_x=-90)
+        if icon.additional_properties:
+            properties = {'imx_path': icon.imx_path} | {'properties': icon.properties} | {'additional_properties': icon.additional_properties}
+        else:
+            properties = {'imx_path': icon.imx_path} | {'properties': icon.properties}
 
-        properties = {'imx_path': icon.imx_path} | {'properties': icon.properties}
         icon_list.append({
             "name": icon.icon_name,
             "svg": scaled_svg,

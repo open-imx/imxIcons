@@ -29,7 +29,7 @@ async def create_asset_folder(base_dir: Path = Path(__file__).parent):
             for icon in icons:
                 svg_content = IconService.get_svg(
                     IconRequestModel(
-                        imx_path=icon.imx_path, properties=icon.properties
+                        imx_path=icon.imx_path, properties=icon.properties, additional_properties=icon.additional_properties
                     ),
                     ImxVersionEnum[version],
                 )
