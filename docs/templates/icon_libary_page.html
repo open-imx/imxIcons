@@ -45,11 +45,114 @@
       text-align: left;
     }
   }
+
+  .glass-hero {
+    /* Frosted Glass Effect */
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(15px); /* Applies blur */
+    -webkit-backdrop-filter: blur(15px); /* Safari Support */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    max-width: 1300px;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  dialog::backdrop {
+    /* Darkened Background */
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Glass Effect for Textarea */
+  .glass-textarea {
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass blur */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    color: #fff; /* White text for contrast */
+    outline: none; /* Removes default focus outline */
+  }
+
+  .glass-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+  }
+
+  /* Glass Effect for Buttons */
+  .glass-button {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #fff; /* White text */
+    cursor: pointer;
+    backdrop-filter: blur(10px); /* Frosted glass blur */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.3); /* Slightly brighter on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+  }
+
+  .glass-button:active {
+    transform: scale(0.95); /* Pressed button effect */
+  }
+
+  /* Light theme styles */
+  .light-theme {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+  }
+
+  /* Dark theme styles */
+  .dark-theme {
+    background-color: #2d3748;
+    color: #fff;
+    border: 1px solid #4a5568;
+  }
+
+  /* Button theme overrides */
+  .glass-button.light-theme {
+    background-color: #f0f0f0;
+    color: #000;
+  }
+
+  .glass-button.dark-theme {
+    background-color: #4a5568;
+    color: #fff;
+  }
+
+  /* Green submit button */
+  .green-submit {
+    background-color: #4caf50; /* Green */
+    color: white;
+    border: none;
+  }
+
+  .green-submit:hover {
+    background-color: #45a049; /* Darker green */
+  }
+
+
 </style>
+
 
 {% for icon in icons %}
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <h2 style="margin: 0;"> {{ icon.name }} </h2>
+  <h2 style="margin: 0; font-size: 1.2rem; font-weight: 700;">{{ icon.name }}</h2>
   <div style="display: flex;">
     <!-- Feedback Button -->
     <button onclick="openFeedbackDialog('feedbackDialog-{{ icon.name }}')"
@@ -70,42 +173,6 @@
     </button>
   </div>
 </div>
-
-<dialog id="feedbackDialog-{{ icon.name }}">
-  <form method="dialog" id="feedbackForm-{{ icon.name }}">
-    <h2 class="p-0 m-0">Feedback for "{{ icon.name }}"</h2>
-
-    <div class="icon-container">
-      <!-- Icon Section -->
-      <div class="icon-box">
-        <figure id="figure-{{ icon.name }}-feedback">
-          {{ icon.svg|safe }}
-        </figure>
-      </div>
-
-      <!-- Properties Section -->
-      <div class="properties-box">
-        <h3>Property Mapping</h3>
-        <pre style="font-size: small; line-height: 1.2; padding: 25px;">{{ icon.properties|tojson(indent=2) }}</pre>
-      </div>
-    </div>
-
-    <textarea
-      id="feedbackReason-{{ icon.name }}"
-      placeholder="Why does this icon need improvement?"
-      rows="4"
-      required
-      style="width: 70vw; height: 40vh; resize: none;">
-    </textarea>
-
-    <menu>
-      <button type="submit" onclick="sendFeedback('{{ icon.name }}', 'feedbackReason-{{ icon.name }}')">Submit</button>
-      <button type="button" onclick="closeFeedbackDialog('feedbackDialog-{{ icon.name }}')">Cancel</button>
-    </menu>
-  </form>
-</dialog>
-
-
 <div class="icon-container">
   <!-- Icon Section -->
   <div class="icon-box">
@@ -113,13 +180,55 @@
       {{ icon.svg|safe }}
     </figure>
   </div>
-
   <!-- Properties Section -->
   <div class="properties-box">
     <h3>Property Mapping</h3>
     <pre style="font-size: small; line-height: 1.2; padding: 25px;">{{ icon.properties|tojson(indent=2) }}</pre>
   </div>
 </div>
+<dialog id="feedbackDialog-{{ icon.name }}" class="glass-hero">
+
+  <form method="dialog" id="feedbackForm-{{ icon.name }}">
+    <h1 style="margin:0px;padding:0px;font-size: 1.2rem; font-weight: 700;">Feedback for Icon: "{{ icon.name | default('') }}"</h1>
+    <div class="icon-container" style="display: flex; gap: 20px; margin-bottom: 15px;">
+      <!-- Icon Section -->
+      <div class="icon-box">
+        <figure id="figure-{{ icon.name }}-feedback" style="text-align: center;">
+          {{ icon.svg|safe }}
+        </figure>
+      </div>
+      <!-- Properties Section -->
+      <div class="properties-box" style="flex: 1;">
+        <h4 style="margin-bottom: 5px;">Property Mapping</h4>
+        <pre id="properties-box-{{ icon.name }}" class="properties-box-content">{{ icon.properties|tojson(indent=2) }}</pre>
+      </div>
+    </div>
+    <textarea
+      id="feedbackReason-{{ icon.name }}"
+      class="glass-textarea"
+      placeholder="Why does this icon need improvement?"
+      rows="4"
+      required
+    ></textarea>
+    <!-- Button Section -->
+    <p>Your feedback will be sent to our Discord channel for review. If action is needed, we'll create a GitHub issue to track it. Thank you for helping us improve!</p>
+    <menu style="display: flex; justify-content: flex-end; gap: 10px; margin: 0; padding: 0;">
+      <button
+        type="submit"
+        class="glass-button green-submit"
+        onclick="sendFeedback('{{ icon.name }}', 'feedbackReason-{{ icon.name }}')">
+        Submit
+      </button>
+      <button
+        type="button"
+        class="glass-button"
+        onclick="closeFeedbackDialog('feedbackDialog-{{ icon.name }}')">
+        Cancel
+      </button>
+    </menu>
+  </form>
+</dialog>
+
 <hr>
 {% endfor %}
 
@@ -142,7 +251,7 @@ async function sendFeedback(iconName, reasonId) {
     return;
   }
 
-  const webhookUrl = '<DISCORD_WEBHOOK_URL>';
+  const webhookUrl = 'https://discord.com/api/webhooks/1318602335374807173/AWc1n2SPrymDCMy0VFhxbGuYrNLyHUsbJH5eTanWXrNsVABZUAlJTtVOHibSRyBkwKBK';
   try {
     await fetch(webhookUrl, {
       method: 'POST',
@@ -158,4 +267,96 @@ async function sendFeedback(iconName, reasonId) {
     alert('An error occurred while sending feedback. Please try again later.');
   }
 }
+
+function downloadSvg(iconName, button) {
+  try {
+    const svgContainer = document.getElementById(`figure-${iconName}`);
+    if (!svgContainer) {
+      alert('SVG container not found!');
+      return;
+    }
+
+    const svgElement = svgContainer.querySelector('svg');
+    if (!svgElement) {
+      alert('SVG not found!');
+      return;
+    }
+
+    // Serialize the SVG
+    const serializer = new XMLSerializer();
+    const svgData = serializer.serializeToString(svgElement);
+    console.log('Serialized SVG:', svgData); // Debugging
+
+    const blob = new Blob([svgData], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a temporary download link
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${iconName}.svg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Revoke the object URL
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error in downloadSvg function:', error);
+    alert('Failed to download SVG.');
+  }
+}
+
+function copySvgToClipboard(iconName) {
+  try {
+    // Find the <figure> by its unique ID
+    const svgContainer = document.getElementById(`figure-${iconName}`);
+    const svgElement = svgContainer?.querySelector('svg');
+
+    if (!svgElement) {
+      alert('SVG not found!');
+      return;
+    }
+
+    // Serialize the SVG into a string
+    const serializer = new XMLSerializer();
+    const svgData = serializer.serializeToString(svgElement);
+
+    // Attempt to copy the SVG string to the clipboard
+    navigator.clipboard.writeText(svgData)
+      .then(() => alert(`SVG "${iconName}" copied to clipboard!`))
+      .catch(err => {
+        console.error('Clipboard write failed:', err);
+        alert('Failed to copy SVG to clipboard.');
+      });
+  } catch (error) {
+    console.error('Unexpected error during copy operation:', error);
+    alert('An error occurred while copying SVG.');
+  }
+}
+
+   // Function to update the dialog theme
+  function updateDialogTheme() {
+    const theme = document.body.getAttribute('data-md-color-scheme'); // Get current theme
+    const dialogElements = document.querySelectorAll('.glass-hero, .glass-textarea, .glass-button');
+
+    dialogElements.forEach(element => {
+      if (theme === 'default') {
+        // Light theme styles
+        element.classList.remove('dark-theme');
+        element.classList.add('light-theme');
+      } else if (theme === 'slate') {
+        // Dark theme styles
+        element.classList.remove('light-theme');
+        element.classList.add('dark-theme');
+      }
+    });
+  }
+
+  // Observe changes to the theme
+  const observer = new MutationObserver(updateDialogTheme);
+  observer.observe(document.body, { attributes: true, attributeFilter: ['data-md-color-scheme'] });
+
+  // Apply theme on page load
+  document.addEventListener('DOMContentLoaded', updateDialogTheme);
+
 </script>
