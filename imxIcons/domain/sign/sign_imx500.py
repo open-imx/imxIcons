@@ -33,7 +33,7 @@ def add_arrow_marker(sign):
                 extra_groups=[
                     IconSvgGroup("arrow-sign-double", f"rotate(180), {translate}")
                 ],
-                extra_additional_props={"ArrowType": "Double"},
+                extra_additional_props={"ArrowMarkerDouble": "True"},
             )
         )
 
