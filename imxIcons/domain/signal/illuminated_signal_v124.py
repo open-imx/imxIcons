@@ -1,3 +1,4 @@
+from imxIcons.domain.helpers import copy_add_new_imx_path
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity, IconSvgGroup
 
@@ -5,7 +6,7 @@ entities_path = "Signal.IlluminatedSign"
 imx_version = ImxVersionEnum.v124
 
 
-illuminated_signs = [
+illuminated_sign_icon_entities_v124 = [
     IconEntity(
         imx_version=imx_version,
         imx_path=entities_path,
@@ -26,5 +27,6 @@ illuminated_signs = [
     ),
 ]
 
-
-illuminated_sign_icon_entities_v124 = illuminated_signs
+illuminated_sign_icon_entities_v124_no_path = copy_add_new_imx_path(
+    "IlluminatedSign", illuminated_sign_icon_entities_v124
+)

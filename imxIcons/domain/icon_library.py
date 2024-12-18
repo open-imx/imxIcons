@@ -1,8 +1,10 @@
 from imxIcons.domain.atbvvInstallation.atbvvBeacon_v124 import (
-    atbvv_beacon_entities_v124,
+    atb_vv_beacon_entities_v124,
+    atb_vv_beacon_entities_v124_no_path,
 )
 from imxIcons.domain.atbvvInstallation.atbvvBeacon_v500 import (
-    atbvv_beacon_entities_v500,
+    atb_vv_beacon_entities_v500,
+    atb_vv_beacon_entities_v500_no_path,
 )
 from imxIcons.domain.axleCounterDetection.axleCounterDetectionPoint_v124 import (
     axle_counter_points_icon_entities_v124,
@@ -25,24 +27,28 @@ from imxIcons.domain.levelCrossing.levelCrossing_v124 import (
 from imxIcons.domain.levelCrossing.levelCrossing_v500 import (
     level_crossing_entities_v500,
 )
+from imxIcons.domain.reflectorPost.reflector_post_v124 import (
+    reflector_post_icon_entities_v124,
+    reflector_post_icon_entities_v124_no_path,
+)
+from imxIcons.domain.reflectorPost.reflector_post_v500 import (
+    reflector_post_icon_entities_v500,
+    reflector_post_icon_entities_v500_no_path,
+)
 from imxIcons.domain.sign.sign_imx124 import sign_icon_entities_v124
 from imxIcons.domain.sign.sign_imx500 import sign_icon_entities_v500
+from imxIcons.domain.sign.speedsign_imx124 import speed_sign_icon_entities_v124
+from imxIcons.domain.sign.speedsign_imx500 import speed_sign_icon_entities_v500
 from imxIcons.domain.signal.illuminated_signal_v124 import (
     illuminated_sign_icon_entities_v124,
+    illuminated_sign_icon_entities_v124_no_path,
 )
 from imxIcons.domain.signal.illuminated_signal_v500 import (
     illuminated_sign_icon_entities_v500,
-)
-from imxIcons.domain.signal.reflector_signal_v124 import (
-    reflector_post_icon_entities_v124,
-)
-from imxIcons.domain.signal.reflector_signal_v500 import (
-    reflector_post_icon_entities_v500,
+    illuminated_sign_icon_entities_v500_no_path,
 )
 from imxIcons.domain.signal.signal_imx124 import signals_icon_entities_v124
 from imxIcons.domain.signal.signal_imx500 import signals_icon_entities_v500
-from imxIcons.domain.speedsign.speedsign_imx124 import speed_sign_icon_entities_v124
-from imxIcons.domain.speedsign.speedsign_imx500 import speed_sign_icon_entities_v500
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
 from imxIcons.iconEntity import IconEntity
 
@@ -114,9 +120,25 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
             illuminated_sign_icon_entities_v500
         ),
     },
+    "IlluminatedSign": {
+        ImxVersionEnum.v124.name: validate_icon_set(
+            illuminated_sign_icon_entities_v124_no_path
+        ),
+        ImxVersionEnum.v500.name: validate_icon_set(
+            illuminated_sign_icon_entities_v500_no_path
+        ),
+    },
     "Signal.ReflectorPost": {
         ImxVersionEnum.v124.name: validate_icon_set(reflector_post_icon_entities_v124),
         ImxVersionEnum.v500.name: validate_icon_set(reflector_post_icon_entities_v500),
+    },
+    "ReflectorPost": {
+        ImxVersionEnum.v124.name: validate_icon_set(
+            reflector_post_icon_entities_v124_no_path
+        ),
+        ImxVersionEnum.v500.name: validate_icon_set(
+            reflector_post_icon_entities_v500_no_path
+        ),
     },
     "SpeedSign": {
         ImxVersionEnum.v124.name: validate_icon_set(speed_sign_icon_entities_v124),
@@ -139,12 +161,24 @@ ICON_DICT: dict[str, dict[str, list[IconEntity]]] = {
         ImxVersionEnum.v500.name: validate_icon_set(level_crossing_entities_v500),
     },
     "ATBVVInstallation.ATBVVBeacon": {
-        ImxVersionEnum.v124.name: validate_icon_set(atbvv_beacon_entities_v124),
-        ImxVersionEnum.v500.name: [],
+        ImxVersionEnum.v124.name: validate_icon_set(atb_vv_beacon_entities_v124),
+        ImxVersionEnum.v500.name: [],  # renamed xml tag see below
+    },
+    "ATBVVBeacon": {
+        ImxVersionEnum.v124.name: validate_icon_set(
+            atb_vv_beacon_entities_v124_no_path
+        ),
+        ImxVersionEnum.v500.name: [],  # renamed xml tag see below
     },
     "AtbVvInstallation.AtbVvBeacon": {
-        ImxVersionEnum.v124.name: [],
-        ImxVersionEnum.v500.name: validate_icon_set(atbvv_beacon_entities_v500),
+        ImxVersionEnum.v124.name: [],  # renamed xml tag see above
+        ImxVersionEnum.v500.name: validate_icon_set(atb_vv_beacon_entities_v500),
+    },
+    "AtbVvBeacon": {
+        ImxVersionEnum.v124.name: [],  # renamed xml tag see above
+        ImxVersionEnum.v500.name: validate_icon_set(
+            atb_vv_beacon_entities_v500_no_path
+        ),
     },
     "InsulatedJoint": {
         ImxVersionEnum.v124.name: validate_icon_set(insulated_joint_entities_v124),
