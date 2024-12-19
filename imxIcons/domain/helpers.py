@@ -1,7 +1,7 @@
 from imxIcons.iconEntity import IconEntity
 
 
-def copy_add_new_imx_path(
+def copy_icon_and_assign_imx_path(
     imx_path: str, icon_entities: list[IconEntity]
 ) -> list[IconEntity]:
     new_icon_entities = []
