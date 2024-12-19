@@ -282,7 +282,7 @@ class IconService:
         cls,
         request_model: IconRequestModel,
         imx_version: ImxVersionEnum,
-        pretty_svg=True,
+        pretty_svg: bool = True,
         icon_type: IconTypesEnum | icon_types_literal = IconTypesEnum.svg,
     ) -> Any:
         """

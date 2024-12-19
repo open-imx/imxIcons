@@ -47,7 +47,7 @@ class IconEntity:
         extra_props: dict[str, str],
         extra_groups: list[IconSvgGroup],
         extra_additional_props: dict[str, str] | None = None,
-    ):
+    ) -> "IconEntity":
         """
         Creates a new icon entity based on the current one with additional properties
         and groups, and a different icon name.

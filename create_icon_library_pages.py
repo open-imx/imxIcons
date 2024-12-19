@@ -51,7 +51,7 @@ def generate_markdowns(docs_generated_dir: str):
     """
     ET.register_namespace('', "http://www.w3.org/2000/svg")
     env = Environment(loader=FileSystemLoader('docs/templates'))
-    template = env.get_template('icon_libary_page.html')
+    template = env.get_template('icon_library_page.html')
 
     for imx_path, versions in ICON_DICT.items():
         for version, icons in versions.items():
@@ -90,21 +90,58 @@ def remove_existing_icon_library_section(lines, icon_library_index):
         del lines[icon_library_index:end_index]
         print("Removed existing 'Icon Library' section.")
 
+def get_files_by_type(files):
+    """Categorize files into path files and tag files."""
+    path_files = []
+    tag_files = []
+    for file in files:
+        file_stem = file.stem
+        is_tag = any(
+            other_file.stem.endswith(f".{file_stem}")
+            for other_file in files if other_file != file
+        )
+        if is_tag:
+            tag_files.append(file)
+        else:
+            path_files.append(file)
+    return path_files, tag_files
+
+def format_entries(files, version_name, indent_level):
+    """Generate formatted entries for files."""
+    indent = "  " * indent_level
+    return [
+        f"{indent}- {file.stem}: generated/{version_name}/{file.name}\n"
+        for file in files
+    ]
+
+def create_version_entry(version_dir):
+    """Create an entry for a specific version directory."""
+    version_name = version_dir.name
+    version_entry = f"    - {version_name}:\n"
+
+    files = sorted(version_dir.glob("*.md"))
+    path_files, tag_files = get_files_by_type(files)
+
+    path_entries = format_entries(path_files, version_name, indent_level=3)
+    if path_entries:
+        version_entry += ''.join(path_entries)
+
+    tag_entries = format_entries(tag_files, version_name, indent_level=4)
+    if tag_entries:
+        version_entry += "      - Child objects by tag:\n" + ''.join(tag_entries)
+
+    return version_entry
 
 def create_new_icon_library_section():
     """Creates a new 'Icon Library' section based on the files in 'docs/generated'."""
     icon_library_section = ["  - Icon Library:\n"]
+
     for version_dir in sorted(Path("docs/generated").iterdir()):
         if version_dir.is_dir():
-            version_name = version_dir.name
-            version_entry = f"    - {version_name}:\n"
-            files = sorted(version_dir.glob("*.md"))
-            file_entries = [
-                f"      - {file.stem}: generated/{version_name}/{file.name}\n" for file in files
-            ]
-            icon_library_section.append(version_entry + ''.join(file_entries))
-    return icon_library_section
+            version_entry = create_version_entry(version_dir)
+            icon_library_section.append(version_entry)
 
+    return icon_library_section
 
 def get_reference_index(lines):
     """Finds the index of the '- Reference:' section."""

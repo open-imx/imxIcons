@@ -103,6 +103,10 @@ nav:
       - Signal: generated/IMX v124/Signal.md
       - Signal.ReflectorPost: generated/IMX v124/Signal.ReflectorPost.md
       - SpeedSign: generated/IMX v124/SpeedSign.md
+      - Child objects by tag:
+        - ATBVVBeacon: generated/IMX v124/ATBVVBeacon.md
+        - IlluminatedSign: generated/IMX v124/IlluminatedSign.md
+        - ReflectorPost: generated/IMX v124/ReflectorPost.md
     - IMX v500:
       - AtbVvInstallation.AtbVvBeacon: generated/IMX v500/AtbVvInstallation.AtbVvBeacon.md
       - AxleCounterDetectionPoint: generated/IMX v500/AxleCounterDetectionPoint.md
@@ -114,6 +118,10 @@ nav:
       - Signal: generated/IMX v500/Signal.md
       - Signal.ReflectorPost: generated/IMX v500/Signal.ReflectorPost.md
       - SpeedSign: generated/IMX v500/SpeedSign.md
+      - Child objects by tag:
+        - AtbVvBeacon: generated/IMX v500/AtbVvBeacon.md
+        - IlluminatedSign: generated/IMX v500/IlluminatedSign.md
+        - ReflectorPost: generated/IMX v500/ReflectorPost.md
   - Contributing:
       - Contributing:  contribution.md
       - Icon Design: design_icon.md
