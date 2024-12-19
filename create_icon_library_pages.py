@@ -51,7 +51,7 @@ def generate_markdowns(docs_generated_dir: str):
     """
     ET.register_namespace('', "http://www.w3.org/2000/svg")
     env = Environment(loader=FileSystemLoader('docs/templates'))
-    template = env.get_template('icon_libary_page.html')
+    template = env.get_template('icon_library_page.html')
 
     for imx_path, versions in ICON_DICT.items():
         for version, icons in versions.items():
