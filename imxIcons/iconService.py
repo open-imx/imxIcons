@@ -123,7 +123,7 @@ class IconService:
             cls._clean_key(key): value for key, value in entry_properties.items()
         }
 
-        entry_keys = set(entry_properties)
+        entry_keys = {key for key, value in entry_properties.items() if value != ""}
 
         for details in subtypes:
             subtype_properties = details.properties | details.additional_properties
