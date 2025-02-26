@@ -5,8 +5,13 @@ icon_types_literal = Literal["svg", "qgis"]
 
 
 class IconTypesEnum(Enum):
+    """Enum representing different types of icons."""
+
     svg = "svg"
+    """Represents Scalable Vector Graphics."""
+
     qgis = "qgis"
+    """Represents Scalable Vector Graphics whit QGIS parameters."""
 
     @classmethod
     def from_string(cls, value: str):
