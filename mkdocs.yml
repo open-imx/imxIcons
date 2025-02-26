@@ -91,7 +91,7 @@ nav:
 #      - Basic use: examples/basic_use.md
 
   - Reference:
-    - ImxIconsApi: reference/imx_icons_api.md
+    - IconService: reference/icons_service.md
   - Icon Library:
     - IMX v124:
       - ATBVVInstallation.ATBVVBeacon: generated/IMX v124/ATBVVInstallation.ATBVVBeacon.md

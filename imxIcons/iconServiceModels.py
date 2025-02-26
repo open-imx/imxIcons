@@ -12,7 +12,7 @@ class IconRequestModel(BaseModel):
     """
 
     imx_path: str
-    properties: dict[str, str]
+    properties: dict[str, str | None]  # None is a valid imx value :L/
     additional_properties: dict[str, str] | None = None
 
 
