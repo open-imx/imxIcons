@@ -15,6 +15,7 @@ class IconRequestModel(BaseModel):
     properties: dict[str, str | None]  # None is a valid imx value :L/
     additional_properties: dict[str, str] | None = None
 
+
 class IconModel(BaseModel):
     """
     Model representing an icon with its metadata and optional properties.
