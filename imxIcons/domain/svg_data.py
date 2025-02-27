@@ -210,11 +210,11 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
       <line x1="4" x2="0" y1="0" y2="0" />
     </g>
 
-    <g name="sign-rectangle" {create_primary_icon_style(qgis_render)} >
+    <g name="sign-rectangle" >
         <rect x="0" y="-2" width="4" height="4" fill="{IconStyleEnum.white}"/>
     </g>
 
-    <g name="sign-rectangle-no-fill" {create_primary_icon_style(qgis_render)} >
+    <g name="sign-rectangle-no-fill" >
         <rect x="0" y="-2" width="4" height="4" fill="None" />
     </g>
 
@@ -291,7 +291,7 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
     </g>
 
 
-    <g name="RS-243" {create_primary_icon_style(qgis_render)} >
+    <g name="RS-243" >
         <rect x="1.25" y="-1.8" width="1.5" height="3.8" fill="{IconStyleEnum.red}" />
     </g>
 
