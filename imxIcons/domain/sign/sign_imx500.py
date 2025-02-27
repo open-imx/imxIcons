@@ -491,6 +491,7 @@ signs = [
         icon_groups=[
             IconSvgGroup("sign-normal-base"),
             IconSvgGroup("RS-328b", "translate(8.05, 0.05), rotate(90)"),
+            IconSvgGroup("sign-rectangle-45-degrees-no-fill", "translate(8, 0)"),
         ],
     ),
     IconEntity(
@@ -503,6 +504,7 @@ signs = [
         icon_groups=[
             IconSvgGroup("sign-normal-base"),
             IconSvgGroup("RS-328", "translate(8.05, 0.05), rotate(90)"),
+            IconSvgGroup("sign-rectangle-45-degrees-no-fill", "translate(8, 0)"),
         ],
     ),
     IconEntity(
@@ -515,6 +517,7 @@ signs = [
         icon_groups=[
             IconSvgGroup("sign-normal-base"),
             IconSvgGroup("RS-329", "translate(8.05, 0.05), rotate(90)"),
+            IconSvgGroup("sign-rectangle-45-degrees-no-fill", "translate(8, 0)"),
         ],
     ),
 ]
