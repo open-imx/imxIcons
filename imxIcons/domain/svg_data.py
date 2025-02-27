@@ -214,7 +214,7 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
 
     <!-- Sign base -->
     <g name="sign-normal-base" {create_primary_icon_style(qgis_render)} >
-        <line x1="0" x2="0" y1="-1" y2="1" />
+        <line x1="0" x2="0" y1="-1.45" y2="1.45" />
         <line x1="10" x2="0" y1="0" y2="0" />
     </g>
 
@@ -227,7 +227,7 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
         <rect x="0" y="-2" width="4" height="4" fill="{IconStyleEnum.white}"/>
     </g>
 
-    <g name="sign-rectangle-no-fill" >
+    <g name="sign-rectangle-no-fill" {create_primary_icon_style(qgis_render)} >
         <rect x="0" y="-2" width="4" height="4" fill="none" />
     </g>
 
@@ -297,16 +297,20 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
         <rect x="0" y="-2" width="2" height="4" fill="none" />
     </g>
 
+
+<!-- this is example -->
     <g name="RS-513" {create_primary_icon_style(qgis_render)} >
         <rect y="-2" width="2" height="4" fill="{IconStyleEnum.white}" />
         <path d="M 0.75 -2 L 1.25 -2 L 1.25 2 L 0.75 2 L 0.75 -2" fill="{IconStyleEnum.red}" stroke-width="0.1" />
         <rect y="-2" width="2" height="4" fill="none" />
     </g>
-
-
+    
     <g name="RS-243" >
-        <rect x="1.25" y="-1.8" width="1.5" height="3.8" fill="{IconStyleEnum.red}" />
+        <rect y="-2" width="4" height="4" fill="{IconStyleEnum.white}"/>
+        <path d="M 1.791 -2 L 2.581 -2 L 2.581 2 L 1.311 2 L 1.311 -2" stroke-width="0.1" fill="{IconStyleEnum.red}" style=""/>
+        <rect y="-2" width="2" height="4" fill="none"/>
     </g>
+
 
     <g name="RS-244a" {create_primary_icon_style(qgis_render)} >
         <rect x="0" y="-2" width="5" height="4" fill="{IconStyleEnum.black}" />
