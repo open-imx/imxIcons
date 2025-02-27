@@ -228,7 +228,7 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
     </g>
 
     <g name="sign-rectangle-no-fill" >
-        <rect x="0" y="-2" width="4" height="4" fill="None" />
+        <rect x="0" y="-2" width="4" height="4" fill="none" />
     </g>
 
     <g name="sign-rectangle-45-degrees" {create_primary_icon_style(qgis_render)} >
@@ -236,7 +236,7 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
     </g>
 
     <g name="sign-rectangle-45-degrees-no-fill" {create_primary_icon_style(qgis_render)} >
-        <polygon points="0 -2.827 2.826 0 0 2.829 -2.83 0" fill="None" />
+        <polygon points="0 -2.827 2.826 0 0 2.829 -2.83 0" fill="none" />
     </g>
 
     <!-- SpeedSigns -->
