@@ -78,6 +78,7 @@ def add_white_bar(signals):
             "Distance" in item.icon_name
             or "AutomaticPermissive" in item.icon_name
             or "Low" in item.icon_name
+            or "Automatic" in item.icon_name
         ):
             continue
         if any(
@@ -112,6 +113,7 @@ def add_arrow_marker(signals):
                 "signal-distant-cargo",
                 "signal-aspect",
                 "signal-distance",
+                "signal-level-crossing",
             ]
             for group in item.icon_groups
         ):
@@ -270,6 +272,29 @@ signals.extend(
                 IconSvgGroup("signal-distance"),
             ],
         ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="Automatic",
+            properties={"signalType": "Automatic"},
+            icon_groups=[
+                IconSvgGroup("post-ground"),
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-aspect", "translate(10, 0)"),
+                IconSvgGroup("signal-a", "translate(1, 3.5), rotate(90)"),
+            ],
+        ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="AutomaticGantry",
+            properties={"signalType": "Automatic", "isMountedOnGantry": "True"},
+            icon_groups=[
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-aspect", "translate(10, 0)"),
+                IconSvgGroup("signal-a", "translate(1, 3.5), rotate(90)"),
+            ],
+        ),
     ]
 )
 
@@ -348,6 +373,29 @@ signals.extend(
                 IconSvgGroup("signal-distant-cargo"),
             ],
         ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="Technical",
+            properties={"signalType": "Technical"},
+            icon_groups=[
+                IconSvgGroup("post-ground"),
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-aspect", "translate(10, 0)"),
+                IconSvgGroup("signal-t", "translate(1, 3.5), rotate(90)"),
+            ],
+        ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="LevelCrossingSignal",
+            properties={"signalType": "LevelCrossing"},
+            icon_groups=[
+                IconSvgGroup("post-ground"),
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-level-crossing", "translate(10, 0), rotate(90)"),
+            ],
+        )
     ]
 )
 # Additional signals creation

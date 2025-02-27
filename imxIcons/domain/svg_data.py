@@ -47,6 +47,7 @@ def create_secondary_icon_style(qgis=True):
 
 
 def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
+
     svg_data = f"""
 
     <g name="insertion-point" {create_primary_icon_style(qgis_render)} >
@@ -141,13 +142,26 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
         <line x1="-2.125" x2="-1.125" y1="-1" y2="1" />
     </g>
 
-    <!-- symbol stamp by attributes--> 
-
-
-    <g name="signal-p" {create_primary_icon_style(qgis_render)} >
-      <path d="M -0.984 -2.405 L -0.744 -2.405 C -0.563 -2.405 -0.444 -2.397 -0.384 -2.387 C -0.305 -2.371 -0.239 -2.334 -0.186 -2.277 C -0.134 -2.219 -0.107 -2.147 -0.107 -2.057 C -0.107 -1.984 -0.125 -1.92 -0.163 -1.866 C -0.201 -1.81 -0.252 -1.768 -0.317 -1.744 C -0.383 -1.72 -0.516 -1.707 -0.711 -1.707 L -0.984 -1.707 L -0.984 -2.405 Z M -1.477 -0.36 L -0.984 -0.36 L -0.984 -1.289 L -0.657 -1.289 C -0.434 -1.289 -0.262 -1.298 -0.145 -1.322 C -0.055 -1.342 0.03 -1.38 0.113 -1.438 C 0.198 -1.497 0.268 -1.579 0.323 -1.683 C 0.376 -1.786 0.405 -1.912 0.405 -2.064 C 0.405 -2.259 0.357 -2.418 0.264 -2.542 C 0.168 -2.665 0.052 -2.743 -0.089 -2.783 C -0.183 -2.807 -0.379 -2.82 -0.68 -2.82 L -1.477 -2.82 L -1.477 -0.36 Z" stroke-width="0.1"/>
+    <g name="signal-level-crossing" {create_primary_icon_style(qgis_render)} >
+      <rect x="-1.342" y="-3.653" width="2.686" height="4.936" rx="1.309" ry="1.309" />
+      <circle class="aspect-2-colors" r="0.892" cx="0" cy="0" fill="{IconStyleEnum.gold}" />
+      <circle class="aspect-2-colors" cy="-2.528" r="0.892" cx="0" fill="{IconStyleEnum.gold}" />
     </g>
 
+    <!-- symbol stamp by attributes--> 
+
+    <g name="signal-p" {create_primary_icon_style(qgis_render)} >
+      <path d="M -0.821 -1.092 L -0.821 -0.368 L -1.294 -0.368 L -1.294 -2.469 L -0.553 -2.469 C -0.023 -2.469 0.241 -2.246 0.241 -1.799 C 0.241 -1.588 0.166 -1.418 0.014 -1.287 C -0.138 -1.157 -0.341 -1.092 -0.595 -1.092 L -0.821 -1.092 Z M -0.821 -2.105 L -0.821 -1.451 L -0.635 -1.451 C -0.383 -1.451 -0.257 -1.561 -0.257 -1.782 C -0.257 -1.997 -0.383 -2.105 -0.635 -2.105 L -0.821 -2.105 Z" stroke-width="0.1"/>
+    </g>
+
+    <g name="signal-a" {create_primary_icon_style(qgis_render)} >
+      <path d="M 0.624 -0.414 L 0.109 -0.414 L -0.041 -0.881 L -0.788 -0.881 L -0.936 -0.414 L -1.448 -0.414 L -0.684 -2.515 L -0.123 -2.515 Z M -0.149 -1.245 L -0.375 -1.951 Q -0.4 -2.03 -0.41 -2.14 L -0.421 -2.14 Q -0.429 -2.047 -0.458 -1.956 L -0.687 -1.245 Z" stroke-width="0.1"/>
+    </g>
+    
+    <g name="signal-t" {create_primary_icon_style(qgis_render)} >
+      <path d="M 0.314 -2.13 L -0.285 -2.13 L -0.285 -0.415 L -0.759 -0.415 L -0.759 -2.13 L -1.356 -2.13 L -1.356 -2.516 L 0.314 -2.516 Z" stroke-width="0.1"/>
+    </g>
+    
     <g name="shunting-area-lamp" class="animated" {create_secondary_icon_style(qgis_render)} >
       <circle class="aspect-on-off" cx="1.25" cy="0" r="0.75" fill="{IconStyleEnum.gold}" stroke="none" />
       <line x1="2" x2="0.5" y1="-0.75" y2="0.75" />
@@ -504,8 +518,8 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
       <rect y="-4" width="5" height="8" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="-2.5" />
     </g>
     
+    
     """
-
     tree = ET.ElementTree(ET.fromstring(f"<root>{svg_data}</root>"))
 
     root = tree.getroot()
