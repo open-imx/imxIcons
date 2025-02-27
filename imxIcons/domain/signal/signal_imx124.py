@@ -80,6 +80,7 @@ def add_white_bar(signals):
             "Distance" in item.icon_name
             or "AutomaticPermissive" in item.icon_name
             or "Low" in item.icon_name
+            or "Automatic" in item.icon_name
         ):
             continue
         if any(
@@ -114,6 +115,7 @@ def add_arrow_marker(signals):
                 "signal-distant-cargo",
                 "signal-aspect",
                 "signal-distance",
+                "signal-level-crossing",
             ]
             for group in item.icon_groups
         ):
@@ -272,16 +274,39 @@ signals.extend(
                 IconSvgGroup("signal-distance"),
             ],
         ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="Automatic",
+            properties={"signalType": "Automatic"},
+            icon_groups=[
+                IconSvgGroup("post-ground"),
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-aspect", "translate(10, 0)"),
+                IconSvgGroup("signal-a", "translate(1, 3.5), rotate(90)"),
+            ],
+        ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="AutomaticGantry",
+            properties={"signalType": "Automatic", "isMountedOnGantry": "True"},
+            icon_groups=[
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-aspect", "translate(10, 0)"),
+                IconSvgGroup("signal-a", "translate(1, 3.5), rotate(90)"),
+            ],
+        ),
     ]
 )
 
 
 # Applying extensions
-add_shunting(signals)
+add_shunting(signals)  # todo: remove Automatic
 add_danger_sign(signals)
 add_spreader_lens(signals)
 add_cow_heads(signals)
-add_white_bar(signals)
+add_white_bar(signals)  # todo: remove Automatic
 add_out_of_service(signals)
 
 
@@ -314,7 +339,7 @@ signals.extend(
             icon_name="DepartureSingle",
             properties={"signalType": "DepartureSingle"},
             icon_groups=[
-                IconSvgGroup("departure-single"),
+                IconSvgGroup("departure-single", "rotate(180)"),
                 IconSvgGroup("departure"),
             ],
         ),
@@ -324,7 +349,7 @@ signals.extend(
             icon_name="DepartureDouble",
             properties={"signalType": "DepartureDouble"},
             icon_groups=[
-                IconSvgGroup("departure-double"),
+                IconSvgGroup("departure-double", "rotate(180)"),
                 IconSvgGroup("departure"),
             ],
         ),
@@ -371,6 +396,29 @@ signals.extend(
             icon_groups=[
                 IconSvgGroup("signal-post-high"),
                 IconSvgGroup("signal-distant-cargo"),
+            ],
+        ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="Technical",
+            properties={"signalType": "Technical"},
+            icon_groups=[
+                IconSvgGroup("post-ground"),
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-aspect", "translate(10, 0)"),
+                IconSvgGroup("signal-t", "translate(1, 3.5), rotate(90)"),
+            ],
+        ),
+        IconEntity(
+            imx_version=imx_version,
+            imx_path=entities_path,
+            icon_name="LevelCrossingSignal",
+            properties={"signalType": "LevelCrossing"},
+            icon_groups=[
+                IconSvgGroup("post-ground"),
+                IconSvgGroup("signal-post-high"),
+                IconSvgGroup("signal-level-crossing", "translate(10, 0), rotate(90)"),
             ],
         ),
     ]
