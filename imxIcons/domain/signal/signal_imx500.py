@@ -253,7 +253,7 @@ signals.extend(
             imx_version=imx_version,
             imx_path=entities_path,
             icon_name="Distance",
-            properties={"signalType": "Distance"},
+            properties={"signalType": "DistantSignal"},
             icon_groups=[
                 IconSvgGroup("post-ground"),
                 IconSvgGroup("signal-post-high"),
@@ -264,7 +264,7 @@ signals.extend(
             imx_version=imx_version,
             imx_path=entities_path,
             icon_name="DistanceGantry",
-            properties={"signalType": "Distance", "gantryRef": "*"},
+            properties={"signalType": "DistantSignal", "gantryRef": "*"},
             icon_groups=[
                 IconSvgGroup("signal-post-high"),
                 IconSvgGroup("signal-distance"),
