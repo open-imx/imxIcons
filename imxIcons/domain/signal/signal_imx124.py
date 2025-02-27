@@ -302,7 +302,7 @@ signals.extend(
 
 
 # Applying extensions
-add_shunting(signals)   # todo: remove Automatic
+add_shunting(signals)  # todo: remove Automatic
 add_danger_sign(signals)
 add_spreader_lens(signals)
 add_cow_heads(signals)
@@ -420,7 +420,7 @@ signals.extend(
                 IconSvgGroup("signal-post-high"),
                 IconSvgGroup("signal-level-crossing", "translate(10, 0), rotate(90)"),
             ],
-        )
+        ),
     ]
 )
 # Additional signals creation

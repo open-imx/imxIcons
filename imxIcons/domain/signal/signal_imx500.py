@@ -395,7 +395,7 @@ signals.extend(
                 IconSvgGroup("signal-post-high"),
                 IconSvgGroup("signal-level-crossing", "translate(10, 0), rotate(90)"),
             ],
-        )
+        ),
     ]
 )
 # Additional signals creation

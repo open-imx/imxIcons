@@ -47,7 +47,6 @@ def create_secondary_icon_style(qgis=True):
 
 
 def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
-
     svg_data = f"""
 
     <g name="insertion-point" {create_primary_icon_style(qgis_render)} >
