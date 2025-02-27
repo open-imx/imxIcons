@@ -12,7 +12,7 @@ departure_signal_entities_imx500 = [
         icon_name="DepartureSingle",
         properties={"departureSignalType": "DepartureSingle"},
         icon_groups=[
-            IconSvgGroup("departure-single"),
+            IconSvgGroup("departure-single", "rotate(180)"),
             IconSvgGroup("departure"),
         ],
     ),
@@ -22,7 +22,7 @@ departure_signal_entities_imx500 = [
         icon_name="DepartureDouble",
         properties={"departureSignalType": "DepartureDouble"},
         icon_groups=[
-            IconSvgGroup("departure-double"),
+            IconSvgGroup("departure-double", "rotate(180)"),
             IconSvgGroup("departure"),
         ],
     ),

@@ -314,7 +314,7 @@ signals.extend(
             icon_name="DepartureSingle",
             properties={"signalType": "DepartureSingle"},
             icon_groups=[
-                IconSvgGroup("departure-single"),
+                IconSvgGroup("departure-single", "rotate(180)"),
                 IconSvgGroup("departure"),
             ],
         ),
@@ -324,7 +324,7 @@ signals.extend(
             icon_name="DepartureDouble",
             properties={"signalType": "DepartureDouble"},
             icon_groups=[
-                IconSvgGroup("departure-double"),
+                IconSvgGroup("departure-double", "rotate(180)"),
                 IconSvgGroup("departure"),
             ],
         ),

@@ -57,7 +57,7 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
 
     <!-- Signal -->
     <g name="post-ground" {create_primary_icon_style(qgis_render)} >
-        <line x1="0" x2="0" y1="-1" y2="1" />
+        <line x1="0" x2="0" y1="-1.5" y2="1.5" />
     </g>
 
     <g name="signal-post-high" {create_primary_icon_style(qgis_render)} >
