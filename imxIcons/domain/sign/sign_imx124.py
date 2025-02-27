@@ -481,6 +481,42 @@ signs = [
             IconSvgGroup("RS-333", "translate(8.05, 0.05), rotate(90)"),
         ],
     ),
+    IconEntity(
+        imx_version=imx_version,
+        imx_path=entities_path,
+        icon_name="RS328b",
+        properties={
+            "signType": "AtbCabSignalling",
+        },
+        icon_groups=[
+            IconSvgGroup("sign-normal-base"),
+            IconSvgGroup("RS-328b", "translate(8.05, 0.05), rotate(90)"),
+        ],
+    ),
+    IconEntity(
+        imx_version=imx_version,
+        imx_path=entities_path,
+        icon_name="RS328",
+        properties={
+            "signType": "EnableAtbCabSignalling",
+        },
+        icon_groups=[
+            IconSvgGroup("sign-normal-base"),
+            IconSvgGroup("RS-328", "translate(8.05, 0.05), rotate(90)"),
+        ],
+    ),
+    IconEntity(
+        imx_version=imx_version,
+        imx_path=entities_path,
+        icon_name="RS329",
+        properties={
+            "signType": "DisableAtbCabSignalling",
+        },
+        icon_groups=[
+            IconSvgGroup("sign-normal-base"),
+            IconSvgGroup("RS-329", "translate(8.05, 0.05), rotate(90)"),
+        ],
+    ),
 ]
 
 add_arrow_marker(signs)
