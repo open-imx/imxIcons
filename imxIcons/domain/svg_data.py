@@ -319,9 +319,9 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
 
     <g name="RS-307a" {create_primary_icon_style(qgis_render)} >
         <polygon points="0,-2.75 2.828,0.078 0,2.906 -2.828,0.078" fill="{IconStyleEnum.blue}" />
-        <rect x="0.804" y="-1.019" width="0.272" height="1.583" />
-        <rect x="-1" y="-1.019" width="0.313" height="1.583" />
-        <rect x="-1" y="0.564" width="2.071" height="0.294" />
+        <rect x="0.804" y="-1.019" width="0.272" height="1.583" stroke="{IconStyleEnum.white}" fill="{IconStyleEnum.white}" />
+        <rect x="-1" y="-1.019" width="0.313" height="1.583" stroke="{IconStyleEnum.white}" fill="{IconStyleEnum.white}" />
+        <rect x="-1" y="0.564" width="2.071" height="0.294" stroke="{IconStyleEnum.white}" fill="{IconStyleEnum.white}" />
     </g>
 
     <g name="RS-311" {create_primary_icon_style(qgis_render)} >
