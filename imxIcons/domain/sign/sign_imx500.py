@@ -520,6 +520,18 @@ signs = [
             IconSvgGroup("sign-rectangle-45-degrees-no-fill", "translate(8, 0)"),
         ],
     ),
+    IconEntity(
+        imx_version=imx_version,
+        imx_path=entities_path,
+        icon_name="RS312",
+        properties={
+            "signType": "Horn",
+        },
+        icon_groups=[
+            IconSvgGroup("sign-normal-base"),
+            IconSvgGroup("RS-312", "translate(8.05, 0.05), rotate(90)"),
+        ],
+    ),
 ]
 
 add_arrow_marker(signs)

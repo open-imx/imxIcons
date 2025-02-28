@@ -509,6 +509,14 @@ def get_svg_groups(qgis_render: bool = False) -> dict[str, str] | dict:
         <polyline style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 0.75px;" points="1.463 -1.487 -1.398 1.455"/>
     </g>
     
+    
+    <g name="RS-312" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.black}" stroke-width="0.3">
+        <polygon points="0.013 -4.546 3.178 -0.013 0.013 4.523 -3.156 -0.013" stroke-width="0.3" style="fill: rgb(255, 255, 255);"/>
+        <path d="M -1.094 1.922 L -1.094 -1.657 L 1.321 -1.657 L 1.321 -1.235 L -0.62 -1.235 L -0.62 -0.126 L 1.059 -0.126 L 1.059 0.296 L -0.62 0.296 L -0.62 1.922 Z" stroke="black" fill="black"/>
+        <path style="stroke-width: 0px;" d="M 0.006 -4.557 L -0.917 -3.222 L 0.934 -3.234 L 0.006 -4.557 Z" fill="black"/>
+        <path style="stroke-width: 0px;" d="M -0.892 3.232 L 0.004 4.546 L 0.922 3.236 L -0.892 3.232 Z" fill="black"/>    
+    </g>
+        
 
     <!-- AxleCounterDetection -->
 
