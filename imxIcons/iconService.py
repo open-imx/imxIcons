@@ -7,7 +7,12 @@ from lxml.etree import XMLParser
 from imxIcons.domain.icon_library import ICON_DICT  # DEFAULT_ICONS
 from imxIcons.domain.supportedIconTypes import IconTypesEnum, icon_types_literal
 from imxIcons.domain.supportedImxVersions import ImxVersionEnum
-from imxIcons.domain.svg_data import QGIS_SVG_GROUP_DICT, SVG_SVG_GROUP_DICT
+from imxIcons.domain.svg_data import (
+    QGIS_SVG_GROUP_DICT,
+    QGIS_SVG_GROUP_DICT_DARK,
+    SVG_SVG_GROUP_DICT,
+    SVG_SVG_GROUP_DICT_DARK,
+)
 from imxIcons.iconEntity import IconEntity, IconSvgGroup
 from imxIcons.iconServiceModels import IconRequestModel
 
@@ -210,11 +215,12 @@ class IconService:
             icon_type = IconTypesEnum.from_string(icon_type)
         icon_type = cast(IconTypesEnum, icon_type)
 
-        icon_dict = (
-            QGIS_SVG_GROUP_DICT
-            if icon_type.name == IconTypesEnum.qgis.name
-            else SVG_SVG_GROUP_DICT
-        )
+        icon_type_mapping = {
+            IconTypesEnum.qgis.name: QGIS_SVG_GROUP_DICT,
+            IconTypesEnum.qgis_dark.name: QGIS_SVG_GROUP_DICT_DARK,
+            IconTypesEnum.svg_dark.name: SVG_SVG_GROUP_DICT_DARK,
+        }
+        icon_dict = icon_type_mapping.get(icon_type.name, SVG_SVG_GROUP_DICT)
 
         svg_groups_str = [
             cls._add_transform_to_elements(
