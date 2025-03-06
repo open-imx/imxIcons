@@ -37,6 +37,7 @@ class IconStyleEnum:
     gold = "gold"
     blue = "#3a61b4"
 
+
 class IconStyleDarkEnum:
     primary_color = "white"
     primary_stroke_width = 0.5
@@ -65,7 +66,9 @@ def create_secondary_icon_style(qgis=True, dark_mode=True):
     return f"{create_fill_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_width(IconStyleEnum.secondary_stroke_width, qgis)}"
 
 
-def get_svg_groups(qgis_render: bool = False, dark_mode: bool = True) -> dict[str, str] | dict:
+def get_svg_groups(
+    qgis_render: bool = False, dark_mode: bool = True
+) -> dict[str, str] | dict:
     svg_data = f"""
 
     <g name="insertion-point" {create_primary_icon_style(qgis_render, dark_mode)} >
