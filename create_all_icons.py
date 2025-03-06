@@ -32,6 +32,7 @@ async def create_asset_folder(base_dir: Path = Path(__file__).parent):
                         imx_path=icon.imx_path, properties=icon.properties, additional_properties=icon.additional_properties
                     ),
                     ImxVersionEnum[version],
+                    icon_type="svg_dark"
                 )
                 file_path = icon_folder_base / f"{icon.icon_name}.svg"
                 file_path.write_text(svg_content, encoding="utf-8")
