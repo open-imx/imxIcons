@@ -39,10 +39,10 @@ class IconStyleEnum:
 
 
 class IconStyleDarkEnum:
-    primary_color = "white"
+    primary_color = "gray"
     primary_stroke_width = 0.5
 
-    secondary_color = "white"
+    secondary_color = "gray"
     secondary_stroke_width = 0.3
 
     black = "#000000"
@@ -54,20 +54,20 @@ class IconStyleDarkEnum:
     blue = "#3a61b4"
 
 
-def create_primary_icon_style(qgis=True, dark_mode=True):
+def create_primary_icon_style(qgis=True, dark_mode=False):
     if dark_mode:
         return f"{create_fill_color(IconStyleDarkEnum.primary_color, qgis)} {create_stroke_color(IconStyleDarkEnum.primary_color, qgis)} {create_stroke_width(IconStyleDarkEnum.primary_stroke_width, qgis)}"
     return f"{create_fill_color(IconStyleEnum.primary_color, qgis)} {create_stroke_color(IconStyleEnum.primary_color, qgis)} {create_stroke_width(IconStyleEnum.primary_stroke_width, qgis)}"
 
 
-def create_secondary_icon_style(qgis=True, dark_mode=True):
+def create_secondary_icon_style(qgis=True, dark_mode=False):
     if dark_mode:
         return f"{create_fill_color(IconStyleDarkEnum.secondary_color, qgis)} {create_stroke_color(IconStyleDarkEnum.secondary_color, qgis)} {create_stroke_width(IconStyleDarkEnum.secondary_stroke_width, qgis)}"
     return f"{create_fill_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_color(IconStyleEnum.secondary_color, qgis)} {create_stroke_width(IconStyleEnum.secondary_stroke_width, qgis)}"
 
 
 def get_svg_groups(
-    qgis_render: bool = False, dark_mode: bool = True
+    qgis_render: bool = False, dark_mode: bool = False
 ) -> dict[str, str] | dict:
     svg_data = f"""
 
@@ -100,8 +100,8 @@ def get_svg_groups(
 
     <g name="repeat" class="animated" {create_primary_icon_style(qgis_render, dark_mode)} >
         <path class="aspect-on-off" d="M 6 2 L 10 2 L 10 -2 L 6 -2 L 6 2" fill="{IconStyleEnum.white}" />
-        <line x1="7" x2="7" y1="-1" y2="1" />
-        <line x1="9.5" x2="7.5" y1="1" y2="-1" />
+        <line x1="7" x2="7" y1="-1" y2="1" stroke="black" />
+        <line x1="9.5" x2="7.5" y1="1" y2="-1" stroke="black" />
     </g>
 
     <g name="departure" {create_primary_icon_style(qgis_render, dark_mode)}>
@@ -123,9 +123,9 @@ def get_svg_groups(
 
     <g name="signal-cargo" class="animated" {create_primary_icon_style(qgis_render, dark_mode)} >
         <path class="aspect-on-off" d="M 6 2 L 10 2 L 10 -2 L 6 -2 L 6 2" fill="{IconStyleEnum.white}" />
-        <line x1="9.25" x2="6.75" y1="-0.563" y2="-0.563" />
-        <line x1="9.25" x2="6.75" y1="0.686" y2="0.686" />
-        <line x1="8.125" x2="8.125" y1="-0.563" y2="0.686" />
+        <line x1="9.25" x2="6.75" y1="-0.563" y2="-0.563"  stroke="{IconStyleEnum.black}" />
+        <line x1="9.25" x2="6.75" y1="0.686" y2="0.686" stroke="{IconStyleEnum.black}" />
+        <line x1="8.125" x2="8.125" y1="-0.563" y2="0.686"  stroke="{IconStyleEnum.black}" />
     </g>
 
     <g name="signal-distant-cargo" class="animated" {create_primary_icon_style(qgis_render, dark_mode)} >
@@ -183,19 +183,19 @@ def get_svg_groups(
       <path d="M 0.314 -2.13 L -0.285 -2.13 L -0.285 -0.415 L -0.759 -0.415 L -0.759 -2.13 L -1.356 -2.13 L -1.356 -2.516 L 0.314 -2.516 Z" stroke-width="0.1"/>
     </g>
     
-    <g name="shunting-area-lamp" class="animated" {create_secondary_icon_style(qgis_render)} >
+    <g name="shunting-area-lamp" class="animated" {create_secondary_icon_style(qgis_render, dark_mode)} >
       <circle class="aspect-on-off" cx="1.25" cy="0" r="0.75" fill="{IconStyleEnum.gold}" stroke="none" />
       <line x1="2" x2="0.5" y1="-0.75" y2="0.75" />
       <line x1="0.5" x2="2" y1="-0.75" y2="0.75" />
       <line x1="0" x2="1.5" y1="0" y2="0.00" />
     </g>
 
-    <g name="signal-spreader-lens" {create_secondary_icon_style(qgis_render)} >
+    <g name="signal-spreader-lens" {create_secondary_icon_style(qgis_render, dark_mode)} >
         <line x1="0.75" x2="2" y1="-2.25" y2="0" />
         <line x1="2" x2="3.25" y1="0" y2="-2.25" />
     </g>
 
-    <g name="signal-white-bar" class="animated" {create_secondary_icon_style(qgis_render)} >
+    <g name="signal-white-bar" class="animated" {create_secondary_icon_style(qgis_render, dark_mode)} >
         <line class="aspect-count-down-bar" x1="0" x2="4" y1="0" y2="0" />
     </g>
 
@@ -219,17 +219,17 @@ def get_svg_groups(
     
     <g name="arrow-sign-double" {create_primary_icon_style(qgis_render, dark_mode)} >
       <rect x="0" y="0" width="1.412" height="2.384" fill="{IconStyleEnum.gray}" />
-      <line x1="0.706" y1="1.592" x2="0.228" y2="1.04" stroke-width="0.1" />
-      <path d="M 1.175 2.113 L 0.454 1.749 L 0.896 1.355 L 1.175 2.113 Z" fill="{IconStyleEnum.black}" stroke-width="0.1" />
-      <line x1="0.705" y1="0.842" x2="0.228" y2="1.394" stroke-width="0.1" />
-      <path d="M 1.175 0.321 L 0.454 0.685 L 0.896 1.079 L 1.175 0.321 Z" fill="{IconStyleEnum.black}" stroke-width="0.1" />
+      <line x1="0.706" y1="1.592" x2="0.228" y2="1.04" stroke-width="0.1" stroke="{IconStyleEnum.black}" />
+      <path d="M 1.175 2.113 L 0.454 1.749 L 0.896 1.355 L 1.175 2.113 Z" fill="{IconStyleEnum.black}" stroke="{IconStyleEnum.black}" stroke-width="0.1" />
+      <line x1="0.705" y1="0.842" x2="0.228" y2="1.394" stroke-width="0.1" stroke="{IconStyleEnum.black}" />
+      <path d="M 1.175 0.321 L 0.454 0.685 L 0.896 1.079 L 1.175 0.321 Z" fill="{IconStyleEnum.black}" stroke="{IconStyleEnum.black}" stroke-width="0.1" />
     </g>
 
-    <g name="signal-direction-sign" {create_secondary_icon_style(qgis_render)} >
+    <g name="signal-direction-sign" {create_secondary_icon_style(qgis_render, dark_mode)} >
       <polygon points="1 -1.823 2 -1.823 1 0 2 1.816 1 1.816 0 0" stroke-width="0.2" fill="{IconStyleEnum.gray}" />
     </g>
 
-    <g name="signal-direction-3-sign" {create_secondary_icon_style(qgis_render)} >
+    <g name="signal-direction-3-sign" {create_secondary_icon_style(qgis_render, dark_mode)} >
       <polygon points="1 -1.8230 2 -1.8230 1.1680 -0.33300 2 -0.33300 2 0.30800 1.1540 0.30800 2 1.8160 1 1.8160 0 0 " stroke-width="0.2" fill="{IconStyleEnum.gray}" />
     </g> 
 
@@ -280,7 +280,7 @@ def get_svg_groups(
     </g>
 
     <g name="sign-doghouse" {create_primary_icon_style(qgis_render, dark_mode)} >
-      <path d="M2,-2 L0,-2 L0,2 L2,2 L4,0 L2,-2 Z " fill="{IconStyleEnum.white}" />
+      <path d="M2,-2 L0,-2 L0,2 L2,2 L4,0 L2,-2 Z " fill="{IconStyleEnum.white}"/>
     </g>
 
     <g name="sign-doghouse-no-fill" {create_primary_icon_style(qgis_render, dark_mode)} >
@@ -288,11 +288,11 @@ def get_svg_groups(
     </g>
 
     <g name="RS-375" class="doghouse-o" {create_primary_icon_style(qgis_render, dark_mode)} >
-        <circle cx="2" cy="0" r="0.75" fill="none" />
+        <circle cx="2" cy="0" r="0.75" fill="none" stroke="{IconStyleEnum.black}"/>
     </g>
 
     <g name="RS-301" class="doghouse-s" {create_primary_icon_style(qgis_render, dark_mode)} >
-        <path d="M 1.193 0.331 C 1.193 0.331 0.885 0.151 0.719 0.158 C 0.547 0.166 0.250 0.331 0.182 0.462 C 0.114 0.602 0.152 0.89 0.265 1.000 C 0.401 1.134 0.890 0.974 1.036 1.104 C 1.162 1.216 1.209 1.494 1.173 1.65 C 1.140 1.791 1.004 1.952 0.870 2.009 C 0.689 2.069 0.440 2.041 0.294 1.969 C 0.114 1.897 -0.078 1.588 -0.078 1.588" fill="none" />
+        <path d="M 1.193 0.331 C 1.193 0.331 0.885 0.151 0.719 0.158 C 0.547 0.166 0.250 0.331 0.182 0.462 C 0.114 0.602 0.152 0.89 0.265 1.000 C 0.401 1.134 0.890 0.974 1.036 1.104 C 1.162 1.216 1.209 1.494 1.173 1.65 C 1.140 1.791 1.004 1.952 0.870 2.009 C 0.689 2.069 0.440 2.041 0.294 1.969 C 0.114 1.897 -0.078 1.588 -0.078 1.588" fill="none" stroke="{IconStyleEnum.black}"/>
     </g>
 
 
@@ -313,9 +313,9 @@ def get_svg_groups(
 
     <g name="RS-301b" {create_primary_icon_style(qgis_render, dark_mode)} >
         <rect x="0" y="-2" width="2" height="4" fill="{IconStyleEnum.white}" />
-        <path d="M 0 2 L 0 0.667 L 0 0.507 L 1.5 2 L 0 2" fill="{IconStyleEnum.red}" />
-        <path d="M 0 -1.5 L 0 -0.466 L 2 1.5 L 2 0.48 L 0 -1.5" fill="{IconStyleEnum.red}" />
-        <path d="M 2  -0.5 L 2 -1.985 L 0.515 -1.985 L 2 -0.5" fill="{IconStyleEnum.red}" />
+        <path d="M 0 2 L 0 0.667 L 0 0.507 L 1.5 2 L 0 2" fill="{IconStyleEnum.red}" stroke="{IconStyleEnum.black}" />
+        <path d="M 0 -1.5 L 0 -0.466 L 2 1.5 L 2 0.48 L 0 -1.5" fill="{IconStyleEnum.red}" stroke="{IconStyleEnum.black}" />
+        <path d="M 2  -0.5 L 2 -1.985 L 0.515 -1.985 L 2 -0.5" fill="{IconStyleEnum.red}" stroke="{IconStyleEnum.black}" />
         <rect x="0" y="-2" width="2" height="4" fill="none" />
     </g>
 
@@ -323,7 +323,7 @@ def get_svg_groups(
 <!-- this is example -->
     <g name="RS-513" {create_primary_icon_style(qgis_render, dark_mode)} >
         <rect y="-2" width="2" height="4" fill="{IconStyleEnum.white}" />
-        <path d="M 0.75 -2 L 1.25 -2 L 1.25 2 L 0.75 2 L 0.75 -2" fill="{IconStyleEnum.red}" stroke-width="0.1" />
+        <path d="M 0.75 -2 L 1.25 -2 L 1.25 2 L 0.75 2 L 0.75 -2" fill="{IconStyleEnum.red}" stroke-width="0.1" stroke="{IconStyleEnum.black}"/>
         <rect y="-2" width="2" height="4" fill="none" />
     </g>
     
@@ -340,7 +340,7 @@ def get_svg_groups(
     </g>
 
     <g name="RS-307a" {create_primary_icon_style(qgis_render, dark_mode)} >
-        <polygon points="0,-2.75 2.828,0.078 0,2.906 -2.828,0.078" fill="{IconStyleEnum.blue}" />
+        <polygon points="0,-2.75 2.828,0.078 0,2.906 -2.828,0.078" fill="{IconStyleEnum.blue}" stroke="{IconStyleEnum.black}" />
         <rect x="0.804" y="-1.019" width="0.272" height="1.583" stroke="{IconStyleEnum.white}" fill="{IconStyleEnum.white}" />
         <rect x="-1" y="-1.019" width="0.313" height="1.583" stroke="{IconStyleEnum.white}" fill="{IconStyleEnum.white}" />
         <rect x="-1" y="0.564" width="2.071" height="0.294" stroke="{IconStyleEnum.white}" fill="{IconStyleEnum.white}" />
@@ -379,31 +379,37 @@ def get_svg_groups(
         <path d="M 0.247 -2.431 L 0.247 2.601" stroke="{IconStyleEnum.white}"/>
         <path d="M -0.525 -2.176 L -0.525 2.324" stroke="{IconStyleEnum.white}"/>
         <path d="M 0.505 -2.154 L 0.505 2.346" stroke="{IconStyleEnum.white}"/>
-        <polygon points="0, -2.37875 2.44882, 0.06757 0, 2.51519 -2.44882, 0.06757" fill="none"/>
+        <polygon points="0, -2.37875 2.44882, 0.06757 0, 2.51519 -2.44882, 0.06757" fill="none" stroke="{IconStyleEnum.black}" />
     </g>
 
     <g name="RS-249" {create_primary_icon_style(qgis_render, dark_mode)} >
         <path d="M 7.25 1 L 12.25 1 L 12.25 -1 L 7.25 -1 L 7.25 1" fill="{IconStyleEnum.white}" />
         <path d="M 0 1 L 5 1 L 5 -1 L 0 -1 L 0 1" fill="{IconStyleEnum.white}" />
         <path d="M 14.5 1 L 19.5 1 L 19.5 -1 L 14.5 -1 L 14.5 1" fill="{IconStyleEnum.white}" />
-        <line x1="9.25" x2="11.25" y1="-1" y2="1" />
-        <line x1="8.25" x2="10.25" y1="-1" y2="1" />
-        <line x1="1.5" x2="3.5" y1="-1" y2="1" />
-        <line x1="17" x2="19" y1="-1" y2="1" />
-        <line x1="16" x2="18" y1="-1" y2="1" />
-        <line x1="15" x2="17" y1="-1" y2="1" />
+        <line x1="9.25" x2="11.25" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="8.25" x2="10.25" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="1.5" x2="3.5" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="17" x2="19" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="16" x2="18" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="15" x2="17" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <path d="M 7.25 1 L 12.25 1 L 12.25 -1 L 7.25 -1 L 7.25 1" fill="None" />
+        <path d="M 0 1 L 5 1 L 5 -1 L 0 -1 L 0 1" fill="None" />
+        <path d="M 14.5 1 L 19.5 1 L 19.5 -1 L 14.5 -1 L 14.5 1" fill="None" />
     </g>
 
     <g name="RS-251a-II" {create_primary_icon_style(qgis_render, dark_mode)} >
         <path d="M 7.25 1 L 12.25 1 L 12.25 -1 L 7.25 -1 L 7.25 1" fill="{IconStyleEnum.gold}"/>
         <path d="M 0 1 L 5 1 L 5 -1 L 0 -1 L 0 1" fill="{IconStyleEnum.gold}"/>
         <path d="M 14.5 1 L 19.5 1 L 19.5 -1 L 14.5 -1 L 14.5 1" fill="{IconStyleEnum.gold}"/>
-        <line x1="9.25" x2="11.25" y1="-1" y2="1" />
-        <line x1="8.25" x2="10.25" y1="-1" y2="1" />
-        <line x1="1.5" x2="3.5" y1="-1" y2="1" />
-        <line x1="17" x2="19" y1="-1" y2="1" />
-        <line x1="16" x2="18" y1="-1" y2="1" />
-        <line x1="15" x2="17" y1="-1" y2="1" />
+        <line x1="9.25" x2="11.25" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="8.25" x2="10.25" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="1.5" x2="3.5" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="17" x2="19" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="16" x2="18" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <line x1="15" x2="17" y1="-1" y2="1" stroke="{IconStyleEnum.black}" />
+        <path d="M 7.25 1 L 12.25 1 L 12.25 -1 L 7.25 -1 L 7.25 1" fill="None"/>
+        <path d="M 0 1 L 5 1 L 5 -1 L 0 -1 L 0 1" fill="None"/>
+        <path d="M 14.5 1 L 19.5 1 L 19.5 -1 L 14.5 -1 L 14.5 1" fill="None"/>
     </g>
 
     <g name="RS-249a" {create_primary_icon_style(qgis_render, dark_mode)} >
@@ -437,15 +443,15 @@ def get_svg_groups(
         <line x1="0" x2="0" y1="-1" y2="1" />
         <line x1="0" x2="2" y1="-0" y2="-0" />
         <line x1="5" x2="6" y1="-0" y2="-0" />
-        <line x1="7" x2="10" y1="-0" y2="-0" />
-        <line x1="8" x2="8" y1="1" y2="-1" />
+        <line x1="7" x2="10" y1="-0" y2="-0" stroke="{IconStyleEnum.black}" />
+        <line x1="8" x2="8" y1="1" y2="-1" stroke="{IconStyleEnum.black}" />
     </g>    
 
     <g name="RS-305" {create_primary_icon_style(qgis_render, dark_mode)} >
         <rect x="2.25" y="-1" width="6" height="2" fill="{IconStyleEnum.white}" />
         <line x1="2.25" y1="0" x2="0" y2="0"/>
         <line x1="0" y1="-1.25" x2="0" y2="1.25"/>
-        <path d="M 3.547 -0.538 C 3.547 -0.538 3.152 -0.326 3.083 -0.213 C 3.041 -0.144 3.045 -0.075 3.054 0 C 3.065 0.091 3.085 0.215 3.172 0.29 C 3.313 0.412 3.702 0.495 3.971 0.487 C 4.251 0.478 4.531 0.34 4.819 0.221 C 5.141 0.088 5.536 -0.176 5.805 -0.292 C 5.982 -0.368 6.094 -0.423 6.259 -0.45 C 6.445 -0.48 6.687 -0.467 6.871 -0.44 C 7.027 -0.417 7.199 -0.403 7.295 -0.321 C 7.381 -0.248 7.463 -0.113 7.443 0 C 7.413 0.164 6.91 0.527 6.91 0.527" fill="none"/>
+        <path d="M 3.547 -0.538 C 3.547 -0.538 3.152 -0.326 3.083 -0.213 C 3.041 -0.144 3.045 -0.075 3.054 0 C 3.065 0.091 3.085 0.215 3.172 0.29 C 3.313 0.412 3.702 0.495 3.971 0.487 C 4.251 0.478 4.531 0.34 4.819 0.221 C 5.141 0.088 5.536 -0.176 5.805 -0.292 C 5.982 -0.368 6.094 -0.423 6.259 -0.45 C 6.445 -0.48 6.687 -0.467 6.871 -0.44 C 7.027 -0.417 7.199 -0.403 7.295 -0.321 C 7.381 -0.248 7.463 -0.113 7.443 0 C 7.413 0.164 6.91 0.527 6.91 0.527" fill="none" stroke="{IconStyleEnum.black}" />
     </g>
 
     <g name="RS-304a" {create_primary_icon_style(qgis_render, dark_mode)} >
@@ -479,20 +485,20 @@ def get_svg_groups(
       <rect width="4" height="4" fill="{IconStyleEnum.blue}" />
       <polyline points="4 0.554 0.232 1.989" stroke="{IconStyleEnum.white}" />
       <polyline points="3.979 3.685 0.243 2.028" stroke="{IconStyleEnum.white}" />
-      <line x1="0.241" y1="1.756" x2="0.241" y2="2.256" fill="{IconStyleEnum.white}" />
+      <line x1="0.241" y1="1.756" x2="0.241" y2="2.256" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.white}" />
       <rect width="4" height="4" x="-0.021" fill="none" />  
     </g>
 
     <g name="RS-333" {create_primary_icon_style(qgis_render, dark_mode)} >
         <polygon points="0,-2.75 2.828,0.078 0,2.906 -2.828,0.078" fill="{IconStyleEnum.white}" />
-        <line x1="-1.499" y1="1.398" x2="1.346" y2="-1.393"/>
-        <line x1="0" y1="1.398" x2="0" y2="-1"/>
-        <line x1="0.491" y1="1.398" x2="-0.509" y2="1.398"/>
-        <circle cx="-0.013" cy="-1.143" r="0.45"/>
+        <line x1="-1.499" y1="1.398" x2="1.346" y2="-1.393" stroke="{IconStyleEnum.black}" />
+        <line x1="0" y1="1.398" x2="0" y2="-1" stroke="{IconStyleEnum.black}" />
+        <line x1="0.491" y1="1.398" x2="-0.509" y2="1.398" stroke="{IconStyleEnum.black}" />
+        <circle cx="-0.013" cy="-1.143" r="0.45" stroke="{IconStyleEnum.black}" fill="{IconStyleEnum.black}" />
     </g>
 
     <g name="RS-306a" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.white}" stroke-width="0.2">
-        <polygon points="0,-2.75 2.828,0.078 0,2.906 -2.828,0.078" fill="{IconStyleEnum.blue}" />
+        <polygon points="0,-2.75 2.828,0.078 0,2.906 -2.828,0.078" fill="{IconStyleEnum.blue}" stroke="{IconStyleEnum.black}" />
         <rect x="0.804" y="-1.019" width="0.272" height="0.562" />
         <rect x="-0.995" y="-1.019" width="0.272" height="0.562" />
         <rect x="-0.995" y="0.564" width="2.071" height="0.294" />
@@ -532,7 +538,7 @@ def get_svg_groups(
     </g>
     
     
-    <g name="RS-312" fill="{IconStyleEnum.white}" stroke="{IconStyleEnum.black}" stroke-width="0.3">
+    <g name="RS-312" {create_primary_icon_style(qgis_render, dark_mode)}> >
         <polygon points="0.013 -4.546 3.178 -0.013 0.013 4.523 -3.156 -0.013" stroke-width="0.3" style="fill: rgb(255, 255, 255);"/>
         <path d="M -1.094 1.922 L -1.094 -1.657 L 1.321 -1.657 L 1.321 -1.235 L -0.62 -1.235 L -0.62 -0.126 L 1.059 -0.126 L 1.059 0.296 L -0.62 0.296 L -0.62 1.922 Z" stroke="black" fill="black"/>
         <path style="stroke-width: 0px;" d="M 0.006 -4.557 L -0.917 -3.222 L 0.934 -3.234 L 0.006 -4.557 Z" fill="black"/>
