@@ -277,7 +277,7 @@ async function sendFeedback(iconName, reasonId, imxVersion) {
 
 
   // Replace with your API endpoint
-  const apiUrl = 'http://localhost:8001/feedback';
+  const apiUrl = 'https://imx-icons-api.azurewebsites.net/feedback';
   try {
     await fetch(apiUrl, {
       method: 'POST',
