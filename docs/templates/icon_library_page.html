@@ -146,6 +146,21 @@
     background-color: #45a049; /* Darker green */
   }
 
+  .light-icon {
+    display: block;
+  }
+
+  .dark-icon {
+    display: none;
+  }
+
+  [data-md-color-scheme="slate"] .light-icon {
+    display: none;
+  }
+
+  [data-md-color-scheme="slate"] .dark-icon {
+    display: block;
+  }
 
 </style>
 
@@ -174,12 +189,19 @@
   </div>
 </div>
 <div class="icon-container">
+
+
   <!-- Icon Section -->
   <div class="icon-box">
-    <figure id="figure-{{ icon.name }}">
+    <figure id="figure-{{ icon.name }}" class="light-icon">
       {{ icon.svg|safe }}
     </figure>
+
+    <figure id="figure-{{ icon.name }}-dark" class="dark-icon">
+      {{ icon.svg_dark|safe }}
+    </figure>
   </div>
+
   <!-- Properties Section -->
   <div class="properties-box">
     <h3>Property Mapping</h3>
@@ -190,6 +212,7 @@
 
   <form method="dialog" id="feedbackForm-{{ icon.name }}">
     <h1 style="margin:0px;padding:0px;font-size: 1.2rem; font-weight: 700;">Feedback for Icon: "{{ icon.name | default('') }}"</h1>
+    <h5> {{icon.imx_version}}</h5>
     <div class="icon-container" style="display: flex; gap: 20px; margin-bottom: 15px;">
       <!-- Icon Section -->
       <div class="icon-box">
@@ -216,7 +239,7 @@
       <button
         type="submit"
         class="glass-button green-submit"
-        onclick="sendFeedback('{{ icon.name }}', 'feedbackReason-{{ icon.name }}')">
+        onclick="sendFeedback('{{ icon.name }}', 'feedbackReason-{{ icon.name }}', '{{ icon.imx_version }}')">
         Submit
       </button>
       <button
@@ -244,22 +267,32 @@ function closeFeedbackDialog(dialogId) {
   if (feedbackDialog) feedbackDialog.close();
 }
 
-async function sendFeedback(iconName, reasonId) {
+async function sendFeedback(iconName, reasonId, imxVersion) {
   const feedbackReason = document.getElementById(reasonId).value;
   if (!feedbackReason.trim()) {
     alert('Please provide a reason for your feedback.');
     return;
   }
+  const currentPageUrl = window.location.href;
 
-  const webhookUrl = 'https://discord.com/api/webhooks/1318602335374807173/AWc1n2SPrymDCMy0VFhxbGuYrNLyHUsbJH5eTanWXrNsVABZUAlJTtVOHibSRyBkwKBK';
+
+  // Replace with your API endpoint
+  const apiUrl = 'http://localhost:8001/feedback';
   try {
-    await fetch(webhookUrl, {
+    await fetch(apiUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        content: `**Icon Name:** ${iconName}\n**Feedback:** ${feedbackReason}`
-      })
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify({
+          icon_name: iconName,
+          feedback_text: feedbackReason,
+          icon_url: currentPageUrl,
+          imx_version: imxVersion
+        })
+
     });
+
     alert('Feedback sent! Thank you.');
     closeFeedbackDialog(`feedbackDialog-${iconName}`);
   } catch (error) {

@@ -31,6 +31,14 @@ def generate_icon_list(icons, version: str) -> list:
             ImxVersionEnum[version],
         )
         scaled_svg = add_transformations(svg_content, scale=2.75, translate_x=-90)
+
+        svg_content_dark = IconService.get_svg(
+            IconRequestModel(imx_path=icon.imx_path, properties=icon.properties,
+                             additional_properties=icon.additional_properties),
+            ImxVersionEnum[version], icon_type="svg_dark"
+        )
+        scaled_svg_dark = add_transformations(svg_content_dark, scale=2.75, translate_x=-90)
+
         if icon.additional_properties:
             properties = {'imx_path': icon.imx_path} | {'properties': icon.properties} | {'additional_properties': icon.additional_properties}
         else:
@@ -39,8 +47,10 @@ def generate_icon_list(icons, version: str) -> list:
         icon_list.append({
             "name": icon.icon_name,
             "svg": scaled_svg,
+            "svg_dark": scaled_svg_dark,
             "properties": properties,
-            "raw_code": svg_content
+            "raw_code": svg_content,
+            "imx_version": version
         })
     return icon_list
 
